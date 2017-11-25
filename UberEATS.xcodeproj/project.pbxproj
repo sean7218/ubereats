@@ -1,0 +1,580 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A757F0041FCA2CD000240CC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F0031FCA2CD000240CC9 /* AppDelegate.swift */; };
+		A757F0061FCA2CD000240CC9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F0051FCA2CD000240CC9 /* ViewController.swift */; };
+		A757F0091FCA2CD000240CC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A757F0071FCA2CD000240CC9 /* Main.storyboard */; };
+		A757F00C1FCA2CD000240CC9 /* UberEATS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A757F00A1FCA2CD000240CC9 /* UberEATS.xcdatamodeld */; };
+		A757F00E1FCA2CD000240CC9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A757F00D1FCA2CD000240CC9 /* Assets.xcassets */; };
+		A757F0111FCA2CD000240CC9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A757F00F1FCA2CD000240CC9 /* LaunchScreen.storyboard */; };
+		A757F01C1FCA2CD000240CC9 /* UberEATSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F01B1FCA2CD000240CC9 /* UberEATSTests.swift */; };
+		A757F0271FCA2CD000240CC9 /* UberEATSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F0261FCA2CD000240CC9 /* UberEATSUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A757F0181FCA2CD000240CC9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A757EFF81FCA2CD000240CC9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A757EFFF1FCA2CD000240CC9;
+			remoteInfo = UberEATS;
+		};
+		A757F0231FCA2CD000240CC9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A757EFF81FCA2CD000240CC9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A757EFFF1FCA2CD000240CC9;
+			remoteInfo = UberEATS;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A757F0001FCA2CD000240CC9 /* UberEATS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UberEATS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A757F0031FCA2CD000240CC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A757F0051FCA2CD000240CC9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A757F0081FCA2CD000240CC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A757F00B1FCA2CD000240CC9 /* UberEATS.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UberEATS.xcdatamodel; sourceTree = "<group>"; };
+		A757F00D1FCA2CD000240CC9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A757F0101FCA2CD000240CC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A757F0121FCA2CD000240CC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A757F0171FCA2CD000240CC9 /* UberEATSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UberEATSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A757F01B1FCA2CD000240CC9 /* UberEATSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UberEATSTests.swift; sourceTree = "<group>"; };
+		A757F01D1FCA2CD000240CC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A757F0221FCA2CD000240CC9 /* UberEATSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UberEATSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A757F0261FCA2CD000240CC9 /* UberEATSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UberEATSUITests.swift; sourceTree = "<group>"; };
+		A757F0281FCA2CD000240CC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A757EFFD1FCA2CD000240CC9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A757F0141FCA2CD000240CC9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A757F01F1FCA2CD000240CC9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A757EFF71FCA2CD000240CC9 = {
+			isa = PBXGroup;
+			children = (
+				A757F0021FCA2CD000240CC9 /* UberEATS */,
+				A757F01A1FCA2CD000240CC9 /* UberEATSTests */,
+				A757F0251FCA2CD000240CC9 /* UberEATSUITests */,
+				A757F0011FCA2CD000240CC9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A757F0011FCA2CD000240CC9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A757F0001FCA2CD000240CC9 /* UberEATS.app */,
+				A757F0171FCA2CD000240CC9 /* UberEATSTests.xctest */,
+				A757F0221FCA2CD000240CC9 /* UberEATSUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A757F0021FCA2CD000240CC9 /* UberEATS */ = {
+			isa = PBXGroup;
+			children = (
+				A757F0031FCA2CD000240CC9 /* AppDelegate.swift */,
+				A757F0051FCA2CD000240CC9 /* ViewController.swift */,
+				A757F0071FCA2CD000240CC9 /* Main.storyboard */,
+				A757F00D1FCA2CD000240CC9 /* Assets.xcassets */,
+				A757F00F1FCA2CD000240CC9 /* LaunchScreen.storyboard */,
+				A757F0121FCA2CD000240CC9 /* Info.plist */,
+				A757F00A1FCA2CD000240CC9 /* UberEATS.xcdatamodeld */,
+			);
+			path = UberEATS;
+			sourceTree = "<group>";
+		};
+		A757F01A1FCA2CD000240CC9 /* UberEATSTests */ = {
+			isa = PBXGroup;
+			children = (
+				A757F01B1FCA2CD000240CC9 /* UberEATSTests.swift */,
+				A757F01D1FCA2CD000240CC9 /* Info.plist */,
+			);
+			path = UberEATSTests;
+			sourceTree = "<group>";
+		};
+		A757F0251FCA2CD000240CC9 /* UberEATSUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A757F0261FCA2CD000240CC9 /* UberEATSUITests.swift */,
+				A757F0281FCA2CD000240CC9 /* Info.plist */,
+			);
+			path = UberEATSUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A757EFFF1FCA2CD000240CC9 /* UberEATS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A757F02B1FCA2CD000240CC9 /* Build configuration list for PBXNativeTarget "UberEATS" */;
+			buildPhases = (
+				A757EFFC1FCA2CD000240CC9 /* Sources */,
+				A757EFFD1FCA2CD000240CC9 /* Frameworks */,
+				A757EFFE1FCA2CD000240CC9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UberEATS;
+			productName = UberEATS;
+			productReference = A757F0001FCA2CD000240CC9 /* UberEATS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A757F0161FCA2CD000240CC9 /* UberEATSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A757F02E1FCA2CD000240CC9 /* Build configuration list for PBXNativeTarget "UberEATSTests" */;
+			buildPhases = (
+				A757F0131FCA2CD000240CC9 /* Sources */,
+				A757F0141FCA2CD000240CC9 /* Frameworks */,
+				A757F0151FCA2CD000240CC9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A757F0191FCA2CD000240CC9 /* PBXTargetDependency */,
+			);
+			name = UberEATSTests;
+			productName = UberEATSTests;
+			productReference = A757F0171FCA2CD000240CC9 /* UberEATSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A757F0211FCA2CD000240CC9 /* UberEATSUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A757F0311FCA2CD000240CC9 /* Build configuration list for PBXNativeTarget "UberEATSUITests" */;
+			buildPhases = (
+				A757F01E1FCA2CD000240CC9 /* Sources */,
+				A757F01F1FCA2CD000240CC9 /* Frameworks */,
+				A757F0201FCA2CD000240CC9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A757F0241FCA2CD000240CC9 /* PBXTargetDependency */,
+			);
+			name = UberEATSUITests;
+			productName = UberEATSUITests;
+			productReference = A757F0221FCA2CD000240CC9 /* UberEATSUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A757EFF81FCA2CD000240CC9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0910;
+				LastUpgradeCheck = 0910;
+				ORGANIZATIONNAME = "Sean Zhang";
+				TargetAttributes = {
+					A757EFFF1FCA2CD000240CC9 = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+					};
+					A757F0161FCA2CD000240CC9 = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = A757EFFF1FCA2CD000240CC9;
+					};
+					A757F0211FCA2CD000240CC9 = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = A757EFFF1FCA2CD000240CC9;
+					};
+				};
+			};
+			buildConfigurationList = A757EFFB1FCA2CD000240CC9 /* Build configuration list for PBXProject "UberEATS" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A757EFF71FCA2CD000240CC9;
+			productRefGroup = A757F0011FCA2CD000240CC9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A757EFFF1FCA2CD000240CC9 /* UberEATS */,
+				A757F0161FCA2CD000240CC9 /* UberEATSTests */,
+				A757F0211FCA2CD000240CC9 /* UberEATSUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A757EFFE1FCA2CD000240CC9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A757F0111FCA2CD000240CC9 /* LaunchScreen.storyboard in Resources */,
+				A757F00E1FCA2CD000240CC9 /* Assets.xcassets in Resources */,
+				A757F0091FCA2CD000240CC9 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A757F0151FCA2CD000240CC9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A757F0201FCA2CD000240CC9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A757EFFC1FCA2CD000240CC9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A757F0061FCA2CD000240CC9 /* ViewController.swift in Sources */,
+				A757F0041FCA2CD000240CC9 /* AppDelegate.swift in Sources */,
+				A757F00C1FCA2CD000240CC9 /* UberEATS.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A757F0131FCA2CD000240CC9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A757F01C1FCA2CD000240CC9 /* UberEATSTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A757F01E1FCA2CD000240CC9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A757F0271FCA2CD000240CC9 /* UberEATSUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A757F0191FCA2CD000240CC9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A757EFFF1FCA2CD000240CC9 /* UberEATS */;
+			targetProxy = A757F0181FCA2CD000240CC9 /* PBXContainerItemProxy */;
+		};
+		A757F0241FCA2CD000240CC9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A757EFFF1FCA2CD000240CC9 /* UberEATS */;
+			targetProxy = A757F0231FCA2CD000240CC9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A757F0071FCA2CD000240CC9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A757F0081FCA2CD000240CC9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A757F00F1FCA2CD000240CC9 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A757F0101FCA2CD000240CC9 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A757F0291FCA2CD000240CC9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A757F02A1FCA2CD000240CC9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A757F02C1FCA2CD000240CC9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GDTG5SQZRN;
+				INFOPLIST_FILE = UberEATS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = sz7218.UberEATS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A757F02D1FCA2CD000240CC9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GDTG5SQZRN;
+				INFOPLIST_FILE = UberEATS/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = sz7218.UberEATS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		A757F02F1FCA2CD000240CC9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GDTG5SQZRN;
+				INFOPLIST_FILE = UberEATSTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = sz7218.UberEATSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UberEATS.app/UberEATS";
+			};
+			name = Debug;
+		};
+		A757F0301FCA2CD000240CC9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GDTG5SQZRN;
+				INFOPLIST_FILE = UberEATSTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = sz7218.UberEATSTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UberEATS.app/UberEATS";
+			};
+			name = Release;
+		};
+		A757F0321FCA2CD000240CC9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GDTG5SQZRN;
+				INFOPLIST_FILE = UberEATSUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = sz7218.UberEATSUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = UberEATS;
+			};
+			name = Debug;
+		};
+		A757F0331FCA2CD000240CC9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = GDTG5SQZRN;
+				INFOPLIST_FILE = UberEATSUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = sz7218.UberEATSUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = UberEATS;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A757EFFB1FCA2CD000240CC9 /* Build configuration list for PBXProject "UberEATS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A757F0291FCA2CD000240CC9 /* Debug */,
+				A757F02A1FCA2CD000240CC9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A757F02B1FCA2CD000240CC9 /* Build configuration list for PBXNativeTarget "UberEATS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A757F02C1FCA2CD000240CC9 /* Debug */,
+				A757F02D1FCA2CD000240CC9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A757F02E1FCA2CD000240CC9 /* Build configuration list for PBXNativeTarget "UberEATSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A757F02F1FCA2CD000240CC9 /* Debug */,
+				A757F0301FCA2CD000240CC9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A757F0311FCA2CD000240CC9 /* Build configuration list for PBXNativeTarget "UberEATSUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A757F0321FCA2CD000240CC9 /* Debug */,
+				A757F0331FCA2CD000240CC9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A757F00A1FCA2CD000240CC9 /* UberEATS.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A757F00B1FCA2CD000240CC9 /* UberEATS.xcdatamodel */,
+			);
+			currentVersion = A757F00B1FCA2CD000240CC9 /* UberEATS.xcdatamodel */;
+			path = UberEATS.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = A757EFF81FCA2CD000240CC9 /* Project object */;
+}
