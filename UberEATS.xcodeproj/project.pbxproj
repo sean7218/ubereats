@@ -15,6 +15,13 @@
 		A757F0111FCA2CD000240CC9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A757F00F1FCA2CD000240CC9 /* LaunchScreen.storyboard */; };
 		A757F01C1FCA2CD000240CC9 /* UberEATSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F01B1FCA2CD000240CC9 /* UberEATSTests.swift */; };
 		A757F0271FCA2CD000240CC9 /* UberEATSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F0261FCA2CD000240CC9 /* UberEATSUITests.swift */; };
+		A757F0361FCA2D8500240CC9 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F0351FCA2D8500240CC9 /* TabBarController.swift */; };
+		A757F0381FCA2DFC00240CC9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F0371FCA2DFC00240CC9 /* HomeViewController.swift */; };
+		A757F03A1FCA2E3100240CC9 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F0391FCA2E3100240CC9 /* SearchViewController.swift */; };
+		A757F03C1FCA2E5C00240CC9 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F03B1FCA2E5C00240CC9 /* UserViewController.swift */; };
+		A757F03E1FCA2ECE00240CC9 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F03D1FCA2ECE00240CC9 /* OrderViewController.swift */; };
+		A757F0461FCA318300240CC9 /* HomeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F0451FCA318300240CC9 /* HomeViewCell.swift */; };
+		A757F04A1FCA346C00240CC9 /* HorizontalViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F0491FCA346C00240CC9 /* HorizontalViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +56,13 @@
 		A757F0221FCA2CD000240CC9 /* UberEATSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UberEATSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A757F0261FCA2CD000240CC9 /* UberEATSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UberEATSUITests.swift; sourceTree = "<group>"; };
 		A757F0281FCA2CD000240CC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A757F0351FCA2D8500240CC9 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		A757F0371FCA2DFC00240CC9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		A757F0391FCA2E3100240CC9 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		A757F03B1FCA2E5C00240CC9 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		A757F03D1FCA2ECE00240CC9 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
+		A757F0451FCA318300240CC9 /* HomeViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewCell.swift; sourceTree = "<group>"; };
+		A757F0491FCA346C00240CC9 /* HorizontalViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +113,9 @@
 		A757F0021FCA2CD000240CC9 /* UberEATS */ = {
 			isa = PBXGroup;
 			children = (
+				A757F0441FCA313F00240CC9 /* Views */,
+				A757F0431FCA313900240CC9 /* Models */,
+				A757F0341FCA2D7000240CC9 /* Controllers */,
 				A757F0031FCA2CD000240CC9 /* AppDelegate.swift */,
 				A757F0051FCA2CD000240CC9 /* ViewController.swift */,
 				A757F0071FCA2CD000240CC9 /* Main.storyboard */,
@@ -126,6 +143,66 @@
 				A757F0281FCA2CD000240CC9 /* Info.plist */,
 			);
 			path = UberEATSUITests;
+			sourceTree = "<group>";
+		};
+		A757F0341FCA2D7000240CC9 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A757F03F1FCA310800240CC9 /* Home */,
+				A757F0421FCA311900240CC9 /* User */,
+				A757F0411FCA311300240CC9 /* Search */,
+				A757F0401FCA310D00240CC9 /* Order */,
+				A757F0351FCA2D8500240CC9 /* TabBarController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		A757F03F1FCA310800240CC9 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				A757F0371FCA2DFC00240CC9 /* HomeViewController.swift */,
+				A757F0451FCA318300240CC9 /* HomeViewCell.swift */,
+				A757F0491FCA346C00240CC9 /* HorizontalViewCell.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		A757F0401FCA310D00240CC9 /* Order */ = {
+			isa = PBXGroup;
+			children = (
+				A757F03D1FCA2ECE00240CC9 /* OrderViewController.swift */,
+			);
+			path = Order;
+			sourceTree = "<group>";
+		};
+		A757F0411FCA311300240CC9 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				A757F0391FCA2E3100240CC9 /* SearchViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		A757F0421FCA311900240CC9 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				A757F03B1FCA2E5C00240CC9 /* UserViewController.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		A757F0431FCA313900240CC9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A757F0441FCA313F00240CC9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,8 +339,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A757F03C1FCA2E5C00240CC9 /* UserViewController.swift in Sources */,
+				A757F03A1FCA2E3100240CC9 /* SearchViewController.swift in Sources */,
 				A757F0061FCA2CD000240CC9 /* ViewController.swift in Sources */,
+				A757F03E1FCA2ECE00240CC9 /* OrderViewController.swift in Sources */,
+				A757F0361FCA2D8500240CC9 /* TabBarController.swift in Sources */,
+				A757F0461FCA318300240CC9 /* HomeViewCell.swift in Sources */,
+				A757F04A1FCA346C00240CC9 /* HorizontalViewCell.swift in Sources */,
 				A757F0041FCA2CD000240CC9 /* AppDelegate.swift in Sources */,
+				A757F0381FCA2DFC00240CC9 /* HomeViewController.swift in Sources */,
 				A757F00C1FCA2CD000240CC9 /* UberEATS.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
