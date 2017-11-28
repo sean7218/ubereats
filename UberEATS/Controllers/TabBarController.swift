@@ -42,7 +42,6 @@ class TabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
         self.setViewControllers([
             homeNavController,
             searchViewController,

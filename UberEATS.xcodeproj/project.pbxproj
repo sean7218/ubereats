@@ -22,6 +22,13 @@
 		A757F03E1FCA2ECE00240CC9 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F03D1FCA2ECE00240CC9 /* OrderViewController.swift */; };
 		A757F0461FCA318300240CC9 /* HomeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F0451FCA318300240CC9 /* HomeViewCell.swift */; };
 		A757F04A1FCA346C00240CC9 /* HorizontalViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F0491FCA346C00240CC9 /* HorizontalViewCell.swift */; };
+		A757F04E1FCA504E00240CC9 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F04D1FCA504E00240CC9 /* FilterViewController.swift */; };
+		A757F0501FCCE72600240CC9 /* FilterViewMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F04F1FCCE72600240CC9 /* FilterViewMenu.swift */; };
+		A757F0521FCCE74500240CC9 /* FilterViewMenuDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F0511FCCE74500240CC9 /* FilterViewMenuDelegate.swift */; };
+		A757F0541FCCE77400240CC9 /* FilterViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F0531FCCE77400240CC9 /* FilterViewDelegate.swift */; };
+		A757F0561FCCFF7300240CC9 /* PriceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F0551FCCFF7300240CC9 /* PriceCell.swift */; };
+		A757F0581FCD026000240CC9 /* SortCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F0571FCD026000240CC9 /* SortCell.swift */; };
+		A757F05A1FCD026B00240CC9 /* DietaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F0591FCD026B00240CC9 /* DietaryCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +70,13 @@
 		A757F03D1FCA2ECE00240CC9 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		A757F0451FCA318300240CC9 /* HomeViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewCell.swift; sourceTree = "<group>"; };
 		A757F0491FCA346C00240CC9 /* HorizontalViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalViewCell.swift; sourceTree = "<group>"; };
+		A757F04D1FCA504E00240CC9 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		A757F04F1FCCE72600240CC9 /* FilterViewMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewMenu.swift; sourceTree = "<group>"; };
+		A757F0511FCCE74500240CC9 /* FilterViewMenuDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewMenuDelegate.swift; sourceTree = "<group>"; };
+		A757F0531FCCE77400240CC9 /* FilterViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewDelegate.swift; sourceTree = "<group>"; };
+		A757F0551FCCFF7300240CC9 /* PriceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceCell.swift; sourceTree = "<group>"; };
+		A757F0571FCD026000240CC9 /* SortCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortCell.swift; sourceTree = "<group>"; };
+		A757F0591FCD026B00240CC9 /* DietaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DietaryCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +174,8 @@
 		A757F03F1FCA310800240CC9 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				A757F04C1FCA504000240CC9 /* Location */,
+				A757F04B1FCA503700240CC9 /* Filter */,
 				A757F0371FCA2DFC00240CC9 /* HomeViewController.swift */,
 				A757F0451FCA318300240CC9 /* HomeViewCell.swift */,
 				A757F0491FCA346C00240CC9 /* HorizontalViewCell.swift */,
@@ -203,6 +219,27 @@
 			children = (
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		A757F04B1FCA503700240CC9 /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				A757F04D1FCA504E00240CC9 /* FilterViewController.swift */,
+				A757F0531FCCE77400240CC9 /* FilterViewDelegate.swift */,
+				A757F04F1FCCE72600240CC9 /* FilterViewMenu.swift */,
+				A757F0511FCCE74500240CC9 /* FilterViewMenuDelegate.swift */,
+				A757F0551FCCFF7300240CC9 /* PriceCell.swift */,
+				A757F0571FCD026000240CC9 /* SortCell.swift */,
+				A757F0591FCD026B00240CC9 /* DietaryCell.swift */,
+			);
+			path = Filter;
+			sourceTree = "<group>";
+		};
+		A757F04C1FCA504000240CC9 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Location;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -340,15 +377,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				A757F03C1FCA2E5C00240CC9 /* UserViewController.swift in Sources */,
+				A757F0581FCD026000240CC9 /* SortCell.swift in Sources */,
 				A757F03A1FCA2E3100240CC9 /* SearchViewController.swift in Sources */,
+				A757F05A1FCD026B00240CC9 /* DietaryCell.swift in Sources */,
 				A757F0061FCA2CD000240CC9 /* ViewController.swift in Sources */,
 				A757F03E1FCA2ECE00240CC9 /* OrderViewController.swift in Sources */,
 				A757F0361FCA2D8500240CC9 /* TabBarController.swift in Sources */,
+				A757F0501FCCE72600240CC9 /* FilterViewMenu.swift in Sources */,
+				A757F04E1FCA504E00240CC9 /* FilterViewController.swift in Sources */,
+				A757F0541FCCE77400240CC9 /* FilterViewDelegate.swift in Sources */,
 				A757F0461FCA318300240CC9 /* HomeViewCell.swift in Sources */,
 				A757F04A1FCA346C00240CC9 /* HorizontalViewCell.swift in Sources */,
 				A757F0041FCA2CD000240CC9 /* AppDelegate.swift in Sources */,
+				A757F0561FCCFF7300240CC9 /* PriceCell.swift in Sources */,
 				A757F0381FCA2DFC00240CC9 /* HomeViewController.swift in Sources */,
 				A757F00C1FCA2CD000240CC9 /* UberEATS.xcdatamodeld in Sources */,
+				A757F0521FCCE74500240CC9 /* FilterViewMenuDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
