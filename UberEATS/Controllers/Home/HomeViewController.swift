@@ -21,9 +21,12 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     
     lazy var filterButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Filter", for: .normal)
+        button.setTitle("Sort Restaurants", for: .normal)
+        let attributedText = NSMutableAttributedString(string: "Sort Restaurants", attributes: [NSAttributedStringKey.font: UIFont.italicSystemFont(ofSize: 12)])
+        button.titleLabel?.attributedText = attributedText
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .white
+        button.tintColor = .black
         button.addTarget(self, action: #selector(showFilterView), for: .touchUpInside)
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOpacity = 0.5
@@ -39,18 +42,18 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     }()
     
     @objc func showFilterView() {
-//        self.view.addSubview(self.grayBackgroundView)
-//
-//        NSLayoutConstraint.activate([
-//            self.grayBackgroundView.topAnchor.constraint(equalTo: self.view.topAnchor),
-//            self.grayBackgroundView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
-//            self.grayBackgroundView.widthAnchor.constraint(equalToConstant: self.view.frame.width),
-//            self.grayBackgroundView.heightAnchor.constraint(equalToConstant: self.view.frame.height)
-//            ])
+        self.view.addSubview(self.grayBackgroundView)
+
+        NSLayoutConstraint.activate([
+            self.grayBackgroundView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            self.grayBackgroundView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
+            self.grayBackgroundView.widthAnchor.constraint(equalToConstant: self.view.frame.width),
+            self.grayBackgroundView.heightAnchor.constraint(equalToConstant: self.view.frame.height)
+            ])
         
-        self.navigationController?.navigationBar.addSubview(filterViewController.view)
-        self.navigationController?.addChildViewController(filterViewController)
-        filterViewController.didMove(toParentViewController: self.navigationController)
+        self.view.addSubview(filterViewController.view)
+        self.addChildViewController(filterViewController)
+        filterViewController.didMove(toParentViewController: self)
         self.filterViewController.view.frame.origin.y = -400
         UIView.animate(withDuration: 0.8, delay: 0, options: UIViewAnimationOptions.curveEaseInOut, animations: {
             self.filterViewController.view.frame.origin.y = 0
@@ -87,7 +90,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
             filterButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 1),
             filterButton.leftAnchor.constraint(equalTo: view.leftAnchor),
             filterButton.widthAnchor.constraint(equalToConstant: view.frame.width),
-            filterButton.heightAnchor.constraint(equalToConstant: 50)
+            filterButton.heightAnchor.constraint(equalToConstant: 35)
             ])
     }
     
@@ -96,7 +99,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         self.collectionView?.register(HomeViewCell.self, forCellWithReuseIdentifier: "HomeViewCell")
         self.collectionView?.register(HorizontalViewCell.self, forCellWithReuseIdentifier: "HoriCell")
         collectionView?.translatesAutoresizingMaskIntoConstraints = false
-        collectionView?.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 50).isActive = true
+        collectionView?.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 35).isActive = true
         collectionView?.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor).isActive = true
         collectionView?.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor).isActive = true
         collectionView?.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true

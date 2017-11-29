@@ -10,6 +10,13 @@ import UIKit
 
 class DietaryCell: UICollectionViewCell, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
+    var nameTextField: UITextField = {
+        let textField = UITextField()
+        textField.text = "Name"
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
+    }()
+    
     var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
