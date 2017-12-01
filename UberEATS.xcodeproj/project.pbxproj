@@ -29,6 +29,7 @@
 		A757F0561FCCFF7300240CC9 /* PriceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F0551FCCFF7300240CC9 /* PriceCell.swift */; };
 		A757F0581FCD026000240CC9 /* SortCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F0571FCD026000240CC9 /* SortCell.swift */; };
 		A757F05A1FCD026B00240CC9 /* DietaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F0591FCD026B00240CC9 /* DietaryCell.swift */; };
+		A757F05C1FD1141000240CC9 /* PriceRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F05B1FD1141000240CC9 /* PriceRange.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		A757F0551FCCFF7300240CC9 /* PriceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceCell.swift; sourceTree = "<group>"; };
 		A757F0571FCD026000240CC9 /* SortCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortCell.swift; sourceTree = "<group>"; };
 		A757F0591FCD026B00240CC9 /* DietaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DietaryCell.swift; sourceTree = "<group>"; };
+		A757F05B1FD1141000240CC9 /* PriceRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceRange.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +233,7 @@
 				A757F0551FCCFF7300240CC9 /* PriceCell.swift */,
 				A757F0571FCD026000240CC9 /* SortCell.swift */,
 				A757F0591FCD026B00240CC9 /* DietaryCell.swift */,
+				A757F05B1FD1141000240CC9 /* PriceRange.swift */,
 			);
 			path = Filter;
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A757F03C1FCA2E5C00240CC9 /* UserViewController.swift in Sources */,
+				A757F05C1FD1141000240CC9 /* PriceRange.swift in Sources */,
 				A757F0581FCD026000240CC9 /* SortCell.swift in Sources */,
 				A757F03A1FCA2E3100240CC9 /* SearchViewController.swift in Sources */,
 				A757F05A1FCD026B00240CC9 /* DietaryCell.swift in Sources */,
