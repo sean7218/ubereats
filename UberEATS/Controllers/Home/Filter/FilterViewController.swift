@@ -74,10 +74,7 @@ class FilterViewController: UIViewController, UICollectionViewDelegate, UICollec
         collectionView.backgroundColor = .red
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.isPagingEnabled = true
-        collectionView.register(SortCell.self, forCellWithReuseIdentifier: "SortCell")
-        collectionView.register(PriceCell.self, forCellWithReuseIdentifier: "Price")
-        collectionView.register(DietaryCell.self, forCellWithReuseIdentifier: "DietarCell")
-        
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "FilterCell")
         filterViewMenu.delegate = self
         setupViews()
     }
@@ -135,30 +132,19 @@ class FilterViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if indexPath.section == 0 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SortCell", for: indexPath)
-            return cell
-        }
-        
-        if indexPath.section == 1 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PriceCell", for: indexPath)
-            return cell
-        }
-        else
-        {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DietaryCell", for: indexPath)
-            return cell
-        }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilterCell", for: indexPath)
 
+        cell.backgroundColor = indexPath.row % 2 == 0 ? UIColor.black : UIColor.red
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
