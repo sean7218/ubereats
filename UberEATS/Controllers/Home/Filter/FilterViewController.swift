@@ -64,6 +64,8 @@ class FilterViewController: UIViewController, UICollectionViewDelegate, UICollec
 
     var delegate: FilterViewDelegate?
     
+
+    
     @objc func closeFilterView(){
         delegate?.closeFilterView()
     }
@@ -106,10 +108,12 @@ class FilterViewController: UIViewController, UICollectionViewDelegate, UICollec
             filterViewMenu.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
             filterViewMenu.heightAnchor.constraint(equalToConstant: 50)
             ])
+        
         view.addSubview(menuSlider)
+        menuSlideAnchor = menuSlider.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20)
         NSLayoutConstraint.activate([
             menuSlider.topAnchor.constraint(equalTo: filterViewMenu.bottomAnchor, constant: 1),
-            menuSlider.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
+            menuSlideAnchor!,
             menuSlider.widthAnchor.constraint(equalToConstant: menuWidth),
             menuSlider.heightAnchor.constraint(equalToConstant: 3)
             ])
@@ -159,7 +163,12 @@ class FilterViewController: UIViewController, UICollectionViewDelegate, UICollec
         let x = targetContentOffset.pointee.x
         let itemAtIndex = Int(x/(view.frame.width-40))
         filterViewMenu.collectionView.selectItem(at: IndexPath.init(item: itemAtIndex, section: 0), animated: true, scrollPosition: UICollectionViewScrollPosition.centeredHorizontally)
-        
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let x = scrollView.contentOffset.x
+        //print(x)
+        menuSlideAnchor?.constant = x/3 + 20
     }
 }
 

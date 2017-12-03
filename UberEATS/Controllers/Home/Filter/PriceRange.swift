@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PriceRange: UIView {
+class PriceRange: UICollectionViewCell {
     
     var oneDollarButton: UIButton = {
         let button = UIButton(type: UIButtonType.custom)
