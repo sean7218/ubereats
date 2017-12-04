@@ -77,6 +77,7 @@ class FilterViewController: UIViewController, UICollectionViewDelegate, UICollec
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.isPagingEnabled = true
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "FilterCell")
+        collectionView.register(FilterViewCell.self, forCellWithReuseIdentifier: "Price")
         filterViewMenu.delegate = self
         setupViews()
     }
@@ -145,9 +146,10 @@ class FilterViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilterCell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Price", for: indexPath)
 
-        cell.backgroundColor = indexPath.row % 2 == 0 ? UIColor.black : UIColor.red
+        //cell.backgroundColor = indexPath.row % 2 == 0 ? UIColor.black : UIColor.red
+        print("cell dequeued")
         return cell
     }
     
@@ -169,6 +171,10 @@ class FilterViewController: UIViewController, UICollectionViewDelegate, UICollec
         let x = scrollView.contentOffset.x
         //print(x)
         menuSlideAnchor?.constant = x/3 + 20
+    }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        print("begin dragging")
     }
 }
 

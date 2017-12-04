@@ -26,8 +26,7 @@
 		A757F0501FCCE72600240CC9 /* FilterViewMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F04F1FCCE72600240CC9 /* FilterViewMenu.swift */; };
 		A757F0521FCCE74500240CC9 /* FilterViewMenuDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F0511FCCE74500240CC9 /* FilterViewMenuDelegate.swift */; };
 		A757F0541FCCE77400240CC9 /* FilterViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F0531FCCE77400240CC9 /* FilterViewDelegate.swift */; };
-		A757F05C1FD1141000240CC9 /* PriceRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F05B1FD1141000240CC9 /* PriceRange.swift */; };
-		A757F05E1FD1174200240CC9 /* MaxBookingFee.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F05D1FD1174200240CC9 /* MaxBookingFee.swift */; };
+		A757F05C1FD1141000240CC9 /* FilterViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F05B1FD1141000240CC9 /* FilterViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,8 +72,7 @@
 		A757F04F1FCCE72600240CC9 /* FilterViewMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewMenu.swift; sourceTree = "<group>"; };
 		A757F0511FCCE74500240CC9 /* FilterViewMenuDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewMenuDelegate.swift; sourceTree = "<group>"; };
 		A757F0531FCCE77400240CC9 /* FilterViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewDelegate.swift; sourceTree = "<group>"; };
-		A757F05B1FD1141000240CC9 /* PriceRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceRange.swift; sourceTree = "<group>"; };
-		A757F05D1FD1174200240CC9 /* MaxBookingFee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaxBookingFee.swift; sourceTree = "<group>"; };
+		A757F05B1FD1141000240CC9 /* FilterViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,8 +224,7 @@
 				A757F0531FCCE77400240CC9 /* FilterViewDelegate.swift */,
 				A757F04F1FCCE72600240CC9 /* FilterViewMenu.swift */,
 				A757F0511FCCE74500240CC9 /* FilterViewMenuDelegate.swift */,
-				A757F05B1FD1141000240CC9 /* PriceRange.swift */,
-				A757F05D1FD1174200240CC9 /* MaxBookingFee.swift */,
+				A757F05B1FD1141000240CC9 /* FilterViewCell.swift */,
 			);
 			path = Filter;
 			sourceTree = "<group>";
@@ -374,7 +371,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A757F03C1FCA2E5C00240CC9 /* UserViewController.swift in Sources */,
-				A757F05C1FD1141000240CC9 /* PriceRange.swift in Sources */,
+				A757F05C1FD1141000240CC9 /* FilterViewCell.swift in Sources */,
 				A757F03A1FCA2E3100240CC9 /* SearchViewController.swift in Sources */,
 				A757F0061FCA2CD000240CC9 /* ViewController.swift in Sources */,
 				A757F03E1FCA2ECE00240CC9 /* OrderViewController.swift in Sources */,
@@ -386,7 +383,6 @@
 				A757F04A1FCA346C00240CC9 /* HorizontalViewCell.swift in Sources */,
 				A757F0041FCA2CD000240CC9 /* AppDelegate.swift in Sources */,
 				A757F0381FCA2DFC00240CC9 /* HomeViewController.swift in Sources */,
-				A757F05E1FD1174200240CC9 /* MaxBookingFee.swift in Sources */,
 				A757F00C1FCA2CD000240CC9 /* UberEATS.xcdatamodeld in Sources */,
 				A757F0521FCCE74500240CC9 /* FilterViewMenuDelegate.swift in Sources */,
 			);
