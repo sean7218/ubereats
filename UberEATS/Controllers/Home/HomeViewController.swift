@@ -78,13 +78,30 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         }
     }
     
-    func setupViews(){
+    @objc func showLocationView() {
+        print("showLocationView")
+        let locationViewController: LocationViewController = LocationViewController()
+        navigationController?.present(locationViewController, animated: true, completion: { () -> Void in
+            print("Hl")
+        })
+    }
+    
+    @objc func closeLocationView(){
         
+    }
+    
+    func setupViews(){
+        // navigation title
         let attributedText = NSMutableAttributedString(string: "2590 N Moreland Blvd", attributes: [NSAttributedStringKey.font: UIFont.italicSystemFont(ofSize: 12)])
         let titleLabel = UILabel()
         titleLabel.attributedText = attributedText
         navigationItem.titleView = titleLabel
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(showLocationView))
+        navigationItem.titleView?.isUserInteractionEnabled = true
+        navigationItem.titleView?.addGestureRecognizer(recognizer)
         navigationController?.navigationBar.isTranslucent = false
+        
+       // filter bar below navigationBar
         view.addSubview(filterButton)
         NSLayoutConstraint.activate([
             filterButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
