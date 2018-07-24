@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+class HomeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, FilterViewDelegate {
     
     lazy var grayBackgroundView: UIView = {
         let view = UIView()
@@ -32,12 +32,13 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         button.layer.shadowOpacity = 0.5
         button.layer.shadowOffset = CGSize.zero
         button.layer.shadowRadius = 2
-        button.layer.shouldRasterize = true
+        button.layer.shouldRasterize = false
         return button
     }()
     
-    var filterViewController: FilterViewController = {
+    lazy var filterViewController: FilterViewController = {
         let vc = FilterViewController()
+        vc.delegate = self
         return vc
     }()
     
@@ -63,6 +64,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         }
     }
     
+    
     @objc func closeFilterView() {
         print("closing filterview")
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: UIViewAnimationOptions.curveLinear, animations: {
@@ -76,7 +78,6 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         }
     }
     
-    
     func setupViews(){
         
         let attributedText = NSMutableAttributedString(string: "2590 N Moreland Blvd", attributes: [NSAttributedStringKey.font: UIFont.italicSystemFont(ofSize: 12)])
@@ -84,14 +85,13 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         titleLabel.attributedText = attributedText
         navigationItem.titleView = titleLabel
         navigationController?.navigationBar.isTranslucent = false
-        
         view.addSubview(filterButton)
         NSLayoutConstraint.activate([
-            filterButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 1),
+            filterButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             filterButton.leftAnchor.constraint(equalTo: view.leftAnchor),
             filterButton.widthAnchor.constraint(equalToConstant: view.frame.width),
             filterButton.heightAnchor.constraint(equalToConstant: 35)
-            ])
+        ])
     }
     
     override func viewDidLoad() {
@@ -104,6 +104,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         collectionView?.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor).isActive = true
         collectionView?.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         self.collectionView?.backgroundColor = .gray
+        
         
         setupViews()
         
@@ -139,10 +140,8 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         } else {
             return 0
         }
-        
     }
-    
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         if section == 0 {
             return UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)

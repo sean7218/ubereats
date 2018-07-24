@@ -14,7 +14,6 @@ class FilterViewController: UIViewController, UICollectionViewDelegate, UICollec
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("X", for: .normal)
-        
         button.addTarget(self, action: #selector(closeFilterView), for: .touchUpInside)
         return button
     }()
@@ -64,8 +63,6 @@ class FilterViewController: UIViewController, UICollectionViewDelegate, UICollec
 
     var delegate: FilterViewDelegate?
     
-
-    
     @objc func closeFilterView(){
         delegate?.closeFilterView()
     }
@@ -76,8 +73,9 @@ class FilterViewController: UIViewController, UICollectionViewDelegate, UICollec
         collectionView.backgroundColor = .red
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.isPagingEnabled = true
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "FilterCell")
-        collectionView.register(FilterViewCell.self, forCellWithReuseIdentifier: "Price")
+        collectionView.register(FilterViewCell1.self, forCellWithReuseIdentifier: "Sort")
+        collectionView.register(FilterViewCell2.self, forCellWithReuseIdentifier: "Price")
+        collectionView.register(FilterViewCell3.self, forCellWithReuseIdentifier: "Dietary")
         filterViewMenu.delegate = self
         setupViews()
     }
@@ -146,11 +144,16 @@ class FilterViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Price", for: indexPath)
-
-        //cell.backgroundColor = indexPath.row % 2 == 0 ? UIColor.black : UIColor.red
-        print("cell dequeued")
-        return cell
+        let cell1 = collectionView.dequeueReusableCell(withReuseIdentifier: "Sort", for: indexPath) as! FilterViewCell1
+        let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "Price", for: indexPath) as! FilterViewCell2
+        let cell3 = collectionView.dequeueReusableCell(withReuseIdentifier: "Dietary", for: indexPath) as! FilterViewCell3
+        if indexPath.row == 0 {
+            return cell1
+        } else if indexPath.row == 1 {
+            return cell2
+        } else {
+            return cell3
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -169,12 +172,12 @@ class FilterViewController: UIViewController, UICollectionViewDelegate, UICollec
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let x = scrollView.contentOffset.x
-        //print(x)
         menuSlideAnchor?.constant = x/3 + 20
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        print("begin dragging")
+        // print("begin dragging")
+        collectionView.reloadData()
     }
 }
 
@@ -183,3 +186,4 @@ extension FilterViewController: FilterViewMenuDelegate {
         self.collectionView.selectItem(at: IndexPath.init(item: index, section: 0), animated: true, scrollPosition: UICollectionViewScrollPosition.centeredHorizontally)
     }
 }
+

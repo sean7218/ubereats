@@ -19,7 +19,6 @@ class TabBarController: UITabBarController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         let vc = HomeViewController(collectionViewLayout: layout)
-
         vc.tabBarItem = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "home-page-50"), selectedImage: #imageLiteral(resourceName: "home-page-filled-50"))
         return vc
     }()
@@ -35,6 +34,7 @@ class TabBarController: UITabBarController {
         vc.tabBarItem = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "icons8-bill-50"), selectedImage: #imageLiteral(resourceName: "icons8-bill-filled-50"))
         return vc
     }()
+    
     let userViewController: UserViewController = {
         let vc = UserViewController()
         vc.tabBarItem = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "icons8-user-50"), selectedImage: #imageLiteral(resourceName: "icons8-user-filled-50"))
