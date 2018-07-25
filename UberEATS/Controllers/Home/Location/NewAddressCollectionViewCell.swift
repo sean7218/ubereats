@@ -11,7 +11,9 @@ import GoogleMaps
 import GooglePlaces
 
 class NewAddressCollectionViewCell: UICollectionViewCell {
-
+    
+    var delegate: NewAddressDelegate?
+    
     let geoCoder: GMSGeocoder = {
         let encoder =  GMSGeocoder.init()
         return encoder
@@ -34,12 +36,13 @@ class NewAddressCollectionViewCell: UICollectionViewCell {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints  = false
         textField.placeholder = "Address"
-        textField.addTarget(self, action: #selector(searchAddress(_:)), for: UIControlEvents.editingChanged)
+        textField.addTarget(self, action: #selector(searchAddress(_:)), for: UIControlEvents.editingDidBegin)
         return textField
     }()
-
+    
     @objc func searchAddress(_ sender: UITextField) {
         print("address input changed")
+        delegate?.showAutocompleteViewController()
     }
     
     override init(frame: CGRect) {
@@ -95,4 +98,8 @@ class NewAddressCollectionViewCell: UICollectionViewCell {
             addressTextField.heightAnchor.constraint(equalToConstant: 20)
             ])
     }
+}
+
+protocol NewAddressDelegate {
+    func showAutocompleteViewController()
 }

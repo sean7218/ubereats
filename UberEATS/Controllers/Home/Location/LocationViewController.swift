@@ -7,8 +7,53 @@
 //
 
 import UIKit
+import GooglePlaces
+
+
+
+extension LocationViewController: GMSAutocompleteViewControllerDelegate, NewAddressDelegate {
+    
+    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+        historyCell = collectionView.cellForItem(at: IndexPath(row: 2, section: 1)) as! AddressCollectionViewCell
+        historyCell.address = place.formattedAddress ?? ""
+        historyCell.addressTitle = place.name
+        collectionView.selectItem(at: IndexPath(row: 2, section: 1), animated: true, scrollPosition: UICollectionViewScrollPosition.bottom)
+        doneAddress = place.formattedAddress
+        gmsAutocompleteViewController.dismiss(animated: true, completion: nil)
+    }
+    
+    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+        gmsAutocompleteViewController.dismiss(animated: true, completion: nil)
+    }
+    
+    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+        gmsAutocompleteViewController.dismiss(animated: true, completion: nil)
+    }
+    
+    func showAutocompleteViewController() {
+        present(gmsAutocompleteViewController, animated: true, completion: nil)
+    }
+}
 
 class LocationViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    var delegate: NavAddressDelegate?
+    var doneAddress: String?
+    
+    var historyCell: AddressCollectionViewCell = {
+        let cell = AddressCollectionViewCell()
+        cell.addressImage = #imageLiteral(resourceName: "history-1")
+        cell.addressTitle = "1500 Mass Ave NW"
+        cell.address = "1500 Mass Ave NW APT 241, Washginton, DC 20005"
+        cell.delivery = "Deliver to door"
+        return cell
+    }()
+    
+    lazy var gmsAutocompleteViewController: GMSAutocompleteViewController = {
+        let vc = GMSAutocompleteViewController()
+        vc.delegate = self
+        return vc
+    }()
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -22,7 +67,6 @@ class LocationViewController: UIViewController, UICollectionViewDelegate, UIColl
         collectionView.register(NewAddressCollectionViewCell.self, forCellWithReuseIdentifier: "NewAddressCell")
         collectionView.register(AddressCollectionViewCell.self, forCellWithReuseIdentifier: "AddressCell")
         collectionView.register(WhenCollectionViewCell.self, forCellWithReuseIdentifier: "WhenCell")
-        
         return collectionView
     }()
     
@@ -73,8 +117,9 @@ class LocationViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     @objc func doneLocationViewControoler(_ sender: UIButton) {
+        delegate?.setAddress(address: doneAddress ?? "No Address Provided" )
         dismiss(animated: true) {
-            //
+            //Greg Olds 502-819-4980
         }
     }
     
@@ -100,6 +145,7 @@ class LocationViewController: UIViewController, UICollectionViewDelegate, UIColl
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AddressCell", for: indexPath) as! AddressCollectionViewCell
         if (indexPath.section == 0) {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NewAddressCell", for: indexPath) as! NewAddressCollectionViewCell
+            cell.delegate = self
             return cell
         }
         if (indexPath.section == 1) {
@@ -117,10 +163,10 @@ class LocationViewController: UIViewController, UICollectionViewDelegate, UIColl
                 cell.delivery = "Deliver to door"
             }
             if (indexPath.row == 2) {
-                cell.addressImage = #imageLiteral(resourceName: "history-1")
-                cell.addressTitle = "1500 Mass Ave NW"
-                cell.address = "1500 Mass Ave NW APT 241, Washginton, DC 20005"
-                cell.delivery = "Deliver to door"
+                cell.addressImage = historyCell.addressImage
+                cell.addressTitle = historyCell.addressTitle
+                cell.address = historyCell.address
+                cell.delivery = historyCell.delivery
             }
             return cell
         }
@@ -160,6 +206,11 @@ class LocationViewController: UIViewController, UICollectionViewDelegate, UIColl
                 self.collectionView.deselectItem(at: selectedRow, animated: false)
             }
         }
+        if let cell = collectionView.cellForItem(at: indexPath) as? AddressCollectionViewCell {
+            doneAddress = cell.address
+        } else {
+            doneAddress = historyCell.address
+        }
     }
     
     func setupViews(){
@@ -169,9 +220,7 @@ class LocationViewController: UIViewController, UICollectionViewDelegate, UIColl
             navigationBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             navigationBar.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 0),
             navigationBar.widthAnchor.constraint(equalTo: view.widthAnchor, constant: 0),
-//            navigationBar.heightAnchor.constraint(equalToConstant: 150),
             ])
-        
         view.addSubview(collectionView)
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: navigationBar.bottomAnchor, constant: 0),
@@ -179,7 +228,6 @@ class LocationViewController: UIViewController, UICollectionViewDelegate, UIColl
             collectionView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: 0),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             ])
-        
         view.addSubview(doneButton)
         NSLayoutConstraint.activate([
             doneButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
