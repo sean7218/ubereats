@@ -37,9 +37,9 @@
 		C1EBB0D32107AC75007B68B2 /* NewAddressCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EBB0D22107AC75007B68B2 /* NewAddressCollectionViewCell.swift */; };
 		C1EBB0D52107ACAA007B68B2 /* AddressCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EBB0D42107ACAA007B68B2 /* AddressCollectionViewCell.swift */; };
 		C1EBB0D72107ACD1007B68B2 /* WhenCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EBB0D62107ACD1007B68B2 /* WhenCollectionViewCell.swift */; };
-		C1EBB0D92108A397007B68B2 /* config.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EBB0D82108A397007B68B2 /* config.swift */; };
 		C1EBB0DD2108BF65007B68B2 /* NavAddressDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EBB0DC2108BF65007B68B2 /* NavAddressDelegate.swift */; };
 		C1EBB0E12108CC74007B68B2 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EBB0E02108CC74007B68B2 /* DataController.swift */; };
+		C1EBB0E32108CEBF007B68B2 /* config.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EBB0E22108CEBF007B68B2 /* config.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,9 +96,9 @@
 		C1EBB0D22107AC75007B68B2 /* NewAddressCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewAddressCollectionViewCell.swift; path = UberEATS/Controllers/Home/Location/NewAddressCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
 		C1EBB0D42107ACAA007B68B2 /* AddressCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddressCollectionViewCell.swift; path = UberEATS/Controllers/Home/Location/AddressCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
 		C1EBB0D62107ACD1007B68B2 /* WhenCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WhenCollectionViewCell.swift; path = UberEATS/Controllers/Home/Location/WhenCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
-		C1EBB0D82108A397007B68B2 /* config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = config.swift; sourceTree = "<group>"; };
 		C1EBB0DC2108BF65007B68B2 /* NavAddressDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavAddressDelegate.swift; sourceTree = "<group>"; };
 		C1EBB0E02108CC74007B68B2 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
+		C1EBB0E22108CEBF007B68B2 /* config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = config.swift; sourceTree = "<group>"; };
 		D0F8E0BB0A469468F6EA7FC8 /* libPods-UberEATS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UberEATS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5B6DFD2CF6C55F62DCB40CF /* Pods-UberEATS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UberEATS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UberEATS/Pods-UberEATS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -167,12 +167,12 @@
 				A757F0341FCA2D7000240CC9 /* Controllers */,
 				A757F0031FCA2CD000240CC9 /* AppDelegate.swift */,
 				A757F0051FCA2CD000240CC9 /* ViewController.swift */,
-				C1EBB0D82108A397007B68B2 /* config.swift */,
 				A757F0071FCA2CD000240CC9 /* Main.storyboard */,
 				A757F00D1FCA2CD000240CC9 /* Assets.xcassets */,
 				A757F00F1FCA2CD000240CC9 /* LaunchScreen.storyboard */,
 				A757F0121FCA2CD000240CC9 /* Info.plist */,
 				A757F00A1FCA2CD000240CC9 /* UberEATS.xcdatamodeld */,
+				C1EBB0E22108CEBF007B68B2 /* config.swift */,
 			);
 			path = UberEATS;
 			sourceTree = "<group>";
@@ -479,8 +479,8 @@
 				A757F0501FCCE72600240CC9 /* FilterViewMenu.swift in Sources */,
 				A757F04E1FCA504E00240CC9 /* FilterViewController.swift in Sources */,
 				A757F0541FCCE77400240CC9 /* FilterViewDelegate.swift in Sources */,
-				C1EBB0D92108A397007B68B2 /* config.swift in Sources */,
 				C1EBB0DD2108BF65007B68B2 /* NavAddressDelegate.swift in Sources */,
+				C1EBB0E32108CEBF007B68B2 /* config.swift in Sources */,
 				A757F0461FCA318300240CC9 /* HomeViewCell.swift in Sources */,
 				A757F04A1FCA346C00240CC9 /* HorizontalViewCell.swift in Sources */,
 				C1EBB0CD21065B93007B68B2 /* FilterViewCell3.swift in Sources */,

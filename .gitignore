@@ -27,4 +27,4 @@ Pods/
 Podfile.lock
 
 # config files
-config.swift
+UberEATS/config.swift
