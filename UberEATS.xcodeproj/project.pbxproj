@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4069DAFA8A8D2FA125584D9C /* libPods-UberEATS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F8E0BB0A469468F6EA7FC8 /* libPods-UberEATS.a */; };
 		A757F0041FCA2CD000240CC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F0031FCA2CD000240CC9 /* AppDelegate.swift */; };
 		A757F0061FCA2CD000240CC9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F0051FCA2CD000240CC9 /* ViewController.swift */; };
 		A757F0091FCA2CD000240CC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A757F0071FCA2CD000240CC9 /* Main.storyboard */; };
@@ -28,6 +27,7 @@
 		A757F0521FCCE74500240CC9 /* FilterViewMenuDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F0511FCCE74500240CC9 /* FilterViewMenuDelegate.swift */; };
 		A757F0541FCCE77400240CC9 /* FilterViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F0531FCCE77400240CC9 /* FilterViewDelegate.swift */; };
 		A757F05C1FD1141000240CC9 /* FilterViewCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F05B1FD1141000240CC9 /* FilterViewCell1.swift */; };
+		C0BD8DA3626B16EA81CD4774 /* Pods_UberEATS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6F37C18C7EF57F3875C6D27 /* Pods_UberEATS.framework */; };
 		C1EBB0C521061DDC007B68B2 /* SortCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EBB0C421061DDC007B68B2 /* SortCellView.swift */; };
 		C1EBB0C921064773007B68B2 /* PriceCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EBB0C821064773007B68B2 /* PriceCellView.swift */; };
 		C1EBB0CB21065947007B68B2 /* FilterViewCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EBB0CA21065947007B68B2 /* FilterViewCell2.swift */; };
@@ -40,6 +40,9 @@
 		C1EBB0DD2108BF65007B68B2 /* NavAddressDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EBB0DC2108BF65007B68B2 /* NavAddressDelegate.swift */; };
 		C1EBB0E12108CC74007B68B2 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EBB0E02108CC74007B68B2 /* DataController.swift */; };
 		C1EBB0E32108CEBF007B68B2 /* config.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EBB0E22108CEBF007B68B2 /* config.swift */; };
+		C1EBB0E62108D5C9007B68B2 /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EBB0E52108D5C9007B68B2 /* Business.swift */; };
+		C1EBB0E82108D679007B68B2 /* biz.json in Resources */ = {isa = PBXBuildFile; fileRef = C1EBB0E72108D679007B68B2 /* biz.json */; };
+		C1EBB0EA2108D6D2007B68B2 /* bizDetail.json in Resources */ = {isa = PBXBuildFile; fileRef = C1EBB0E92108D6D2007B68B2 /* bizDetail.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +90,7 @@
 		A757F0511FCCE74500240CC9 /* FilterViewMenuDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewMenuDelegate.swift; sourceTree = "<group>"; };
 		A757F0531FCCE77400240CC9 /* FilterViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewDelegate.swift; sourceTree = "<group>"; };
 		A757F05B1FD1141000240CC9 /* FilterViewCell1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewCell1.swift; sourceTree = "<group>"; };
+		B6F37C18C7EF57F3875C6D27 /* Pods_UberEATS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UberEATS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1EBB0C421061DDC007B68B2 /* SortCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortCellView.swift; sourceTree = "<group>"; };
 		C1EBB0C821064773007B68B2 /* PriceCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceCellView.swift; sourceTree = "<group>"; };
 		C1EBB0CA21065947007B68B2 /* FilterViewCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewCell2.swift; sourceTree = "<group>"; };
@@ -99,7 +103,9 @@
 		C1EBB0DC2108BF65007B68B2 /* NavAddressDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavAddressDelegate.swift; sourceTree = "<group>"; };
 		C1EBB0E02108CC74007B68B2 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		C1EBB0E22108CEBF007B68B2 /* config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = config.swift; sourceTree = "<group>"; };
-		D0F8E0BB0A469468F6EA7FC8 /* libPods-UberEATS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UberEATS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1EBB0E52108D5C9007B68B2 /* Business.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Business.swift; sourceTree = "<group>"; };
+		C1EBB0E72108D679007B68B2 /* biz.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = biz.json; sourceTree = "<group>"; };
+		C1EBB0E92108D6D2007B68B2 /* bizDetail.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = bizDetail.json; sourceTree = "<group>"; };
 		F5B6DFD2CF6C55F62DCB40CF /* Pods-UberEATS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UberEATS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UberEATS/Pods-UberEATS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -108,7 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4069DAFA8A8D2FA125584D9C /* libPods-UberEATS.a in Frameworks */,
+				C0BD8DA3626B16EA81CD4774 /* Pods_UberEATS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,6 +169,7 @@
 		A757F0021FCA2CD000240CC9 /* UberEATS */ = {
 			isa = PBXGroup;
 			children = (
+				C1EBB0E42108D5B2007B68B2 /* model */,
 				C1EBB0DF2108CC5C007B68B2 /* data */,
 				A757F0341FCA2D7000240CC9 /* Controllers */,
 				A757F0031FCA2CD000240CC9 /* AppDelegate.swift */,
@@ -276,14 +283,24 @@
 			isa = PBXGroup;
 			children = (
 				C1EBB0E02108CC74007B68B2 /* DataController.swift */,
+				C1EBB0E92108D6D2007B68B2 /* bizDetail.json */,
+				C1EBB0E72108D679007B68B2 /* biz.json */,
 			);
 			path = data;
+			sourceTree = "<group>";
+		};
+		C1EBB0E42108D5B2007B68B2 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				C1EBB0E52108D5C9007B68B2 /* Business.swift */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 		D21FE29B4AEE1AA340BFD7D1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D0F8E0BB0A469468F6EA7FC8 /* libPods-UberEATS.a */,
+				B6F37C18C7EF57F3875C6D27 /* Pods_UberEATS.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -300,6 +317,7 @@
 				A757EFFD1FCA2CD000240CC9 /* Frameworks */,
 				A757EFFE1FCA2CD000240CC9 /* Resources */,
 				8877C18015F715A7D82B5B8F /* [CP] Copy Pods Resources */,
+				C3723EAE140C2AFE359D328B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -400,6 +418,8 @@
 				A757F0111FCA2CD000240CC9 /* LaunchScreen.storyboard in Resources */,
 				A757F00E1FCA2CD000240CC9 /* Assets.xcassets in Resources */,
 				A757F0091FCA2CD000240CC9 /* Main.storyboard in Resources */,
+				C1EBB0EA2108D6D2007B68B2 /* bizDetail.json in Resources */,
+				C1EBB0E82108D679007B68B2 /* biz.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,6 +478,26 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UberEATS/Pods-UberEATS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C3723EAE140C2AFE359D328B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-UberEATS/Pods-UberEATS-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UberEATS/Pods-UberEATS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -489,6 +529,7 @@
 				C1EBB0C521061DDC007B68B2 /* SortCellView.swift in Sources */,
 				C1EBB0D52107ACAA007B68B2 /* AddressCollectionViewCell.swift in Sources */,
 				A757F0381FCA2DFC00240CC9 /* HomeViewController.swift in Sources */,
+				C1EBB0E62108D5C9007B68B2 /* Business.swift in Sources */,
 				C1EBB0CB21065947007B68B2 /* FilterViewCell2.swift in Sources */,
 				A757F00C1FCA2CD000240CC9 /* UberEATS.xcdatamodeld in Sources */,
 				A757F0521FCCE74500240CC9 /* FilterViewMenuDelegate.swift in Sources */,
