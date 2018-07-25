@@ -8,7 +8,16 @@
 
 import UIKit
 
+extension HomeViewController: NavAddressDelegate {
+    func setAddress(address: String) {
+        navAddressTitle = address
+        setupViews()
+    }
+}
+
 class HomeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, FilterViewDelegate {
+    
+    var navAddressTitle: String = "2590 N Moreland Blvd"
     
     lazy var grayBackgroundView: UIView = {
         let view = UIView()
@@ -81,6 +90,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     @objc func showLocationView() {
         print("showLocationView")
         let locationViewController: LocationViewController = LocationViewController()
+        locationViewController.delegate = self
         navigationController?.present(locationViewController, animated: true, completion: { () -> Void in
             print("Hl")
         })
@@ -92,7 +102,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     
     func setupViews(){
         // navigation title
-        let attributedText = NSMutableAttributedString(string: "2590 N Moreland Blvd", attributes: [NSAttributedStringKey.font: UIFont.italicSystemFont(ofSize: 12)])
+        let attributedText = NSMutableAttributedString(string: navAddressTitle, attributes: [NSAttributedStringKey.font: UIFont.italicSystemFont(ofSize: 12)])
         let titleLabel = UILabel()
         titleLabel.attributedText = attributedText
         navigationItem.titleView = titleLabel
@@ -121,10 +131,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         collectionView?.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor).isActive = true
         collectionView?.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         self.collectionView?.backgroundColor = .gray
-        
-        
         setupViews()
-        
     }
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {

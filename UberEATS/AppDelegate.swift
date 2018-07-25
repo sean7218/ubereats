@@ -15,8 +15,11 @@ import GooglePlaces
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    let GOOGLE_KEY="AIzaSyC3BmRgaQzqMI61mm2IONW1X7_jSfi6r3g"
-    let gKey = ProcessInfo.processInfo.environment["GOOGLE_MAP_KEY"]
+    
+    // Please obtain your own google map key
+    let GOOGLE_KEY = KEYS.GOOGLE_MAP_KEY
+    let GOOGLE_MAP_KEY = ProcessInfo.processInfo.environment["GOOGLE_MAP_KEY"]
+
     var tabBarController: TabBarController = {
         let tabBarController = TabBarController()
         return tabBarController
