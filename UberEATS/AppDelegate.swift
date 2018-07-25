@@ -8,18 +8,26 @@
 
 import UIKit
 import CoreData
+import GoogleMaps
+import GooglePlaces
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    let GOOGLE_KEY="AIzaSyC3BmRgaQzqMI61mm2IONW1X7_jSfi6r3g"
+    let gKey = ProcessInfo.processInfo.environment["GOOGLE_MAP_KEY"]
     var tabBarController: TabBarController = {
         let tabBarController = TabBarController()
         return tabBarController
     }()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        // Add Google Maps
+        GMSServices.provideAPIKey(GOOGLE_KEY)
+        GMSPlacesClient.provideAPIKey(GOOGLE_KEY)
+        
         // Override point for customization after application launch.
         window = UIWindow()
         window?.makeKeyAndVisible()

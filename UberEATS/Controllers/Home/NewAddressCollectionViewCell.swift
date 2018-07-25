@@ -7,9 +7,20 @@
 //
 
 import UIKit
+import GoogleMaps
+import GooglePlaces
 
 class NewAddressCollectionViewCell: UICollectionViewCell {
 
+    let geoCoder: GMSGeocoder = {
+        let encoder =  GMSGeocoder.init()
+        return encoder
+    }()
+    
+    let placeClient: GMSPlacesClient! = {
+        let client = GMSPlacesClient.shared()
+        return client
+    }()
     
     lazy var addressImageView: UIImageView = {
         let image: UIImage = #imageLiteral(resourceName: "address-1").withRenderingMode(UIImageRenderingMode.alwaysOriginal)
@@ -30,9 +41,37 @@ class NewAddressCollectionViewCell: UICollectionViewCell {
     @objc func searchAddress(_ sender: UITextField) {
         print("address input changed")
     }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
+//        let latitude: CLLocationDegrees = 41.505493;
+//        let longitude: CLLocationDegrees =  -81.681290;
+//        let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+//        geoCoder.reverseGeocodeCoordinate(coordinate) { (gmsReverseGeocodeResp, error) in
+//            let firstRes = gmsReverseGeocodeResp?.firstResult()
+//            print(firstRes?.locality ?? "Default Address")
+//        }
+        
+//        let query: String = "moreland"
+//        let nearLeft = CLLocationCoordinate2D(latitude: 41.479168 , longitude: -81.830476)
+//        let nearRight = CLLocationCoordinate2D(latitude: 41.467592, longitude: -81.486467)
+//        let farLeft = CLLocationCoordinate2D(latitude: 41.475052,  longitude: -82.008660)
+//        let farRight = CLLocationCoordinate2D(latitude: 41.454985, longitude: -81.311715)
+//        let region: GMSVisibleRegion = GMSVisibleRegion(nearLeft: nearLeft, nearRight: nearRight, farLeft: farLeft, farRight: farRight)
+//        let bound: GMSCoordinateBounds = GMSCoordinateBounds(region: region)
+//        placeClient.autocompleteQuery(query, bounds: bound, filter: nil) { (preds, error) in
+//            //  ([GMSAutocompletePrediction]?, Error?)
+//            if (error != nil) {
+//                print(error.debugDescription)
+//            }
+//            if (error == nil && preds != nil) {
+//                print("Getting Results")
+//                let _ = preds?.map({ (pred) -> Void in
+//                    print(pred.attributedFullText.string)
+//                })
+//            }
+//        }
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4069DAFA8A8D2FA125584D9C /* libPods-UberEATS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D0F8E0BB0A469468F6EA7FC8 /* libPods-UberEATS.a */; };
 		A757F0041FCA2CD000240CC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F0031FCA2CD000240CC9 /* AppDelegate.swift */; };
 		A757F0061FCA2CD000240CC9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F0051FCA2CD000240CC9 /* ViewController.swift */; };
 		A757F0091FCA2CD000240CC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A757F0071FCA2CD000240CC9 /* Main.storyboard */; };
@@ -56,6 +57,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		402756323808598191D41C43 /* Pods-UberEATS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UberEATS.release.xcconfig"; path = "Pods/Target Support Files/Pods-UberEATS/Pods-UberEATS.release.xcconfig"; sourceTree = "<group>"; };
 		A757F0001FCA2CD000240CC9 /* UberEATS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UberEATS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A757F0031FCA2CD000240CC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A757F0051FCA2CD000240CC9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -87,10 +89,12 @@
 		C1EBB0CA21065947007B68B2 /* FilterViewCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewCell2.swift; sourceTree = "<group>"; };
 		C1EBB0CC21065B93007B68B2 /* FilterViewCell3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewCell3.swift; sourceTree = "<group>"; };
 		C1EBB0CE21065C2E007B68B2 /* DietaryCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DietaryCellView.swift; sourceTree = "<group>"; };
-		C1EBB0D021074BB0007B68B2 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = SOURCE_ROOT; };
-		C1EBB0D22107AC75007B68B2 /* NewAddressCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAddressCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
-		C1EBB0D42107ACAA007B68B2 /* AddressCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
-		C1EBB0D62107ACD1007B68B2 /* WhenCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhenCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
+		C1EBB0D021074BB0007B68B2 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationViewController.swift; path = UberEATS/Controllers/Home/LocationViewController.swift; sourceTree = SOURCE_ROOT; };
+		C1EBB0D22107AC75007B68B2 /* NewAddressCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewAddressCollectionViewCell.swift; path = UberEATS/Controllers/Home/NewAddressCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
+		C1EBB0D42107ACAA007B68B2 /* AddressCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddressCollectionViewCell.swift; path = UberEATS/Controllers/Home/AddressCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
+		C1EBB0D62107ACD1007B68B2 /* WhenCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WhenCollectionViewCell.swift; path = UberEATS/Controllers/Home/WhenCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
+		D0F8E0BB0A469468F6EA7FC8 /* libPods-UberEATS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UberEATS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5B6DFD2CF6C55F62DCB40CF /* Pods-UberEATS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UberEATS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UberEATS/Pods-UberEATS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4069DAFA8A8D2FA125584D9C /* libPods-UberEATS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,6 +123,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		774CD65CB3DF773E8F49A846 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F5B6DFD2CF6C55F62DCB40CF /* Pods-UberEATS.debug.xcconfig */,
+				402756323808598191D41C43 /* Pods-UberEATS.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		A757EFF71FCA2CD000240CC9 = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +139,8 @@
 				A757F01A1FCA2CD000240CC9 /* UberEATSTests */,
 				A757F0251FCA2CD000240CC9 /* UberEATSUITests */,
 				A757F0011FCA2CD000240CC9 /* Products */,
+				774CD65CB3DF773E8F49A846 /* Pods */,
+				D21FE29B4AEE1AA340BFD7D1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -141,8 +157,6 @@
 		A757F0021FCA2CD000240CC9 /* UberEATS */ = {
 			isa = PBXGroup;
 			children = (
-				A757F0441FCA313F00240CC9 /* Views */,
-				A757F0431FCA313900240CC9 /* Models */,
 				A757F0341FCA2D7000240CC9 /* Controllers */,
 				A757F0031FCA2CD000240CC9 /* AppDelegate.swift */,
 				A757F0051FCA2CD000240CC9 /* ViewController.swift */,
@@ -188,7 +202,10 @@
 		A757F03F1FCA310800240CC9 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				A757F04C1FCA504000240CC9 /* Location */,
+				C1EBB0D021074BB0007B68B2 /* LocationViewController.swift */,
+				C1EBB0D22107AC75007B68B2 /* NewAddressCollectionViewCell.swift */,
+				C1EBB0D42107ACAA007B68B2 /* AddressCollectionViewCell.swift */,
+				C1EBB0D62107ACD1007B68B2 /* WhenCollectionViewCell.swift */,
 				A757F04B1FCA503700240CC9 /* Filter */,
 				A757F0371FCA2DFC00240CC9 /* HomeViewController.swift */,
 				A757F0451FCA318300240CC9 /* HomeViewCell.swift */,
@@ -221,20 +238,6 @@
 			path = User;
 			sourceTree = "<group>";
 		};
-		A757F0431FCA313900240CC9 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		A757F0441FCA313F00240CC9 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		A757F04B1FCA503700240CC9 /* Filter */ = {
 			isa = PBXGroup;
 			children = (
@@ -252,15 +255,12 @@
 			path = Filter;
 			sourceTree = "<group>";
 		};
-		A757F04C1FCA504000240CC9 /* Location */ = {
+		D21FE29B4AEE1AA340BFD7D1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C1EBB0D021074BB0007B68B2 /* LocationViewController.swift */,
-				C1EBB0D22107AC75007B68B2 /* NewAddressCollectionViewCell.swift */,
-				C1EBB0D42107ACAA007B68B2 /* AddressCollectionViewCell.swift */,
-				C1EBB0D62107ACD1007B68B2 /* WhenCollectionViewCell.swift */,
+				D0F8E0BB0A469468F6EA7FC8 /* libPods-UberEATS.a */,
 			);
-			path = Location;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,9 +270,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A757F02B1FCA2CD000240CC9 /* Build configuration list for PBXNativeTarget "UberEATS" */;
 			buildPhases = (
+				08D7D1E3C0662FBAE3846A45 /* [CP] Check Pods Manifest.lock */,
 				A757EFFC1FCA2CD000240CC9 /* Sources */,
 				A757EFFD1FCA2CD000240CC9 /* Frameworks */,
 				A757EFFE1FCA2CD000240CC9 /* Resources */,
+				8877C18015F715A7D82B5B8F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -326,7 +328,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0910;
-				LastUpgradeCheck = 0910;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Sean Zhang";
 				TargetAttributes = {
 					A757EFFF1FCA2CD000240CC9 = {
@@ -391,6 +393,47 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		08D7D1E3C0662FBAE3846A45 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-UberEATS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8877C18015F715A7D82B5B8F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-UberEATS/Pods-UberEATS-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UberEATS/Pods-UberEATS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A757EFFC1FCA2CD000240CC9 /* Sources */ = {
@@ -489,6 +532,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -496,6 +540,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -546,6 +591,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -553,6 +599,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -584,6 +631,7 @@
 		};
 		A757F02C1FCA2CD000240CC9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F5B6DFD2CF6C55F62DCB40CF /* Pods-UberEATS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -599,6 +647,7 @@
 		};
 		A757F02D1FCA2CD000240CC9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 402756323808598191D41C43 /* Pods-UberEATS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
