@@ -14,7 +14,7 @@ class FilterViewCell3: UICollectionViewCell, UICollectionViewDelegate, UICollect
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         let cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        cv.allowsMultipleSelection = true
+        cv.allowsMultipleSelection = false
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.dataSource = self
         cv.delegate = self
@@ -60,7 +60,7 @@ class FilterViewCell3: UICollectionViewCell, UICollectionViewDelegate, UICollect
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: frame.width - 20, height: frame.height)
+        return CGSize(width: frame.width, height: frame.height)
     }
 }
 

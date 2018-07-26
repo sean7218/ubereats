@@ -15,20 +15,20 @@ class FilterViewMenuCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.boldSystemFont(ofSize: 13)
-        label.textColor = .black
+        label.textColor = .gray
         label.textAlignment = .center
         return label
     }()
     
     override var isHighlighted: Bool {
         didSet {
-            menuLabel.textColor = isHighlighted ? UIColor.red : UIColor.black
+            menuLabel.textColor = isHighlighted ? UIColor.black : UIColor.gray
         }
     }
     
     override var isSelected: Bool {
         didSet {
-            menuLabel.textColor = isSelected ? UIColor.red : UIColor.black
+            menuLabel.textColor = isSelected ? UIColor.black : UIColor.gray
         }
     }
     
@@ -88,7 +88,7 @@ class FilterViewMenu: UIView, UICollectionViewDelegate, UICollectionViewDelegate
         layout.scrollDirection = .horizontal
         let cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         cv.translatesAutoresizingMaskIntoConstraints = false
-        cv.backgroundColor = .yellow
+        cv.backgroundColor = .white
         cv.delegate = self
         cv.dataSource = self
         cv.register(FilterViewMenuCell.self, forCellWithReuseIdentifier: "FilterViewMenuCell")

@@ -34,7 +34,10 @@ class FilterViewController: UIViewController, UICollectionViewDelegate, UICollec
     }()
     
     var menuSlideAnchor: NSLayoutConstraint?
-    var menuWidth: CGFloat = 100
+    lazy var menuWidth: CGFloat = {
+        let width = self.view.frame.width/3
+        return width
+    }()
     let menuSlider: UIView = {
         let view = UIView()
         view.backgroundColor = .lightGray
@@ -57,7 +60,8 @@ class FilterViewController: UIViewController, UICollectionViewDelegate, UICollec
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(closeFilterView), for: .touchUpInside)
-        button.backgroundColor = UIColor.blue
+        button.layer.borderColor = (UIColor.black).cgColor
+        button.layer.borderWidth = 1
         return button
     }()
 
@@ -70,7 +74,7 @@ class FilterViewController: UIViewController, UICollectionViewDelegate, UICollec
     override func viewDidLoad() {
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.backgroundColor = .red
+        collectionView.backgroundColor = .white
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.isPagingEnabled = true
         collectionView.register(FilterViewCell1.self, forCellWithReuseIdentifier: "Sort")
@@ -82,7 +86,7 @@ class FilterViewController: UIViewController, UICollectionViewDelegate, UICollec
 
     
     fileprivate func setupViews(){
-        view.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 400)
+        view.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 353)
         view.backgroundColor = .white
 
 
@@ -109,7 +113,7 @@ class FilterViewController: UIViewController, UICollectionViewDelegate, UICollec
             ])
         
         view.addSubview(menuSlider)
-        menuSlideAnchor = menuSlider.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20)
+        menuSlideAnchor = menuSlider.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0)
         NSLayoutConstraint.activate([
             menuSlider.topAnchor.constraint(equalTo: filterViewMenu.bottomAnchor, constant: 1),
             menuSlideAnchor!,
@@ -119,15 +123,15 @@ class FilterViewController: UIViewController, UICollectionViewDelegate, UICollec
         view.addSubview(collectionView)
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: menuSlider.bottomAnchor, constant: 10),
-            collectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
-            collectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+            collectionView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0),
+            collectionView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0),
             collectionView.heightAnchor.constraint(equalToConstant: 200)
             ])
         view.addSubview(doneButton)
         NSLayoutConstraint.activate([
-            doneButton.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 10),
-            doneButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20),
-            doneButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
+            doneButton.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 0),
+            doneButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0),
+            doneButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0),
             doneButton.heightAnchor.constraint(equalToConstant: 50)
             ])
         
@@ -157,7 +161,7 @@ class FilterViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width - 40, height: 200)
+        return CGSize(width: view.frame.width, height: 200)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -166,24 +170,24 @@ class FilterViewController: UIViewController, UICollectionViewDelegate, UICollec
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         let x = targetContentOffset.pointee.x
-        let itemAtIndex = Int(x/(view.frame.width-40))
+        let itemAtIndex = Int(x/(view.frame.width))
         filterViewMenu.collectionView.selectItem(at: IndexPath.init(item: itemAtIndex, section: 0), animated: true, scrollPosition: UICollectionViewScrollPosition.centeredHorizontally)
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let x = scrollView.contentOffset.x
-        menuSlideAnchor?.constant = x/3 + 20
+        menuSlideAnchor?.constant = x/3
     }
     
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         // print("begin dragging")
-        collectionView.reloadData()
+        // collectionView.reloadData()
     }
 }
 
 extension FilterViewController: FilterViewMenuDelegate {
     func selectTheMenu(index: Int) {
-        self.collectionView.selectItem(at: IndexPath.init(item: index, section: 0), animated: true, scrollPosition: UICollectionViewScrollPosition.centeredHorizontally)
+        self.collectionView.selectItem(at: IndexPath(item: index, section: 0), animated: true, scrollPosition: UICollectionViewScrollPosition.centeredHorizontally)
     }
 }
 
