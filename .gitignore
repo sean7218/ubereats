@@ -28,3 +28,6 @@ Podfile.lock
 
 # config files
 UberEATS/config.swift
+
+# .DS_Store
+.DS_Store

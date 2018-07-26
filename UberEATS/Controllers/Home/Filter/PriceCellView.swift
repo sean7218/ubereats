@@ -19,7 +19,6 @@ class PriceCell: UICollectionViewCell {
     override var isSelected: Bool {
         didSet {
             print("IsSelected on the PriceCell")
-//            backgroundColor = isSelected ? UIColor.red : UIColor.blue
         }
     }
     

@@ -59,7 +59,7 @@ class FilterViewCell1: UICollectionViewCell, UICollectionViewDelegate, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: frame.width - 20, height: frame.height)
+        return CGSize(width: frame.width, height: frame.height)
     }
 }
 
@@ -89,10 +89,10 @@ class SortCell: UICollectionViewCell,  UITableViewDelegate,  UITableViewDataSour
         tableView.register(SortCellViewCell.self, forCellReuseIdentifier: "SortCellViewCell")
         tableView.isScrollEnabled = false
         tableView.separatorStyle = UITableViewCellSeparatorStyle.none
-        tableView.backgroundColor = UIColor(red: 244/255, green: 140/255, blue: 66/250, alpha: 0.5)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 150 / 3
+        tableView.allowsMultipleSelection = false
         setupViews()
     }
     

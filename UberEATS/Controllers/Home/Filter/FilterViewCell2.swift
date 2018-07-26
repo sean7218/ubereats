@@ -14,7 +14,6 @@ class FilterViewCell2: UICollectionViewCell, UICollectionViewDelegate, UICollect
         let label = UILabel(frame: CGRect.zero)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Price Range"
-        label.backgroundColor = UIColor.orange
         return label
     }()
     
@@ -22,7 +21,6 @@ class FilterViewCell2: UICollectionViewCell, UICollectionViewDelegate, UICollect
         let label = UILabel(frame: CGRect.zero)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Max Booking Fee"
-        label.backgroundColor = UIColor.orange
         return label
     }()
     
@@ -36,22 +34,27 @@ class FilterViewCell2: UICollectionViewCell, UICollectionViewDelegate, UICollect
         cv.delegate = self
         cv.register(PriceCell.self, forCellWithReuseIdentifier: "PriceCell")
         cv.allowsSelection = true
+        cv.backgroundColor = .white
         return cv
     }()
     
     lazy var slideButtonView: UISlider = {
         let slider = UISlider(frame: CGRect.zero)
         slider.translatesAutoresizingMaskIntoConstraints = false
-        slider.backgroundColor = UIColor.brown
         slider.isContinuous = true
-        slider.maximumValue = 6
+        slider.maximumValue = 7
         slider.minimumValue = 4
-        slider.addTarget(self, action: #selector(sliderValueChange(_:)), for: UIControlEvents.valueChanged)
+        slider.addTarget(self, action: #selector(sliderValueChange(_:)), for: UIControlEvents.touchDragExit)
         return slider
     }()
     
     @objc func sliderValueChange(_ sender: UISlider){
-        print("value changed")
+        let point = roundf(sender.value)
+        print(point)
+        UIView.animate(withDuration: 0.1) {
+            sender.setValue(point, animated: true)
+        }
+        
     }
     
     override init(frame: CGRect) {
@@ -75,7 +78,7 @@ class FilterViewCell2: UICollectionViewCell, UICollectionViewDelegate, UICollect
         NSLayoutConstraint.activate([
             collectionView.leftAnchor.constraint(equalTo: leftAnchor, constant: 10),
             collectionView.topAnchor.constraint(equalTo: priceRangeLabel.bottomAnchor, constant: 10),
-            collectionView.widthAnchor.constraint(equalToConstant: frame.width - 20),
+            collectionView.widthAnchor.constraint(equalToConstant: frame.width),
             collectionView.heightAnchor.constraint(equalToConstant: 50)
             ])
         addSubview(bookingFeeLabel)
@@ -87,9 +90,9 @@ class FilterViewCell2: UICollectionViewCell, UICollectionViewDelegate, UICollect
             ])
         addSubview(slideButtonView)
         NSLayoutConstraint.activate([
-            slideButtonView.leftAnchor.constraint(equalTo: leftAnchor, constant: 10),
+            slideButtonView.leftAnchor.constraint(equalTo: leftAnchor, constant: 30),
             slideButtonView.topAnchor.constraint(equalTo: bookingFeeLabel.bottomAnchor, constant: 10),
-            slideButtonView.widthAnchor.constraint(equalToConstant: frame.width - 20),
+            slideButtonView.widthAnchor.constraint(equalToConstant: frame.width - 60),
             slideButtonView.heightAnchor.constraint(equalToConstant: 50)
             ])
     }
@@ -116,8 +119,6 @@ class FilterViewCell2: UICollectionViewCell, UICollectionViewDelegate, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let item = indexPath.row
-        print(item)
     }
 }
 

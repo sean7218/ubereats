@@ -39,15 +39,15 @@ class SortCellViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             sortImageView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0),
             sortImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 10),
-            sortImageView.widthAnchor.constraint(equalToConstant: 50),
-            sortImageView.heightAnchor.constraint(equalToConstant: 50)
+            sortImageView.widthAnchor.constraint(equalToConstant: 30),
+            sortImageView.heightAnchor.constraint(equalToConstant: 30)
             ])
         addSubview(nameLabel)
         NSLayoutConstraint.activate([
             nameLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0),
             nameLabel.leftAnchor.constraint(equalTo: sortImageView.rightAnchor, constant: 10),
             nameLabel.widthAnchor.constraint(equalToConstant: self.frame.width - 70),
-            nameLabel.heightAnchor.constraint(equalToConstant: 50)
+            nameLabel.heightAnchor.constraint(equalToConstant: 30)
             ])
     }
 

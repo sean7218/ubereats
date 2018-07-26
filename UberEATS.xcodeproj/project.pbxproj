@@ -28,6 +28,7 @@
 		A757F0541FCCE77400240CC9 /* FilterViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F0531FCCE77400240CC9 /* FilterViewDelegate.swift */; };
 		A757F05C1FD1141000240CC9 /* FilterViewCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F05B1FD1141000240CC9 /* FilterViewCell1.swift */; };
 		C0BD8DA3626B16EA81CD4774 /* Pods_UberEATS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6F37C18C7EF57F3875C6D27 /* Pods_UberEATS.framework */; };
+		C1BB07CC210A06450004EDE0 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BB07CB210A06450004EDE0 /* DetailViewController.swift */; };
 		C1EBB0C521061DDC007B68B2 /* SortCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EBB0C421061DDC007B68B2 /* SortCellView.swift */; };
 		C1EBB0C921064773007B68B2 /* PriceCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EBB0C821064773007B68B2 /* PriceCellView.swift */; };
 		C1EBB0CB21065947007B68B2 /* FilterViewCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EBB0CA21065947007B68B2 /* FilterViewCell2.swift */; };
@@ -91,6 +92,7 @@
 		A757F0531FCCE77400240CC9 /* FilterViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewDelegate.swift; sourceTree = "<group>"; };
 		A757F05B1FD1141000240CC9 /* FilterViewCell1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewCell1.swift; sourceTree = "<group>"; };
 		B6F37C18C7EF57F3875C6D27 /* Pods_UberEATS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UberEATS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1BB07CB210A06450004EDE0 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		C1EBB0C421061DDC007B68B2 /* SortCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortCellView.swift; sourceTree = "<group>"; };
 		C1EBB0C821064773007B68B2 /* PriceCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceCellView.swift; sourceTree = "<group>"; };
 		C1EBB0CA21065947007B68B2 /* FilterViewCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewCell2.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 		A757F03F1FCA310800240CC9 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				C1BB07CA210A06310004EDE0 /* Detail */,
 				C1EBB0DE2108CBEA007B68B2 /* Location */,
 				A757F04B1FCA503700240CC9 /* Filter */,
 				A757F0371FCA2DFC00240CC9 /* HomeViewController.swift */,
@@ -265,6 +268,14 @@
 				C1EBB0CE21065C2E007B68B2 /* DietaryCellView.swift */,
 			);
 			path = Filter;
+			sourceTree = "<group>";
+		};
+		C1BB07CA210A06310004EDE0 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				C1BB07CB210A06450004EDE0 /* DetailViewController.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		C1EBB0DE2108CBEA007B68B2 /* Location */ = {
@@ -514,6 +525,7 @@
 				A757F03E1FCA2ECE00240CC9 /* OrderViewController.swift in Sources */,
 				C1EBB0CF21065C2E007B68B2 /* DietaryCellView.swift in Sources */,
 				C1EBB0C921064773007B68B2 /* PriceCellView.swift in Sources */,
+				C1BB07CC210A06450004EDE0 /* DetailViewController.swift in Sources */,
 				C1EBB0D72107ACD1007B68B2 /* WhenCollectionViewCell.swift in Sources */,
 				A757F0361FCA2D8500240CC9 /* TabBarController.swift in Sources */,
 				A757F0501FCCE72600240CC9 /* FilterViewMenu.swift in Sources */,
@@ -704,7 +716,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GDTG5SQZRN;
+				DEVELOPMENT_TEAM = U8ERE3KNHT;
 				INFOPLIST_FILE = UberEATS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = sz7218.UberEATS;
@@ -720,7 +732,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = GDTG5SQZRN;
+				DEVELOPMENT_TEAM = U8ERE3KNHT;
 				INFOPLIST_FILE = UberEATS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = sz7218.UberEATS;
