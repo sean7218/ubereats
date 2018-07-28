@@ -29,6 +29,7 @@
 		A757F05C1FD1141000240CC9 /* FilterViewCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F05B1FD1141000240CC9 /* FilterViewCell1.swift */; };
 		C0BD8DA3626B16EA81CD4774 /* Pods_UberEATS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6F37C18C7EF57F3875C6D27 /* Pods_UberEATS.framework */; };
 		C1BB07CC210A06450004EDE0 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BB07CB210A06450004EDE0 /* DetailViewController.swift */; };
+		C1BB07CE210BC5BD0004EDE0 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BB07CD210BC5BD0004EDE0 /* HeaderView.swift */; };
 		C1EBB0C521061DDC007B68B2 /* SortCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EBB0C421061DDC007B68B2 /* SortCellView.swift */; };
 		C1EBB0C921064773007B68B2 /* PriceCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EBB0C821064773007B68B2 /* PriceCellView.swift */; };
 		C1EBB0CB21065947007B68B2 /* FilterViewCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EBB0CA21065947007B68B2 /* FilterViewCell2.swift */; };
@@ -93,6 +94,7 @@
 		A757F05B1FD1141000240CC9 /* FilterViewCell1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewCell1.swift; sourceTree = "<group>"; };
 		B6F37C18C7EF57F3875C6D27 /* Pods_UberEATS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UberEATS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1BB07CB210A06450004EDE0 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		C1BB07CD210BC5BD0004EDE0 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		C1EBB0C421061DDC007B68B2 /* SortCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortCellView.swift; sourceTree = "<group>"; };
 		C1EBB0C821064773007B68B2 /* PriceCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceCellView.swift; sourceTree = "<group>"; };
 		C1EBB0CA21065947007B68B2 /* FilterViewCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewCell2.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				C1BB07CB210A06450004EDE0 /* DetailViewController.swift */,
+				C1BB07CD210BC5BD0004EDE0 /* HeaderView.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -541,6 +544,7 @@
 				C1EBB0C521061DDC007B68B2 /* SortCellView.swift in Sources */,
 				C1EBB0D52107ACAA007B68B2 /* AddressCollectionViewCell.swift in Sources */,
 				A757F0381FCA2DFC00240CC9 /* HomeViewController.swift in Sources */,
+				C1BB07CE210BC5BD0004EDE0 /* HeaderView.swift in Sources */,
 				C1EBB0E62108D5C9007B68B2 /* Business.swift in Sources */,
 				C1EBB0CB21065947007B68B2 /* FilterViewCell2.swift in Sources */,
 				A757F00C1FCA2CD000240CC9 /* UberEATS.xcdatamodeld in Sources */,
