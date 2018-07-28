@@ -10,6 +10,12 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
+    var height: CGFloat?
+    var delegate: CoverImageDelegate?
+    var yContraint: NSLayoutConstraint?
+    var lContraint: NSLayoutConstraint?
+    var rContraint: NSLayoutConstraint?
+    
     lazy var backButton: UIButton = {
         let button = UIButton(type: UIButtonType.system)
         button.setImage(#imageLiteral(resourceName: "button-normal").withRenderingMode(.alwaysOriginal), for: UIControlState.normal)
@@ -19,11 +25,11 @@ class DetailViewController: UIViewController {
         return button
     }()
     
-    let coverImageView: UIImageView = {
-        let iv = UIImageView(image: #imageLiteral(resourceName: "tennesse_taco_co"))
-        iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.contentMode = .scaleAspectFill
-        return iv
+    lazy var headerView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .white
+        return view
     }()
     
     lazy var collectionView: UICollectionView = {
@@ -33,6 +39,7 @@ class DetailViewController: UIViewController {
         cv.delegate = self
         cv.dataSource = self
         cv.register(DetailCollectionViewCell.self, forCellWithReuseIdentifier: "DetailCell")
+        cv.register(DetailHeaderCollectionViewCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "DetailHeader")
         return cv
     }()
     
@@ -44,19 +51,12 @@ class DetailViewController: UIViewController {
         setupViews()
     }
     func setupViews(){
-        view.addSubview(coverImageView)
-        NSLayoutConstraint.activate([
-            coverImageView.topAnchor.constraint(equalTo: view.topAnchor),
-            coverImageView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            coverImageView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            coverImageView.heightAnchor.constraint(equalToConstant: 300)
-            ])
         view.addSubview(collectionView)
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: coverImageView.bottomAnchor),
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: -44),
             collectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
             collectionView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            collectionView.heightAnchor.constraint(equalToConstant: view.frame.height - 300)
+            collectionView.heightAnchor.constraint(equalToConstant: view.frame.height)
             ])
         view.addSubview(backButton)
         NSLayoutConstraint.activate([
@@ -64,6 +64,16 @@ class DetailViewController: UIViewController {
             backButton.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 10),
             backButton.widthAnchor.constraint(equalToConstant: 44),
             backButton.heightAnchor.constraint(equalToConstant: 44)
+            ])
+        view.addSubview(headerView)
+        yContraint = headerView.centerYAnchor.constraint(equalTo: collectionView.topAnchor, constant: 0)
+        lContraint = headerView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30)
+        rContraint = headerView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30)
+        NSLayoutConstraint.activate([
+            yContraint!,
+            lContraint!,
+            rContraint!,
+            headerView.heightAnchor.constraint(equalToConstant: 100)
             ])
     }
 }
@@ -87,15 +97,56 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollection
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        let y = targetContentOffset.pointee.y
-        print(y)
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        updateHeaderImage(scrollView)
+        updateHeaderView(scrollView)
+    }
+    fileprivate func updateHeaderImage(_ scrollView: UIScrollView) {
+        let pos = scrollView.contentOffset.y
+        if (pos < -44){
+            delegate?.updateImageHeight(height: (256-pos))
+            delegate?.updateImageTopAnchorConstraint(constant: (pos+44))
+        }
+    }
+    fileprivate func updateHeaderView(_ scrollView: UIScrollView){
+        let pos = scrollView.contentOffset.y
+        let pec = 1 - (pos+44)/194
+        if pos == -44 {
+            yContraint?.constant = 300
+        }
+        if (pos > -44){
+            yContraint?.constant = 256 - pos
+            lContraint?.constant = 30 * pec
+            rContraint?.constant = -(30 * pec)
+        }
+        if pos < -44 {
+            yContraint?.constant = 256 - pos
+        }
+        if pos > 163 {
+            yContraint?.constant = 94
+        }
+    }
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let cell = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "DetailHeader", for: indexPath) as! DetailHeaderCollectionViewCell
+        self.delegate = cell
+        return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: view.frame.width, height: 300)
     }
 }
-class DetailHeaderCollectionViewCell: UICollectionViewCell {
-    
+protocol CoverImageDelegate {
+
+    func updateImageHeight(height:CGFloat)
+    func updateImageTopAnchorConstraint(constant: CGFloat)
+}
+
+class DetailHeaderCollectionViewCell: UICollectionViewCell, CoverImageDelegate {
+
+    var coverImageHeightConstraint: NSLayoutConstraint?
+    var coverImageTopAnchorConstraint: NSLayoutConstraint?
     let coverImageView: UIImageView = {
-        let iv = UIImageView(image: #imageLiteral(resourceName: "tennesse_taco_co"))
+        let iv = UIImageView(image:#imageLiteral(resourceName: "ramen_cat") )
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.contentMode = .scaleAspectFill
         return iv
@@ -112,12 +163,20 @@ class DetailHeaderCollectionViewCell: UICollectionViewCell {
     
     func setupViews(){
         addSubview(coverImageView)
+        coverImageHeightConstraint = coverImageView.heightAnchor.constraint(equalToConstant: 300)
+        coverImageTopAnchorConstraint = coverImageView.topAnchor.constraint(equalTo: topAnchor, constant: 0)
         NSLayoutConstraint.activate([
-            coverImageView.topAnchor.constraint(equalTo: topAnchor),
+            coverImageTopAnchorConstraint!,
             coverImageView.leftAnchor.constraint(equalTo: leftAnchor),
             coverImageView.rightAnchor.constraint(equalTo: rightAnchor),
-            coverImageView.heightAnchor.constraint(equalToConstant: 300)
+            coverImageHeightConstraint!
             ])
+    }
+    func updateImageHeight(height: CGFloat) {
+        coverImageHeightConstraint?.constant = height
+    }
+    func updateImageTopAnchorConstraint(constant: CGFloat) {
+        coverImageTopAnchorConstraint?.constant = constant
     }
 }
 class DetailCollectionViewCell: UICollectionViewCell {
