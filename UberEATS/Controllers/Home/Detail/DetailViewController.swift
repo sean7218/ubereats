@@ -16,6 +16,7 @@ class DetailViewController: UIViewController {
     var yContraint: NSLayoutConstraint?
     var lContraint: NSLayoutConstraint?
     var rContraint: NSLayoutConstraint?
+    var meals: [Meal] = Meal.loadDemoMeals()
     
     lazy var backButton: UIButton = {
         let button = UIButton(type: UIButtonType.system)
@@ -63,6 +64,8 @@ class DetailViewController: UIViewController {
         return ["so"]
     }
     func setupViews(){
+        view.backgroundColor = .white
+        collectionView.backgroundColor = .white
         view.addSubview(collectionView)
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: -44),
@@ -114,7 +117,7 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollection
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if (indexPath.section == 0) && (indexPath.row < 2) {
-            return indexPath.row == 0 ?  CGSize(width: view.frame.width, height: 100) : CGSize(width: view.frame.width, height: 30)
+            return indexPath.row == 0 ?  CGSize(width: view.frame.width, height: 100) : CGSize(width: view.frame.width, height: 50)
         }
         return CGSize(width: view.frame.width, height: 90)
     }
