@@ -83,7 +83,7 @@ class InfoCollectionViewCell: UICollectionViewCell {
             topSeperator.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
             topSeperator.leftAnchor.constraint(equalTo: leftAnchor, constant: 0),
             topSeperator.rightAnchor.constraint(equalTo: rightAnchor, constant: 0),
-            topSeperator.heightAnchor.constraint(equalToConstant: 0.2)
+            topSeperator.heightAnchor.constraint(equalToConstant: 0.5)
             ])
     }
 }

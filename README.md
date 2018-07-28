@@ -2,14 +2,13 @@
 This app is meant to be used as demo and show the filter viewcontroller for the restaurants.
 
 ## Google Map Service 
-- The map and the location is using Google Map Service and Google Places. Please obtain your own API token. Creating a   file in the same folder where `AppDelegate.swift` with following
+- The map and the location is using Google Map Service and Google Places. Please obtain your own API token. Creating a file in the same folder where `AppDelegate.swift` with following
 ```swift
  import Foundation
 
  struct KEYS {
      static var GOOGLE_MAP_KEY: String = "YOUR_GOOGLE_ACCESS_KEY"
  }
-
  ```
 
 ## Server

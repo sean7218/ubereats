@@ -48,22 +48,22 @@ class DetailCollectionViewCell: UICollectionViewCell {
         addSubview(nameLabel)
         NSLayoutConstraint.activate([
             nameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            nameLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 3),
-            nameLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -3),
+            nameLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 15),
+            nameLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -15),
             nameLabel.heightAnchor.constraint(equalToConstant: 20)
             ])
         addSubview(infoLabel)
         NSLayoutConstraint.activate([
             infoLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5),
-            infoLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 3),
-            infoLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -3),
+            infoLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 15),
+            infoLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -15),
             infoLabel.heightAnchor.constraint(equalToConstant: 20)
             ])
         addSubview(dollarLabel)
         NSLayoutConstraint.activate([
             dollarLabel.topAnchor.constraint(equalTo: infoLabel.bottomAnchor, constant: 5),
-            dollarLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 3),
-            dollarLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -3),
+            dollarLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 15),
+            dollarLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -15),
             dollarLabel.heightAnchor.constraint(equalToConstant: 20)
             ])
     }
