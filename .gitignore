@@ -107,3 +107,17 @@ typings/
 
 # Serverless directories
 .serverless
+
+# Golang ------------------------------------
+# Binaries for programs and plugins
+Server/*.exe
+Server/*.exe~
+Server/*.dll
+Server/*.so
+Server/*.dylib
+
+# Test binary, build with `go test -c`
+Server/*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+Server/*.out
