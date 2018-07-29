@@ -1,18 +1,17 @@
 # UberEATS Reverse Engineering
 This app is meant to be used as demo and show the filter viewcontroller for the restaurants.
 
-# Google Map Server
-The map and the location is using Google Map Service and Google Places. Please obtain your own API token. Creating a file in the same folder where `AppDelegate.swift` with following
+## Google Map Service 
+- The map and the location is using Google Map Service and Google Places. Please obtain your own API token. Creating a file in the same folder where `AppDelegate.swift` with following
 ```swift
-import Foundation
+ import Foundation
 
-struct KEYS {
-    static var GOOGLE_MAP_KEY: String = "YOUR_GOOGLE_ACCESS_KEY"
-}
+ struct KEYS {
+     static var GOOGLE_MAP_KEY: String = "YOUR_GOOGLE_ACCESS_KEY"
+ }
+ ```
 
-```
-
-# Server
+## Server
 - installing the golang
 ```
 brew install go
