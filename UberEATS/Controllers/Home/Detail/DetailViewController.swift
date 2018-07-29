@@ -10,6 +10,19 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
+    
+    
+   lazy var sectionTitleIndexCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let cv = SectionTitleIndexCollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        cv.delegate = self
+        cv.dataSource = self
+        cv.register(SectionTitleIndexCollectionViewCell.self, forCellWithReuseIdentifier: "TitleCell")
+        return cv
+    }()
+    
     var height: CGFloat?
     var delegate: CoverImageDelegate?
     var delegate2: HeaderViewDelegate?
@@ -37,7 +50,6 @@ class DetailViewController: UIViewController {
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        
         let cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.delegate = self
@@ -59,20 +71,7 @@ class DetailViewController: UIViewController {
         setupViews()
         
     }
-    func collectionView(_ collectionView: UICollectionView, indexPathForIndexTitle title: String, at index: Int) -> IndexPath {
-        //collectionView indexPathForIndexTitle
-        print(title)
-        return IndexPath.init(item: index, section: 0)
-    }
-    func indexTitles(for collectionView: UICollectionView) -> [String]? {
-        //
-        return mealSections
-    }
     
-    
-    
-    
-
     func setupViews(){
         view.backgroundColor = .white
         collectionView.backgroundColor = .white
@@ -102,15 +101,30 @@ class DetailViewController: UIViewController {
             backButton.widthAnchor.constraint(equalToConstant: 30),
             backButton.heightAnchor.constraint(equalToConstant: 30)
             ])
+        view.addSubview(sectionTitleIndexCollectionView)
+        NSLayoutConstraint.activate([
+            sectionTitleIndexCollectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: -44),
+            sectionTitleIndexCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            sectionTitleIndexCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            sectionTitleIndexCollectionView.heightAnchor.constraint(equalToConstant: 80)
+            ])
     }
 }
 
 extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
+        
+        if collectionView == self.sectionTitleIndexCollectionView {
+            return 1
+        }
         print("number of mealSections: \(mealSections.count)")
         return mealSections.count
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        if collectionView == self.sectionTitleIndexCollectionView {
+            return mealSections.count
+        }
         print("current section \(section)")
         let rows = Meal.loadMealsForSection(sectionName: mealSections[section], meals: meals)
         let num = rows.count
@@ -118,17 +132,22 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollection
         return num
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailCell", for: indexPath) as! DetailCollectionViewCell
-        let infoCell = collectionView.dequeueReusableCell(withReuseIdentifier: "InfoCell", for: indexPath) as! InfoCollectionViewCell
-        let menuCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MenuCell", for: indexPath) as! MenuCollectionViewCell
+        
+        
+        if collectionView == self.sectionTitleIndexCollectionView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TitleCell", for: indexPath) as! SectionTitleIndexCollectionViewCell
+            return cell
+        }
         if (indexPath.section == 0) && (indexPath.row == 0) {
+            let infoCell = collectionView.dequeueReusableCell(withReuseIdentifier: "InfoCell", for: indexPath) as! InfoCollectionViewCell
             return infoCell
         } else if (indexPath.section == 0) && (indexPath.row == 1) {
+            let menuCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MenuCell", for: indexPath) as! MenuCollectionViewCell
             return menuCell
         } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailCell", for: indexPath) as! DetailCollectionViewCell
             let rows = Meal.loadMealsForSection(sectionName: mealSections[indexPath.section], meals: meals)
             cell.meal = rows[indexPath.row]
-        
             return cell
         }
     }

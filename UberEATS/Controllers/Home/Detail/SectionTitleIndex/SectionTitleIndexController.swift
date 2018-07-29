@@ -17,7 +17,6 @@ class SectionTitleIndexCollectionView: UICollectionView {
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
-        self.register(SectionTitleIndexCollectionViewCell.self, forCellWithReuseIdentifier: "TitleCell")
     }
     
     required init?(coder aDecoder: NSCoder) {
