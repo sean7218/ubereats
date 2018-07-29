@@ -27,7 +27,19 @@ struct Meal {
         self.price = 0.00
         self.type = ""
     }
-    
+    static func loadMealSections() -> [String] {
+        let sections: [String] = ["Recommended", "Beef Tacos", "Seafood Tacos", "Chicken Tacos", "Pork Tacos",
+                                  "Veggie Tacos", "Quesadillas", "Skillets", "Main", "Chips and Dips", "Sides",
+                                  "Starters","Salads","Sweets", "Kids Menu"]
+        
+        return sections
+    }
+    static func loadMealsForSection(sectionName: String, meals: [Meal]) -> [Meal]{
+        let filteredMeals = meals.filter { (m) -> Bool in
+            return m.type == sectionName
+        }
+        return filteredMeals
+    }
     static func loadDemoMeals() -> [Meal] {
         // Recommended
         let m1 = Meal(name: "Gus's Favorite Taco",
@@ -43,11 +55,11 @@ struct Meal {
                       type: "Recommended",
                       price: 10.60)
         let m4 = Meal(name: "Burrito Del Rey Grande",
-                      description: "",
+                      description: "Choice of Chicken, Pork or Beef with rice, beans, Cheddar cheese, guacamole, and pico de gallo",
                       type: "Recommended",
                       price: 16.00)
         let m5 = Meal(name: "Burrito Del Ray Regular",
-                      description: "",
+                      description: "Choice of Chicken, Pork or Beef with rice, beans, Cheddar cheese, guacamole, and pico de gallo",
                       type: "Recommended",
                       price: 12.15)
         // Beef Tacos
