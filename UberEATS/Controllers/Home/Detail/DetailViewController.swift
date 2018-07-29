@@ -17,6 +17,7 @@ class DetailViewController: UIViewController {
     var lContraint: NSLayoutConstraint?
     var rContraint: NSLayoutConstraint?
     var meals: [Meal] = Meal.loadDemoMeals()
+    var mealSections: [String] = Meal.loadMealSections()
     
     lazy var backButton: UIButton = {
         let button = UIButton(type: UIButtonType.system)
@@ -36,6 +37,7 @@ class DetailViewController: UIViewController {
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
+        
         let cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.delegate = self
@@ -44,6 +46,7 @@ class DetailViewController: UIViewController {
         cv.register(InfoCollectionViewCell.self, forCellWithReuseIdentifier: "InfoCell")
         cv.register(MenuCollectionViewCell.self, forCellWithReuseIdentifier: "MenuCell")
         cv.register(DetailHeaderCollectionViewCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "DetailHeader")
+        cv.register(SectionHeaderView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "SectionHeader")
         cv.register(UICollectionViewCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "EmptyCell")
         return cv
     }()
@@ -54,15 +57,22 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        
     }
     func collectionView(_ collectionView: UICollectionView, indexPathForIndexTitle title: String, at index: Int) -> IndexPath {
-        //
-        return IndexPath(row: 0, section: 0)
+        //collectionView indexPathForIndexTitle
+        print(title)
+        return IndexPath.init(item: index, section: 0)
     }
     func indexTitles(for collectionView: UICollectionView) -> [String]? {
         //
-        return ["so"]
+        return mealSections
     }
+    
+    
+    
+    
+
     func setupViews(){
         view.backgroundColor = .white
         collectionView.backgroundColor = .white
@@ -97,21 +107,28 @@ class DetailViewController: UIViewController {
 
 extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        print("number of mealSections: \(mealSections.count)")
+        return mealSections.count
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        print("current section \(section)")
+        let rows = Meal.loadMealsForSection(sectionName: mealSections[section], meals: meals)
+        let num = rows.count
+        print("current rows: \(num)")
+        return num
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailCell", for: indexPath) as! DetailCollectionViewCell
         let infoCell = collectionView.dequeueReusableCell(withReuseIdentifier: "InfoCell", for: indexPath) as! InfoCollectionViewCell
         let menuCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MenuCell", for: indexPath) as! MenuCollectionViewCell
-        cell.backgroundColor = .white
         if (indexPath.section == 0) && (indexPath.row == 0) {
             return infoCell
         } else if (indexPath.section == 0) && (indexPath.row == 1) {
             return menuCell
         } else {
+            let rows = Meal.loadMealsForSection(sectionName: mealSections[indexPath.section], meals: meals)
+            cell.meal = rows[indexPath.row]
+        
             return cell
         }
     }
@@ -168,12 +185,16 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollection
     }
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         print(indexPath.section)
-        let emptyCell = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "EmptyCell", for: indexPath)
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "DetailHeader", for: indexPath) as! DetailHeaderCollectionViewCell
-        self.delegate = header
-        if (kind == UICollectionElementKindSectionHeader) && (indexPath.section == 0) {
+        if (kind == UICollectionElementKindSectionHeader) && (indexPath.section == 0) && (indexPath.row == 0) {
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "DetailHeader", for: indexPath) as! DetailHeaderCollectionViewCell
+            self.delegate = header
             return header
+        } else if (kind == UICollectionElementKindSectionHeader) && (indexPath.section != 0){
+            let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "SectionHeader", for: indexPath) as! SectionHeaderView
+            sectionHeader.title = mealSections[indexPath.section]
+            return sectionHeader
         } else {
+            let emptyCell = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "EmptyCell", for: indexPath)
             emptyCell.frame.size.height = 0
             emptyCell.frame.size.width = 0
             emptyCell.backgroundColor = .red
@@ -182,7 +203,7 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollection
     }
  
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return section == 0 ? CGSize(width: view.frame.width, height: 300) : CGSize(width: view.frame.width, height: 0)
+        return section == 0 ? CGSize(width: view.frame.width, height: 300) : CGSize(width: view.frame.width, height: 50)
     }
 }
 protocol CoverImageDelegate {

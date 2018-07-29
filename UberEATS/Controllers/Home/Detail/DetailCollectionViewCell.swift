@@ -10,6 +10,14 @@ import UIKit
 
 class DetailCollectionViewCell: UICollectionViewCell {
     
+    var meal: Meal? {
+        didSet {
+            nameLabel.text = meal?.name
+            infoLabel.text = meal?.description
+            dollarLabel.text = "$\(meal?.price ?? 0.00)"
+        }
+    }
+    
     var nameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -45,6 +53,7 @@ class DetailCollectionViewCell: UICollectionViewCell {
     }
     
     func setupViews(){
+        backgroundColor = .white
         addSubview(nameLabel)
         NSLayoutConstraint.activate([
             nameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
