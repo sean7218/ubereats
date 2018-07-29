@@ -17,6 +17,7 @@ class SectionTitleIndexCollectionView: UICollectionView {
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         super.init(frame: frame, collectionViewLayout: layout)
+        backgroundColor = .white
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -27,6 +28,11 @@ class SectionTitleIndexCollectionView: UICollectionView {
 
 class SectionTitleIndexCollectionViewCell: UICollectionViewCell {
     
+    var sectionTitle: String? {
+        didSet {
+            titleLabel.text = sectionTitle ?? "N/A"
+        }
+    }
     
     var titleLabelWidthConstraint: NSLayoutConstraint?
     var titleLabel: UILabel = {
@@ -34,7 +40,7 @@ class SectionTitleIndexCollectionViewCell: UICollectionViewCell {
         label.font = UIFont.systemFont(ofSize: 16)
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "EMPTY SECTION"
+        label.text = ""
         return label
     }()
     
