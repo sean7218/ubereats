@@ -11,25 +11,19 @@ import UIKit
 class HeaderView: UIView, HeaderViewDelegate {
     
     func updateHeaderViewLabelOpacity(constant: CGFloat) {
-        //
-        //print(1)
     }
     
     func updateHeaderViewLabelSize(constant: CGFloat) {
-        //
         let pec = 1 + (constant+44)/80
         let opacityPec = 1 - (constant+44)/147
-        //print(opacityPec)
         nameLabelTopAnchorConstraint?.constant = 10 * (pec)
         nameLabelLeftAnchorConstraint?.constant = 15 * (pec)
         nameLabelRightAnchorConstraint?.constant = -15 * (pec)
         
-        //costLabelTopAnchorConstraint?.constant = 10 * (pec)
         costLabelLeftAnchorConstraint?.constant = 15 * (pec)
         costLabelRightAnchorConstraint?.constant = -15 * (pec)
         costLabel.layer.opacity = Float(opacityPec)
         
-        //cuisineLabelTopAnchorConstraint?.constant = 10 * (pec)
         cuisineLabelLeftAnchorConstraint?.constant = 15 * (pec)
         cuisineLabelRightAnchorConstraint?.constant = -15 * (pec)
         cuisineLabel.layer.opacity = Float(opacityPec)
