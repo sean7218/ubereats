@@ -117,9 +117,9 @@
 		C1EBB0CC21065B93007B68B2 /* FilterViewCell3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewCell3.swift; sourceTree = "<group>"; };
 		C1EBB0CE21065C2E007B68B2 /* DietaryCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DietaryCellView.swift; sourceTree = "<group>"; };
 		C1EBB0D021074BB0007B68B2 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationViewController.swift; path = UberEATS/Controllers/Home/Location/LocationViewController.swift; sourceTree = SOURCE_ROOT; };
-		C1EBB0D22107AC75007B68B2 /* NewAddressCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewAddressCollectionViewCell.swift; path = UberEATS/Controllers/Home/Location/NewAddressCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
-		C1EBB0D42107ACAA007B68B2 /* AddressCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddressCollectionViewCell.swift; path = UberEATS/Controllers/Home/Location/AddressCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
-		C1EBB0D62107ACD1007B68B2 /* WhenCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WhenCollectionViewCell.swift; path = UberEATS/Controllers/Home/Location/WhenCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
+		C1EBB0D22107AC75007B68B2 /* NewAddressCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewAddressCollectionViewCell.swift; path = UberEATS/Views/NewAddressCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
+		C1EBB0D42107ACAA007B68B2 /* AddressCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddressCollectionViewCell.swift; path = UberEATS/Views/AddressCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
+		C1EBB0D62107ACD1007B68B2 /* WhenCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WhenCollectionViewCell.swift; path = UberEATS/Views/WhenCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
 		C1EBB0DC2108BF65007B68B2 /* NavAddressDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavAddressDelegate.swift; sourceTree = "<group>"; };
 		C1EBB0E02108CC74007B68B2 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		C1EBB0E22108CEBF007B68B2 /* config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = config.swift; sourceTree = "<group>"; };
@@ -189,9 +189,10 @@
 		A757F0021FCA2CD000240CC9 /* UberEATS */ = {
 			isa = PBXGroup;
 			children = (
-				C1EBB0E42108D5B2007B68B2 /* model */,
-				C1EBB0DF2108CC5C007B68B2 /* data */,
+				C128393F210EC63C008545F7 /* Models */,
+				C128393E210EC392008545F7 /* Views */,
 				A757F0341FCA2D7000240CC9 /* Controllers */,
+				C1EBB0DF2108CC5C007B68B2 /* Data */,
 				A757F0031FCA2CD000240CC9 /* AppDelegate.swift */,
 				C1EBB0E22108CEBF007B68B2 /* config.swift */,
 				A757F0071FCA2CD000240CC9 /* Main.storyboard */,
@@ -287,27 +288,38 @@
 			path = Filter;
 			sourceTree = "<group>";
 		};
-		C127D3AA210D577F00DBC43C /* SectionTitleIndex */ = {
+		C128393E210EC392008545F7 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C127D3AB210D577F00DBC43C /* SectionTitleIndexController.swift */,
-			);
-			path = SectionTitleIndex;
-			sourceTree = "<group>";
-		};
-		C1BB07CA210A06310004EDE0 /* Detail */ = {
-			isa = PBXGroup;
-			children = (
-				C127D3AA210D577F00DBC43C /* SectionTitleIndex */,
-				C1BB07CB210A06450004EDE0 /* DetailViewController.swift */,
 				C1E82267210CB8770078525C /* DetailCollectionViewCell.swift */,
 				C1E8226D210CBE1B0078525C /* InfoCollectionViewCell.swift */,
 				C1E8226F210CDE300078525C /* MenuCollectionViewCell.swift */,
 				C1E82269210CB89C0078525C /* DetailHeaderCollectionViewCell.swift */,
 				C1BB07CD210BC5BD0004EDE0 /* HeaderView.swift */,
-				C1E8226B210CBC0A0078525C /* InfoViewController.swift */,
 				C1E82273210D33300078525C /* SectionHeaderView.swift */,
 				C1E82275210D3CF30078525C /* SectionTitleIndexView.swift */,
+				C1EBB0D22107AC75007B68B2 /* NewAddressCollectionViewCell.swift */,
+				C1EBB0D42107ACAA007B68B2 /* AddressCollectionViewCell.swift */,
+				C1EBB0D62107ACD1007B68B2 /* WhenCollectionViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C128393F210EC63C008545F7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C1EBB0E52108D5C9007B68B2 /* Business.swift */,
+				C1E82271210D05270078525C /* Meal.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C1BB07CA210A06310004EDE0 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				C1BB07CB210A06450004EDE0 /* DetailViewController.swift */,
+				C127D3AB210D577F00DBC43C /* SectionTitleIndexController.swift */,
+				C1E8226B210CBC0A0078525C /* InfoViewController.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -316,31 +328,19 @@
 			isa = PBXGroup;
 			children = (
 				C1EBB0D021074BB0007B68B2 /* LocationViewController.swift */,
-				C1EBB0D22107AC75007B68B2 /* NewAddressCollectionViewCell.swift */,
-				C1EBB0D42107ACAA007B68B2 /* AddressCollectionViewCell.swift */,
-				C1EBB0D62107ACD1007B68B2 /* WhenCollectionViewCell.swift */,
 				C1EBB0DC2108BF65007B68B2 /* NavAddressDelegate.swift */,
 			);
 			path = Location;
 			sourceTree = "<group>";
 		};
-		C1EBB0DF2108CC5C007B68B2 /* data */ = {
+		C1EBB0DF2108CC5C007B68B2 /* Data */ = {
 			isa = PBXGroup;
 			children = (
 				C1EBB0E02108CC74007B68B2 /* DataController.swift */,
 				C1EBB0E92108D6D2007B68B2 /* bizDetail.json */,
 				C1EBB0E72108D679007B68B2 /* biz.json */,
 			);
-			path = data;
-			sourceTree = "<group>";
-		};
-		C1EBB0E42108D5B2007B68B2 /* model */ = {
-			isa = PBXGroup;
-			children = (
-				C1EBB0E52108D5C9007B68B2 /* Business.swift */,
-				C1E82271210D05270078525C /* Meal.swift */,
-			);
-			path = model;
+			path = Data;
 			sourceTree = "<group>";
 		};
 		D21FE29B4AEE1AA340BFD7D1 /* Frameworks */ = {
