@@ -119,16 +119,21 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollection
         if (collectionView == self.sectionTitleIndexCollectionView) {
             return 1
         } else {
-            return mealSections.count
+            return (mealSections.count + 1) // added one section for MenuCell and InfoCell
         }
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if (collectionView == self.sectionTitleIndexCollectionView) {
             return mealSections.count
         } else {
-            let rows = Meal.loadMealsForSection(sectionName: mealSections[section], meals: meals)
-            let num = rows.count
-            return num
+            if (section == 0) {
+                return 2
+            } else {
+                print(section)
+                let rows = Meal.loadMealsForSection(sectionName: mealSections[section-1], meals: meals)
+                print("rowsAtSection: \(rows)")
+                return rows.count
+            }
         }
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -144,8 +149,10 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollection
                 let menuCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MenuCell", for: indexPath) as! MenuCollectionViewCell
                 return menuCell
             } else {
+                print(indexPath.section)
+                print(indexPath.row)
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailCell", for: indexPath) as! DetailCollectionViewCell
-                let rows = Meal.loadMealsForSection(sectionName: mealSections[indexPath.section], meals: meals)
+                let rows = Meal.loadMealsForSection(sectionName: mealSections[(indexPath.section-1)], meals: meals)
                 cell.meal = rows[indexPath.row]
                 return cell
             }
@@ -205,7 +212,7 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollection
             backButton.setImage(#imageLiteral(resourceName: "back-black").withRenderingMode(.alwaysOriginal), for: .normal)
             sectionTitleIndexCollectionView.isHidden = false
             scrollView.contentInset = UIEdgeInsets(top: 200, left: 0, bottom: 0, right: 0)
-            print(scrollView.frame.origin)
+//            print(scrollView.frame.origin)
         } else {
             sectionTitleIndexCollectionView.isHidden = true
             backButton.setImage(#imageLiteral(resourceName: "back-white").withRenderingMode(.alwaysOriginal), for: .normal)
@@ -233,7 +240,7 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollection
                 return header
             } else if (kind == UICollectionElementKindSectionHeader) && (indexPath.section != 0) {
                 let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "SectionHeader", for: indexPath) as! SectionHeaderView
-                sectionHeader.title = mealSections[indexPath.section]
+                sectionHeader.title = mealSections[indexPath.section-1]
                 print(sectionHeader.title)
                 return sectionHeader
             } else {
@@ -257,7 +264,7 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollection
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if (collectionView == self.sectionTitleIndexCollectionView) {
             let row = indexPath.row
-            let indx = IndexPath(item: 0, section: row)
+            let indx = IndexPath(item: 0, section: row+1)
             self.collectionView.selectItem(at: indx, animated: true, scrollPosition: UICollectionViewScrollPosition.top)
         }
     }
