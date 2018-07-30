@@ -13,7 +13,7 @@ class DetailHeaderCollectionViewCell: UICollectionViewCell, CoverImageDelegate {
     var coverImageHeightConstraint: NSLayoutConstraint?
     var coverImageTopAnchorConstraint: NSLayoutConstraint?
     let coverImageView: UIImageView = {
-        let iv = UIImageView(image:#imageLiteral(resourceName: "ramen_cat") )
+        let iv = UIImageView(image: #imageLiteral(resourceName: "tennesse_taco_co") )
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.contentMode = .scaleAspectFill
         return iv
