@@ -20,6 +20,7 @@ extension LocationViewController: GMSAutocompleteViewControllerDelegate, NewAddr
         collectionView.selectItem(at: IndexPath(row: 2, section: 1), animated: true, scrollPosition: UICollectionViewScrollPosition.bottom)
         doneAddress = place.formattedAddress
         gmsAutocompleteViewController.dismiss(animated: true, completion: nil)
+        print(place.placeID)
     }
     
     func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
@@ -119,7 +120,6 @@ class LocationViewController: UIViewController, UICollectionViewDelegate, UIColl
     @objc func doneLocationViewControoler(_ sender: UIButton) {
         delegate?.setAddress(address: doneAddress ?? "No Address Provided" )
         dismiss(animated: true) {
-            //Greg Olds 502-819-4980
         }
     }
     

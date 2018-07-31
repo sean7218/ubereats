@@ -10,9 +10,12 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
+    var infoViewController: InfoViewController = {
+        let vc = InfoViewController()
+        return vc
+    }()
     
-    
-   lazy var sectionTitleIndexCollectionView: UICollectionView = {
+    lazy var sectionTitleIndexCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let cv = SectionTitleIndexCollectionView(frame: CGRect.zero, collectionViewLayout: layout)
@@ -66,13 +69,14 @@ class DetailViewController: UIViewController {
     }()
     
     @objc func dismissViewController() {
-        dismiss(animated: true, completion: nil)
+        //dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        
     }
+    
     
     func setupViews(){
         view.backgroundColor = .white
@@ -129,9 +133,7 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollection
             if (section == 0) {
                 return 2
             } else {
-                print(section)
                 let rows = Meal.loadMealsForSection(sectionName: mealSections[section-1], meals: meals)
-                print("rowsAtSection: \(rows)")
                 return rows.count
             }
         }
@@ -144,13 +146,14 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollection
         } else {
             if (indexPath.section == 0) && (indexPath.row == 0) {
                 let infoCell = collectionView.dequeueReusableCell(withReuseIdentifier: "InfoCell", for: indexPath) as! InfoCollectionViewCell
+                    infoCell.infoButtonCallback = {() -> () in
+                        self.navigationController?.pushViewController((self.infoViewController), animated: true)
+                }
                 return infoCell
             } else if (indexPath.section == 0) && (indexPath.row == 1) {
                 let menuCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MenuCell", for: indexPath) as! MenuCollectionViewCell
                 return menuCell
             } else {
-                print(indexPath.section)
-                print(indexPath.row)
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailCell", for: indexPath) as! DetailCollectionViewCell
                 let rows = Meal.loadMealsForSection(sectionName: mealSections[(indexPath.section-1)], meals: meals)
                 cell.meal = rows[indexPath.row]
@@ -191,7 +194,6 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollection
     }
     fileprivate func updateHeaderView(_ scrollView: UIScrollView){
         let pos = scrollView.contentOffset.y
-//        print(pos)
         let pec = 1 - (pos+44)/194
         if pos == -44 {
             yContraint?.constant = 300
@@ -212,11 +214,9 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollection
             backButton.setImage(#imageLiteral(resourceName: "back-black").withRenderingMode(.alwaysOriginal), for: .normal)
             sectionTitleIndexCollectionView.isHidden = false
             scrollView.contentInset = UIEdgeInsets(top: 200, left: 0, bottom: 0, right: 0)
-//            print(scrollView.frame.origin)
         } else {
             sectionTitleIndexCollectionView.isHidden = true
             backButton.setImage(#imageLiteral(resourceName: "back-white").withRenderingMode(.alwaysOriginal), for: .normal)
-//            print(scrollView.frame.origin)
             scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
     }
@@ -241,7 +241,6 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollection
             } else if (kind == UICollectionElementKindSectionHeader) && (indexPath.section != 0) {
                 let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "SectionHeader", for: indexPath) as! SectionHeaderView
                 sectionHeader.title = mealSections[indexPath.section-1]
-                print(sectionHeader.title)
                 return sectionHeader
             } else {
                 let emptyCell = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "EmptyCell", for: indexPath)
@@ -279,5 +278,27 @@ protocol HeaderViewDelegate {
     func updateHeaderViewLabelSize(constant: CGFloat)
 }
 
+extension DetailViewController: UINavigationControllerDelegate {
+    func hideNavBar(){
+        navigationController?.isNavigationBarHidden = true
+    }
+    func showNavBar(){
+        navigationController?.isNavigationBarHidden = false
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        print("detail = viewWillDisappear")
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        print("detail = viewDidDisappear")
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.navigationBar.layer.zPosition = -1
+        print("detail = viewWillAppear")
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        print("detail = viewDidAppear")
+    }
+}
 
 
