@@ -10,6 +10,8 @@ import UIKit
 
 class InfoCollectionViewCell: UICollectionViewCell {
     
+    var infoButtonCallback: (()->())?
+    
     let infoLabel: UILabel = {
         let label = UILabel()
         label.text = "Location and hours"
@@ -19,13 +21,16 @@ class InfoCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    let infoButton: UIButton = {
+    lazy var infoButton: UIButton = {
         let button = UIButton(type: UIButtonType.system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("View Info", for: UIControlState.normal)
+        button.showsTouchWhenHighlighted = true
         button.setTitleColor(UIColor.black, for: UIControlState.normal)
+        button.setTitleColor(UIColor.gray, for: UIControlState.highlighted)
+        button.addTarget(self, action: #selector(infoButtonTapped), for: UIControlEvents.touchUpInside)
         return button
-    }()
+        }()
     
     let infoButtonArrow: UIImageView = {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "forward-black").withRenderingMode(.alwaysOriginal))
@@ -40,11 +45,10 @@ class InfoCollectionViewCell: UICollectionViewCell {
         return line
     }()
     
-    @objc func openInfoViewController(_ sender: UIButton){
-        // let info = InfoViewController()
-        // present(info)
-        print("Something")
+    @objc func infoButtonTapped() {
+        infoButtonCallback?()
     }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()

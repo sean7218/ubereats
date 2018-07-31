@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let GOOGLE_KEY = KEYS.GOOGLE_MAP_KEY
     let GOOGLE_MAP_KEY = ProcessInfo.processInfo.environment["GOOGLE_MAP_KEY"]
 
-    var tabBarController: TabBarController = {
+    lazy var tabBarController: TabBarController = {
         let tabBarController = TabBarController()
         return tabBarController
     }()
@@ -39,7 +39,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         window?.makeKeyAndVisible()
         window?.rootViewController = tabBarController
-        
         return true
     }
 

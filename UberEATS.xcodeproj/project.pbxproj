@@ -28,6 +28,14 @@
 		A757F05C1FD1141000240CC9 /* FilterViewCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F05B1FD1141000240CC9 /* FilterViewCell1.swift */; };
 		C0BD8DA3626B16EA81CD4774 /* Pods_UberEATS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6F37C18C7EF57F3875C6D27 /* Pods_UberEATS.framework */; };
 		C127D3AC210D577F00DBC43C /* SectionTitleIndexController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C127D3AB210D577F00DBC43C /* SectionTitleIndexController.swift */; };
+		C1283942210F4DD7008545F7 /* SZButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1283941210F4DD6008545F7 /* SZButton.swift */; };
+		C1283944210F5544008545F7 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1283943210F5544008545F7 /* InfoTableViewCell.swift */; };
+		C1283946210F5B5A008545F7 /* InfoTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1283945210F5B5A008545F7 /* InfoTableViewHeader.swift */; };
+		C1283948210F5FED008545F7 /* InfoMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1283947210F5FED008545F7 /* InfoMapView.swift */; };
+		C128394A210F6045008545F7 /* InfoTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1283949210F6045008545F7 /* InfoTableView.swift */; };
+		C128394C210FA1E1008545F7 /* manifest.plist in Resources */ = {isa = PBXBuildFile; fileRef = C128394B210FA1E1008545F7 /* manifest.plist */; };
+		C128394E210FBCB7008545F7 /* SlideAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C128394D210FBCB7008545F7 /* SlideAnimator.swift */; };
+		C12839512110FCCA008545F7 /* SZAnimatedTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12839502110FCCA008545F7 /* SZAnimatedTransition.swift */; };
 		C1BB07CC210A06450004EDE0 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BB07CB210A06450004EDE0 /* DetailViewController.swift */; };
 		C1BB07CE210BC5BD0004EDE0 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BB07CD210BC5BD0004EDE0 /* HeaderView.swift */; };
 		C1E82268210CB8770078525C /* DetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E82267210CB8770078525C /* DetailCollectionViewCell.swift */; };
@@ -101,6 +109,14 @@
 		A757F05B1FD1141000240CC9 /* FilterViewCell1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewCell1.swift; sourceTree = "<group>"; };
 		B6F37C18C7EF57F3875C6D27 /* Pods_UberEATS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UberEATS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C127D3AB210D577F00DBC43C /* SectionTitleIndexController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionTitleIndexController.swift; sourceTree = "<group>"; };
+		C1283941210F4DD6008545F7 /* SZButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SZButton.swift; sourceTree = "<group>"; };
+		C1283943210F5544008545F7 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
+		C1283945210F5B5A008545F7 /* InfoTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewHeader.swift; sourceTree = "<group>"; };
+		C1283947210F5FED008545F7 /* InfoMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoMapView.swift; sourceTree = "<group>"; };
+		C1283949210F6045008545F7 /* InfoTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableView.swift; sourceTree = "<group>"; };
+		C128394B210FA1E1008545F7 /* manifest.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = manifest.plist; sourceTree = "<group>"; };
+		C128394D210FBCB7008545F7 /* SlideAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideAnimator.swift; sourceTree = "<group>"; };
+		C12839502110FCCA008545F7 /* SZAnimatedTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SZAnimatedTransition.swift; sourceTree = "<group>"; };
 		C1BB07CB210A06450004EDE0 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		C1BB07CD210BC5BD0004EDE0 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		C1E82267210CB8770078525C /* DetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -189,6 +205,8 @@
 		A757F0021FCA2CD000240CC9 /* UberEATS */ = {
 			isa = PBXGroup;
 			children = (
+				C128394F210FBF1F008545F7 /* Playgrounds */,
+				C1283940210F4DBA008545F7 /* Design */,
 				C128393F210EC63C008545F7 /* Models */,
 				C128393E210EC392008545F7 /* Views */,
 				A757F0341FCA2D7000240CC9 /* Controllers */,
@@ -200,6 +218,7 @@
 				A757F00F1FCA2CD000240CC9 /* LaunchScreen.storyboard */,
 				A757F0121FCA2CD000240CC9 /* Info.plist */,
 				A757F00A1FCA2CD000240CC9 /* UberEATS.xcdatamodeld */,
+				C128394B210FA1E1008545F7 /* manifest.plist */,
 			);
 			path = UberEATS;
 			sourceTree = "<group>";
@@ -293,6 +312,10 @@
 			children = (
 				C1E82267210CB8770078525C /* DetailCollectionViewCell.swift */,
 				C1E8226D210CBE1B0078525C /* InfoCollectionViewCell.swift */,
+				C1283947210F5FED008545F7 /* InfoMapView.swift */,
+				C1283949210F6045008545F7 /* InfoTableView.swift */,
+				C1283945210F5B5A008545F7 /* InfoTableViewHeader.swift */,
+				C1283943210F5544008545F7 /* InfoTableViewCell.swift */,
 				C1E8226F210CDE300078525C /* MenuCollectionViewCell.swift */,
 				C1E82269210CB89C0078525C /* DetailHeaderCollectionViewCell.swift */,
 				C1BB07CD210BC5BD0004EDE0 /* HeaderView.swift */,
@@ -312,6 +335,23 @@
 				C1E82271210D05270078525C /* Meal.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		C1283940210F4DBA008545F7 /* Design */ = {
+			isa = PBXGroup;
+			children = (
+				C1283941210F4DD6008545F7 /* SZButton.swift */,
+				C128394D210FBCB7008545F7 /* SlideAnimator.swift */,
+				C12839502110FCCA008545F7 /* SZAnimatedTransition.swift */,
+			);
+			path = Design;
+			sourceTree = "<group>";
+		};
+		C128394F210FBF1F008545F7 /* Playgrounds */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Playgrounds;
 			sourceTree = "<group>";
 		};
 		C1BB07CA210A06310004EDE0 /* Detail */ = {
@@ -464,6 +504,7 @@
 				A757F0111FCA2CD000240CC9 /* LaunchScreen.storyboard in Resources */,
 				A757F00E1FCA2CD000240CC9 /* Assets.xcassets in Resources */,
 				A757F0091FCA2CD000240CC9 /* Main.storyboard in Resources */,
+				C128394C210FA1E1008545F7 /* manifest.plist in Resources */,
 				C1EBB0EA2108D6D2007B68B2 /* bizDetail.json in Resources */,
 				C1EBB0E82108D679007B68B2 /* biz.json in Resources */,
 			);
@@ -552,6 +593,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1EBB0D121074BB0007B68B2 /* LocationViewController.swift in Sources */,
+				C1283944210F5544008545F7 /* InfoTableViewCell.swift in Sources */,
 				C1E8226C210CBC0A0078525C /* InfoViewController.swift in Sources */,
 				A757F03C1FCA2E5C00240CC9 /* UserViewController.swift in Sources */,
 				C1E8226A210CB89C0078525C /* DetailHeaderCollectionViewCell.swift in Sources */,
@@ -571,10 +613,13 @@
 				C1E82276210D3CF30078525C /* SectionTitleIndexView.swift in Sources */,
 				C1EBB0DD2108BF65007B68B2 /* NavAddressDelegate.swift in Sources */,
 				C1EBB0E32108CEBF007B68B2 /* config.swift in Sources */,
+				C1283946210F5B5A008545F7 /* InfoTableViewHeader.swift in Sources */,
 				C1E8226E210CBE1B0078525C /* InfoCollectionViewCell.swift in Sources */,
 				A757F0461FCA318300240CC9 /* HomeViewCell.swift in Sources */,
 				A757F04A1FCA346C00240CC9 /* HorizontalViewCell.swift in Sources */,
 				C1EBB0CD21065B93007B68B2 /* FilterViewCell3.swift in Sources */,
+				C1283942210F4DD7008545F7 /* SZButton.swift in Sources */,
+				C12839512110FCCA008545F7 /* SZAnimatedTransition.swift in Sources */,
 				A757F0041FCA2CD000240CC9 /* AppDelegate.swift in Sources */,
 				C1EBB0D32107AC75007B68B2 /* NewAddressCollectionViewCell.swift in Sources */,
 				C1EBB0C521061DDC007B68B2 /* SortCellView.swift in Sources */,
@@ -587,7 +632,10 @@
 				C1EBB0E62108D5C9007B68B2 /* Business.swift in Sources */,
 				C1EBB0CB21065947007B68B2 /* FilterViewCell2.swift in Sources */,
 				C127D3AC210D577F00DBC43C /* SectionTitleIndexController.swift in Sources */,
+				C128394A210F6045008545F7 /* InfoTableView.swift in Sources */,
+				C1283948210F5FED008545F7 /* InfoMapView.swift in Sources */,
 				A757F00C1FCA2CD000240CC9 /* UberEATS.xcdatamodeld in Sources */,
+				C128394E210FBCB7008545F7 /* SlideAnimator.swift in Sources */,
 				A757F0521FCCE74500240CC9 /* FilterViewMenuDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -758,15 +806,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F5B6DFD2CF6C55F62DCB40CF /* Pods-UberEATS.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U8ERE3KNHT;
 				INFOPLIST_FILE = UberEATS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = sz7218.UberEATS;
+				PRODUCT_BUNDLE_IDENTIFIER = sz7218.UberFish;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -774,15 +822,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 402756323808598191D41C43 /* Pods-UberEATS.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U8ERE3KNHT;
 				INFOPLIST_FILE = UberEATS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = sz7218.UberEATS;
+				PRODUCT_BUNDLE_IDENTIFIER = sz7218.UberFish;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

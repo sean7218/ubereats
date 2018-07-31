@@ -29,19 +29,17 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     }()
     
     lazy var filterButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Sort Restaurants", for: .normal)
-        let attributedText = NSMutableAttributedString(string: "Sort Restaurants", attributes: [NSAttributedStringKey.font: UIFont.italicSystemFont(ofSize: 12)])
-        button.titleLabel?.attributedText = attributedText
+        let button = UIButton(type: .custom)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .white
+        button.setImage(#imageLiteral(resourceName: "button-filter").withRenderingMode(.alwaysTemplate), for: .normal)
+        button.backgroundColor = UIColor(red: 240/255, green: 237/255, blue: 240/255, alpha: 1)
+        button.imageView?.contentMode = .scaleAspectFit
+        button.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5)
         button.tintColor = .black
+        button.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        button.clipsToBounds = true
+        button.layer.cornerRadius = button.layer.frame.height/2
         button.addTarget(self, action: #selector(showFilterView), for: .touchUpInside)
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 0.5
-        button.layer.shadowOffset = CGSize.zero
-        button.layer.shadowRadius = 2
-        button.layer.shouldRasterize = false
         return button
     }()
     
@@ -100,6 +98,29 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupCollectionView()
+        setupViews()
+        
+        setupNavigationController()
+    }
+    
+    func setupNavigationController() {
+        self.navigationController?.delegate = self
+    }
+    func setupCollectionView()
+    {
+        self.collectionView?.register(HomeViewCell.self, forCellWithReuseIdentifier: "HomeViewCell")
+        self.collectionView?.register(HorizontalViewCell.self, forCellWithReuseIdentifier: "HoriCell")
+        collectionView?.translatesAutoresizingMaskIntoConstraints = false
+        collectionView?.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 0).isActive = true
+        collectionView?.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor).isActive = true
+        collectionView?.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor).isActive = true
+        collectionView?.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0).isActive = true
+        self.collectionView?.backgroundColor = UIColor(red: 240/255, green: 237/255, blue: 240/255, alpha: 1)
+    }
+    
     func setupViews(){
         // navigation title
         let attributedText = NSMutableAttributedString(string: navAddressTitle, attributes: [NSAttributedStringKey.font: UIFont.italicSystemFont(ofSize: 12)])
@@ -111,27 +132,10 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         navigationItem.titleView?.addGestureRecognizer(recognizer)
         navigationController?.navigationBar.isTranslucent = false
         
-       // filter bar below navigationBar
+        // filter bar below navigationBar
         view.addSubview(filterButton)
-        NSLayoutConstraint.activate([
-            filterButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-            filterButton.leftAnchor.constraint(equalTo: view.leftAnchor),
-            filterButton.widthAnchor.constraint(equalToConstant: view.frame.width),
-            filterButton.heightAnchor.constraint(equalToConstant: 35)
-        ])
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.collectionView?.register(HomeViewCell.self, forCellWithReuseIdentifier: "HomeViewCell")
-        self.collectionView?.register(HorizontalViewCell.self, forCellWithReuseIdentifier: "HoriCell")
-        collectionView?.translatesAutoresizingMaskIntoConstraints = false
-        collectionView?.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 35).isActive = true
-        collectionView?.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor).isActive = true
-        collectionView?.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor).isActive = true
-        collectionView?.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        self.collectionView?.backgroundColor = .gray
-        setupViews()
+        filterButton.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: nil, right: view.safeAreaLayoutGuide.rightAnchor,
+                            bottom: nil, paddingTop: 20, paddingLeft: 0, paddingRight: -10, paddingBottom: 0, width: 30, height: 30)
     }
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -170,16 +174,50 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         if section == 0 {
             return UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
         } else {
-            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            return UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width, height: 300)
     }
-    
+
+
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailViewController = DetailViewController()
-        present(detailViewController, animated: true, completion: nil)
+        print("click the collectionview")
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        self.extendedLayoutIncludesOpaqueBars = true
+        tabBarController?.tabBar.isHidden = true
+        
+        navigationController?.pushViewController(detailViewController, animated: true)
+        //navigationController?.performSegue(withIdentifier: <#T##String#>, sender: <#T##Any?#>)
+        //self.additionalSafeAreaInsets = UIEdgeInsets(top: 0, left: 0, bottom: -100, right: 0)
+//        let coverImage: UIView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 250))
+//        UIApplication.shared.keyWindow!.addSubview(coverImage)
+//        coverImage.backgroundColor = .red
+//        coverImage.transform = CGAffineTransform.init(translationX: 0, y: -250)
+        //detailViewController.edgesForExtendedLayout = UIRectEdge.bottom
+        //detailViewController.edgesForExtendedLayout =  UIRectEdge.top
+//        navigationController?.pushViewController(detailViewController, animated: false)
+//        UIView.animate(withDuration: 1, animations: {
+//            //
+//            //self.navigationController?.pushViewController(detailViewController, animated: false)
+//            coverImage.transform = CGAffineTransform(translationX: 0, y: 0)
+//        }, completion: { (success) -> Void in
+//             print("finished")
+//        })
+        //present(detailViewController, animated: true, completion: nil)
     }
+}
+
+extension HomeViewController: UINavigationControllerDelegate {
+    
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        let slideAnimate = SlideAnimation()
+        print("Created slide Animate")
+        return slideAnimate
+    }
+    
+    
 }
