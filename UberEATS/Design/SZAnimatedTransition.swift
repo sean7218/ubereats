@@ -10,7 +10,7 @@ import UIKit
 
 class SZAnimatedTransition: NSObject, UIViewControllerAnimatedTransitioning {
 
-    public let AnimatorTag = 1
+    public let AnimatorTag = 99
     
     var duration: TimeInterval
     var isPresenting:  Bool
@@ -38,16 +38,20 @@ class SZAnimatedTransition: NSObject, UIViewControllerAnimatedTransitioning {
         
         let detailView = isPresenting ? toView : fromView
         
-        guard let artwork = detailView.viewWithTag(AnimatorTag) as? UIImageView else { return }
-        artwork.image = image
+        //guard let artwork = detailView.viewWithTag(AnimatorTag) as? UIImageView else { return }
+        let artwork: UIImageView = UIImageView(image: #imageLiteral(resourceName: "tennesse_taco_co"))
+        artwork.contentMode = .scaleAspectFit
+        artwork.frame = CGRect(x: 0, y: 0, width: 375, height: 300)
+        print(artwork.frame)
         artwork.alpha = 0
         
-        let transitionImageView = UIImageView(frame: isPresenting ? originFrame : artwork.frame)
+        let correctedOriginFrame = CGRect(x: originFrame.origin.x, y: originFrame.origin.y, width: originFrame.width - 20, height: originFrame.height - 20)
+        let transitionImageView = UIImageView(frame: isPresenting ? correctedOriginFrame : artwork.frame)
         transitionImageView.image = image
         
         container.addSubview(transitionImageView)
         
-        toView.frame = isPresenting ? CGRect(x: fromView.frame.width, y: 0, width: toView.frame.width, height: toView.frame.height) : toView.frame
+        toView.frame = isPresenting ? CGRect(x: 0, y: fromView.frame.width, width: toView.frame.width, height: toView.frame.height) : toView.frame
         toView.alpha = isPresenting ? 0 : 1
         toView.layoutIfNeeded()
         

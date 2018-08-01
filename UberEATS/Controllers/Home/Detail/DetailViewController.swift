@@ -292,11 +292,16 @@ extension DetailViewController: UINavigationControllerDelegate {
         print("detail = viewDidDisappear")
     }
     override func viewWillAppear(_ animated: Bool) {
-        navigationController?.setNavigationBarHidden(false, animated: true)
-        navigationController?.navigationBar.layer.zPosition = -1
+
         print("detail = viewWillAppear")
     }
     override func viewDidAppear(_ animated: Bool) {
+        //navigationController?.setNavigationBarHidden(false, animated: true)
+        //self.collectionView.layer.zPosition = 1
+        //navigationController?.navigationBar.layer.zPosition = -1
+        //print(self.collectionView.layer.zPosition)
+        //print(navigationController?.navigationBar.layer.zPosition)
+//        navigationController?.navigationBar.layer.
         print("detail = viewDidAppear")
     }
 }

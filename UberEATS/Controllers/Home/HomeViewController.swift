@@ -17,6 +17,9 @@ extension HomeViewController: NavAddressDelegate {
 
 class HomeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, FilterViewDelegate {
     
+    var selectedFrame: CGRect?
+    var selectedBusiness: Business?
+    
     var navAddressTitle: String = "2590 N Moreland Blvd"
     
     lazy var grayBackgroundView: UIView = {
@@ -63,7 +66,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         self.addChildViewController(filterViewController)
         filterViewController.didMove(toParentViewController: self)
         self.filterViewController.view.frame.origin.y = -400
-        UIView.animate(withDuration: 0.8, delay: 0, options: UIViewAnimationOptions.curveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.5, delay: 0, options: UIViewAnimationOptions.curveEaseInOut, animations: {
             self.filterViewController.view.frame.origin.y = 0
         }) { (isCompleted: Bool) in
             print("FilterViewShowed Completed")
@@ -74,7 +77,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     
     @objc func closeFilterView() {
         print("closing filterview")
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: UIViewAnimationOptions.curveLinear, animations: {
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: UIViewAnimationOptions.curveLinear, animations: {
             self.filterViewController.view.frame.origin.y = -500
             self.grayBackgroundView.removeFromSuperview()
         }) { (isCompleted: Bool) in
@@ -102,7 +105,6 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         super.viewDidLoad()
         setupCollectionView()
         setupViews()
-        
         setupNavigationController()
     }
     
@@ -111,14 +113,15 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     }
     func setupCollectionView()
     {
-        self.collectionView?.register(HomeViewCell.self, forCellWithReuseIdentifier: "HomeViewCell")
-        self.collectionView?.register(HorizontalViewCell.self, forCellWithReuseIdentifier: "HoriCell")
+        collectionView?.register(HomeViewCell.self, forCellWithReuseIdentifier: "HomeViewCell")
+        collectionView?.register(HorizontalViewCell.self, forCellWithReuseIdentifier: "HoriCell")
         collectionView?.translatesAutoresizingMaskIntoConstraints = false
         collectionView?.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 0).isActive = true
         collectionView?.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor).isActive = true
         collectionView?.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor).isActive = true
         collectionView?.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0).isActive = true
-        self.collectionView?.backgroundColor = UIColor(red: 240/255, green: 237/255, blue: 240/255, alpha: 1)
+        collectionView?.backgroundColor = UIColor(red: 240/255, green: 237/255, blue: 240/255, alpha: 1)
+        collectionView?.contentInsetAdjustmentBehavior = .never
     }
     
     func setupViews(){
@@ -131,11 +134,11 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         navigationItem.titleView?.isUserInteractionEnabled = true
         navigationItem.titleView?.addGestureRecognizer(recognizer)
         navigationController?.navigationBar.isTranslucent = false
-        
-        // filter bar below navigationBar
-        view.addSubview(filterButton)
-        filterButton.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: nil, right: view.safeAreaLayoutGuide.rightAnchor,
-                            bottom: nil, paddingTop: 20, paddingLeft: 0, paddingRight: -10, paddingBottom: 0, width: 30, height: 30)
+        let barButtonItem = UIBarButtonItem(customView: filterButton)
+        navigationItem.setRightBarButton(barButtonItem, animated: true)
+        filterButton.anchor(top: nil, left: nil, right: nil, bottom: nil,
+                            paddingTop: 0, paddingLeft: 0, paddingRight: 0, paddingBottom: 0,
+                            width: 30, height: 30)
     }
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -188,35 +191,33 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         print("click the collectionview")
         navigationController?.setNavigationBarHidden(true, animated: true)
         self.extendedLayoutIncludesOpaqueBars = true
-        tabBarController?.tabBar.isHidden = true
+        //tabBarController?.tabBar.isHidden = true
+
         
+        let theAttributes: UICollectionViewLayoutAttributes! = collectionView.layoutAttributesForItem(at: indexPath)
+        selectedFrame = collectionView.convert(theAttributes.frame, to: collectionView.superview)
         navigationController?.pushViewController(detailViewController, animated: true)
-        //navigationController?.performSegue(withIdentifier: <#T##String#>, sender: <#T##Any?#>)
-        //self.additionalSafeAreaInsets = UIEdgeInsets(top: 0, left: 0, bottom: -100, right: 0)
-//        let coverImage: UIView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 250))
-//        UIApplication.shared.keyWindow!.addSubview(coverImage)
-//        coverImage.backgroundColor = .red
-//        coverImage.transform = CGAffineTransform.init(translationX: 0, y: -250)
-        //detailViewController.edgesForExtendedLayout = UIRectEdge.bottom
-        //detailViewController.edgesForExtendedLayout =  UIRectEdge.top
-//        navigationController?.pushViewController(detailViewController, animated: false)
-//        UIView.animate(withDuration: 1, animations: {
-//            //
-//            //self.navigationController?.pushViewController(detailViewController, animated: false)
-//            coverImage.transform = CGAffineTransform(translationX: 0, y: 0)
-//        }, completion: { (success) -> Void in
-//             print("finished")
-//        })
-        //present(detailViewController, animated: true, completion: nil)
+
     }
+
 }
 
 extension HomeViewController: UINavigationControllerDelegate {
     
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        let slideAnimate = SlideAnimation()
-        print("Created slide Animate")
-        return slideAnimate
+        if (toVC.self is DetailViewController) {
+            guard let frame = self.selectedFrame else { return nil }
+            //guard let business = self.selectedBusiness else { return nil }
+            let businessArtwork: UIImageView = UIImageView(image: #imageLiteral(resourceName: "tennesse_taco_co"))
+            switch operation {
+            case .push:
+                return SZAnimatedTransition(duration: 0.5, isPresenting: true, originFrame: frame, image: businessArtwork.image!)
+            default:
+                // return SZAnimatedTransition(duration: 1, isPresenting: false, originFrame: frame, image: businessArtwork.image!)
+                return nil
+            }
+        }
+        return nil
     }
     
     

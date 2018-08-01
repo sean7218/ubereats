@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		A757F0041FCA2CD000240CC9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A757F0031FCA2CD000240CC9 /* AppDelegate.swift */; };
-		A757F0091FCA2CD000240CC9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A757F0071FCA2CD000240CC9 /* Main.storyboard */; };
 		A757F00C1FCA2CD000240CC9 /* UberEATS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A757F00A1FCA2CD000240CC9 /* UberEATS.xcdatamodeld */; };
 		A757F00E1FCA2CD000240CC9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A757F00D1FCA2CD000240CC9 /* Assets.xcassets */; };
 		A757F0111FCA2CD000240CC9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A757F00F1FCA2CD000240CC9 /* LaunchScreen.storyboard */; };
@@ -84,7 +83,6 @@
 		402756323808598191D41C43 /* Pods-UberEATS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UberEATS.release.xcconfig"; path = "Pods/Target Support Files/Pods-UberEATS/Pods-UberEATS.release.xcconfig"; sourceTree = "<group>"; };
 		A757F0001FCA2CD000240CC9 /* UberEATS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UberEATS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A757F0031FCA2CD000240CC9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A757F0081FCA2CD000240CC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A757F00B1FCA2CD000240CC9 /* UberEATS.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UberEATS.xcdatamodel; sourceTree = "<group>"; };
 		A757F00D1FCA2CD000240CC9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A757F0101FCA2CD000240CC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -205,7 +203,6 @@
 		A757F0021FCA2CD000240CC9 /* UberEATS */ = {
 			isa = PBXGroup;
 			children = (
-				C128394F210FBF1F008545F7 /* Playgrounds */,
 				C1283940210F4DBA008545F7 /* Design */,
 				C128393F210EC63C008545F7 /* Models */,
 				C128393E210EC392008545F7 /* Views */,
@@ -213,7 +210,6 @@
 				C1EBB0DF2108CC5C007B68B2 /* Data */,
 				A757F0031FCA2CD000240CC9 /* AppDelegate.swift */,
 				C1EBB0E22108CEBF007B68B2 /* config.swift */,
-				A757F0071FCA2CD000240CC9 /* Main.storyboard */,
 				A757F00D1FCA2CD000240CC9 /* Assets.xcassets */,
 				A757F00F1FCA2CD000240CC9 /* LaunchScreen.storyboard */,
 				A757F0121FCA2CD000240CC9 /* Info.plist */,
@@ -311,16 +307,16 @@
 			isa = PBXGroup;
 			children = (
 				C1E82267210CB8770078525C /* DetailCollectionViewCell.swift */,
+				C1E82269210CB89C0078525C /* DetailHeaderCollectionViewCell.swift */,
+				C1283949210F6045008545F7 /* InfoTableView.swift */,
 				C1E8226D210CBE1B0078525C /* InfoCollectionViewCell.swift */,
 				C1283947210F5FED008545F7 /* InfoMapView.swift */,
-				C1283949210F6045008545F7 /* InfoTableView.swift */,
 				C1283945210F5B5A008545F7 /* InfoTableViewHeader.swift */,
 				C1283943210F5544008545F7 /* InfoTableViewCell.swift */,
-				C1E8226F210CDE300078525C /* MenuCollectionViewCell.swift */,
-				C1E82269210CB89C0078525C /* DetailHeaderCollectionViewCell.swift */,
-				C1BB07CD210BC5BD0004EDE0 /* HeaderView.swift */,
 				C1E82273210D33300078525C /* SectionHeaderView.swift */,
 				C1E82275210D3CF30078525C /* SectionTitleIndexView.swift */,
+				C1E8226F210CDE300078525C /* MenuCollectionViewCell.swift */,
+				C1BB07CD210BC5BD0004EDE0 /* HeaderView.swift */,
 				C1EBB0D22107AC75007B68B2 /* NewAddressCollectionViewCell.swift */,
 				C1EBB0D42107ACAA007B68B2 /* AddressCollectionViewCell.swift */,
 				C1EBB0D62107ACD1007B68B2 /* WhenCollectionViewCell.swift */,
@@ -345,13 +341,6 @@
 				C12839502110FCCA008545F7 /* SZAnimatedTransition.swift */,
 			);
 			path = Design;
-			sourceTree = "<group>";
-		};
-		C128394F210FBF1F008545F7 /* Playgrounds */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Playgrounds;
 			sourceTree = "<group>";
 		};
 		C1BB07CA210A06310004EDE0 /* Detail */ = {
@@ -503,7 +492,6 @@
 			files = (
 				A757F0111FCA2CD000240CC9 /* LaunchScreen.storyboard in Resources */,
 				A757F00E1FCA2CD000240CC9 /* Assets.xcassets in Resources */,
-				A757F0091FCA2CD000240CC9 /* Main.storyboard in Resources */,
 				C128394C210FA1E1008545F7 /* manifest.plist in Resources */,
 				C1EBB0EA2108D6D2007B68B2 /* bizDetail.json in Resources */,
 				C1EBB0E82108D679007B68B2 /* biz.json in Resources */,
@@ -672,14 +660,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		A757F0071FCA2CD000240CC9 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A757F0081FCA2CD000240CC9 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		A757F00F1FCA2CD000240CC9 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
