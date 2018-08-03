@@ -27,6 +27,7 @@ class DetailViewController: UIViewController {
         cv.showsHorizontalScrollIndicator = false
         cv.register(UICollectionViewCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "SectionTitleIndexEmptyCell")
         cv.register(SectionTitleIndexCollectionViewCell.self, forCellWithReuseIdentifier: "SectionTitleIndexCell")
+        cv.isHidden = true
         return cv
     }()
     
@@ -78,6 +79,7 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         setupGesture()
+       
     }
     
     func setupGesture(){
@@ -90,14 +92,14 @@ class DetailViewController: UIViewController {
         view.backgroundColor = .white
         view.addSubview(collectionView)
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: -44),
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
             collectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
             collectionView.rightAnchor.constraint(equalTo: view.rightAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
             ])
         self.delegate2 = headerView
         view.addSubview(headerView)
-        yContraint = headerView.centerYAnchor.constraint(equalTo: collectionView.topAnchor, constant: 0)
+        yContraint = headerView.centerYAnchor.constraint(equalTo: collectionView.topAnchor, constant: 298.6)
         lContraint = headerView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30)
         rContraint = headerView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30)
         NSLayoutConstraint.activate([
@@ -155,7 +157,7 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollection
             if (indexPath.section == 0) && (indexPath.row == 0) {
                 let infoCell = collectionView.dequeueReusableCell(withReuseIdentifier: "InfoCell", for: indexPath) as! InfoCollectionViewCell
                     infoCell.infoButtonCallback = {() -> () in
-                        self.navigationController?.pushViewController((self.infoViewController), animated: true)
+                        self.present(self.infoViewController, animated: true, completion: nil)
                 }
                 return infoCell
             } else if (indexPath.section == 0) && (indexPath.row == 1) {
@@ -177,7 +179,7 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollection
             return CGSize(width: (length*10), height: 40)
         } else {
             if (indexPath.section == 0) && (indexPath.row < 2) {
-                return indexPath.row == 0 ?  CGSize(width: view.frame.width, height: 100) : CGSize(width: view.frame.width, height: 50)
+                return indexPath.row == 0 ?  CGSize(width: view.frame.width, height: 120) : CGSize(width: view.frame.width, height: 50)
             }
             return CGSize(width: view.frame.width, height: 90)
         }
@@ -199,28 +201,29 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollection
     
     fileprivate func updateHeaderImage(_ scrollView: UIScrollView) {
         let pos = scrollView.contentOffset.y
-        if (pos < -44){
-            delegate?.updateImageHeight(height: (256-pos))
-            delegate?.updateImageTopAnchorConstraint(constant: (pos+44))
+        print(pos)
+        if (pos < 0){
+            delegate?.updateImageHeight(height: (298.6-pos)) /* screenWidth*0.79625 = 298.6 */
+            delegate?.updateImageTopAnchorConstraint(constant: (pos))
         }
     }
     
     fileprivate func updateHeaderView(_ scrollView: UIScrollView){
         let pos = scrollView.contentOffset.y
-        let pec = 1 - (pos+44)/194
-        if pos == -44 {
-            yContraint?.constant = 300
+        let pec = 1 - (pos)/194
+        if pos == 0 {
+            yContraint?.constant = 298.6
         }
-        if (pos > -44) && (pos < 166){
-            yContraint?.constant = 256 - pos
+        if (pos > 0) && (pos < 234){
+            yContraint?.constant = 298.6 - pos
             lContraint?.constant = 30 * pec
             rContraint?.constant = -(30 * pec)
         }
-        if pos < -44 {
-            yContraint?.constant = 256 - pos
+        if pos < 0 {
+            yContraint?.constant = 298.6 - pos
         }
-        if pos > 147 {
-            yContraint?.constant = (130/2 + 44)
+        if pos > 234 {
+            yContraint?.constant = (130/2)
             backButton.setImage(#imageLiteral(resourceName: "back-black").withRenderingMode(.alwaysOriginal), for: .normal)
             sectionTitleIndexCollectionView.isHidden = false
             scrollView.contentInset = UIEdgeInsets(top: 200, left: 0, bottom: 0, right: 0)
@@ -268,7 +271,7 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollection
         if (collectionView == self.sectionTitleIndexCollectionView) {
             return CGSize(width: 0, height: 0)
         } else {
-            return section == 0 ? CGSize(width: view.frame.width, height: 300) : CGSize(width: view.frame.width, height: 50)
+            return section == 0 ? CGSize(width: view.frame.width, height: view.frame.width*0.79625) : CGSize(width: view.frame.width, height: 50)
         }
     }
     

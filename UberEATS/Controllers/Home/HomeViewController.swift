@@ -17,6 +17,8 @@ extension HomeViewController: NavAddressDelegate {
 
 class HomeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, FilterViewDelegate {
     
+    var item: HomeViewCell!
+    var itemFrame: CGRect!
     
     let interactor = Interactor()
     var selectedFrame: CGRect?
@@ -179,6 +181,12 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
 
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        // get the cell frame
+        let attributes = collectionView.layoutAttributesForItem(at: indexPath)
+        self.itemFrame = attributes!.frame
+        self.item = collectionView.cellForItem(at: indexPath) as! HomeViewCell
+        
         let detailViewController = DetailViewController()
         detailViewController.transitioningDelegate = self
         detailViewController.interactor = self.interactor
@@ -217,14 +225,13 @@ extension HomeViewController: UINavigationControllerDelegate {
         }
         return nil
     }
-    
 }
 
 extension HomeViewController: UIViewControllerTransitioningDelegate {
     
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        let startFrame = CGRect(x: 0, y: 300, width: view.frame.width, height: view.frame.height)
-        return PresentAnimator(startFrame: startFrame)
+        
+        return PresentAnimator(item: item, itemFrame: itemFrame)
     }
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return DismissAnimator()

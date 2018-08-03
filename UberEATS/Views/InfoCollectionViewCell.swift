@@ -63,21 +63,21 @@ class InfoCollectionViewCell: UICollectionViewCell {
         backgroundColor = .white
         addSubview(infoLabel)
         NSLayoutConstraint.activate([
-            infoLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 10),
+            infoLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 25),
             infoLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 10),
             infoLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -100),
             infoLabel.heightAnchor.constraint(equalToConstant: 20)
             ])
         addSubview(infoButton)
         NSLayoutConstraint.activate([
-            infoButton.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 10),
+            infoButton.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 25),
             infoButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -30),
             infoButton.widthAnchor.constraint(equalToConstant: 80),
             infoButton.heightAnchor.constraint(equalToConstant: 20)
             ])
         addSubview(infoButtonArrow)
         NSLayoutConstraint.activate([
-            infoButtonArrow.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 10),
+            infoButtonArrow.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 25),
             infoButtonArrow.leftAnchor.constraint(equalTo: infoButton.rightAnchor, constant: 0),
             infoButtonArrow.widthAnchor.constraint(equalToConstant: 10),
             infoButtonArrow.heightAnchor.constraint(equalToConstant: 10)
