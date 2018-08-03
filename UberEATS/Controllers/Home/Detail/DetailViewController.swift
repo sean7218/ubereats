@@ -65,11 +65,12 @@ class DetailViewController: UIViewController {
         cv.register(DetailHeaderCollectionViewCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "DetailHeader")
         cv.register(SectionHeaderView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "SectionHeader")
         cv.register(UICollectionViewCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "EmptyCell")
+        cv.contentInsetAdjustmentBehavior = .never
+        cv.backgroundColor = .white
         return cv
     }()
     
     @objc func dismissViewController() {
-        //dismiss(animated: true, completion: nil)
         self.navigationController?.popViewController(animated: true)
     }
     override func viewDidLoad() {
@@ -77,18 +78,24 @@ class DetailViewController: UIViewController {
         setupViews()
     }
     
+    func setupNavigationBar() {
+        self.navigationController?.isNavigationBarHidden = false
+    }
+    
+    func setupTabBar() {
+        self.tabBarController?.tabBar.isHidden = false
+        self.extendedLayoutIncludesOpaqueBars = false
+    }
     
     func setupViews(){
         view.backgroundColor = .white
-        collectionView.backgroundColor = .white
         view.addSubview(collectionView)
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: -44),
             collectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
             collectionView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            collectionView.heightAnchor.constraint(equalToConstant: view.frame.height)
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
             ])
-
         self.delegate2 = headerView
         view.addSubview(headerView)
         yContraint = headerView.centerYAnchor.constraint(equalTo: collectionView.topAnchor, constant: 0)
@@ -108,7 +115,6 @@ class DetailViewController: UIViewController {
             backButton.heightAnchor.constraint(equalToConstant: 30)
             ])
         view.addSubview(sectionTitleIndexCollectionView)
-        
         NSLayoutConstraint.activate([
             sectionTitleIndexCollectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 88),
             sectionTitleIndexCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
@@ -119,6 +125,7 @@ class DetailViewController: UIViewController {
 }
 
 extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         if (collectionView == self.sectionTitleIndexCollectionView) {
             return 1
@@ -126,6 +133,7 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollection
             return (mealSections.count + 1) // added one section for MenuCell and InfoCell
         }
     }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if (collectionView == self.sectionTitleIndexCollectionView) {
             return mealSections.count
@@ -138,6 +146,7 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollection
             }
         }
     }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if (collectionView == self.sectionTitleIndexCollectionView) {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SectionTitleIndexCell", for: indexPath) as! SectionTitleIndexCollectionViewCell
@@ -161,6 +170,7 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollection
             }
         }
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if (collectionView == self.sectionTitleIndexCollectionView) {
             let text = mealSections[indexPath.row]
@@ -173,9 +183,11 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollection
             return CGSize(width: view.frame.width, height: 90)
         }
     }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if (scrollView == self.sectionTitleIndexCollectionView) {
             // note: do nothing
@@ -185,6 +197,7 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollection
             updateHeaderViewLabel(scrollView)
         }
     }
+    
     fileprivate func updateHeaderImage(_ scrollView: UIScrollView) {
         let pos = scrollView.contentOffset.y
         if (pos < -44){
@@ -192,22 +205,20 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollection
             delegate?.updateImageTopAnchorConstraint(constant: (pos+44))
         }
     }
+    
     fileprivate func updateHeaderView(_ scrollView: UIScrollView){
         let pos = scrollView.contentOffset.y
         let pec = 1 - (pos+44)/194
         if pos == -44 {
             yContraint?.constant = 300
-            
         }
         if (pos > -44) && (pos < 166){
             yContraint?.constant = 256 - pos
             lContraint?.constant = 30 * pec
             rContraint?.constant = -(30 * pec)
-            
         }
         if pos < -44 {
             yContraint?.constant = 256 - pos
-            
         }
         if pos > 147 {
             yContraint?.constant = (130/2 + 44)
@@ -220,6 +231,7 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollection
             scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
     }
+    
     fileprivate func updateHeaderViewLabel(_ scrollView: UIScrollView) {
         let pos = scrollView.contentOffset.y
         if (pos > -44) && (pos < 164) {
@@ -227,6 +239,7 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollection
             delegate2?.updateHeaderViewLabelSize(constant: pos)
         }
     }
+    
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if (collectionView == self.sectionTitleIndexCollectionView) {
             let emptyCell = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "SectionTitleIndexEmptyCell", for: indexPath)
@@ -276,29 +289,6 @@ protocol CoverImageDelegate {
 protocol HeaderViewDelegate {
     func updateHeaderViewLabelOpacity(constant: CGFloat)
     func updateHeaderViewLabelSize(constant: CGFloat)
-}
-
-extension DetailViewController: UINavigationControllerDelegate {
-    func hideNavBar(){
-        navigationController?.isNavigationBarHidden = true
-    }
-    func showNavBar(){
-        navigationController?.isNavigationBarHidden = false
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        print("detail = viewWillDisappear")
-    }
-    override func viewDidDisappear(_ animated: Bool) {
-        print("detail = viewDidDisappear")
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.setNavigationBarHidden(false, animated: true)
-        navigationController?.navigationBar.layer.zPosition = -1
-        print("detail = viewWillAppear")
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        print("detail = viewDidAppear")
-    }
 }
 
 

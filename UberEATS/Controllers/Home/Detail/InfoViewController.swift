@@ -51,6 +51,13 @@ class InfoViewController: UIViewController {
         setupViews()
         locationManager.startUpdatingLocation()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        setupNavigationBar()
+    }
+    func setupNavigationBar() {
+        self.navigationController?.isNavigationBarHidden = false
+    }
     func setupMapView() {
 
         let camera = GMSCameraPosition.camera(withTarget: CLLocationCoordinate2D.init(latitude: 38.906442, longitude: -77.035396), zoom: 15)
@@ -62,7 +69,7 @@ class InfoViewController: UIViewController {
         let marker = GMSMarker()
         placesClient = GMSPlacesClient.shared()
         placesClient.lookUpPlaceID("ChIJE_Jo2MG3t4kRDmuaghjExpo") { (place, err) in
-            marker.position = (place?.coordinate)!
+            marker.position = (place?.coordinate) ?? CLLocationCoordinate2D(latitude: 38.906442, longitude:  -77.035396)
             marker.title = place?.name
             marker.snippet = place?.formattedAddress
             marker.map = mapView

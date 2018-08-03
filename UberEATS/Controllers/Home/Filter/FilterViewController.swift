@@ -57,11 +57,11 @@ class FilterViewController: UIViewController, UICollectionViewDelegate, UICollec
         let button = UIButton(type: .system)
         button.setTitle("DONE", for: .normal)
         button.tintColor = UIColor.black
+        button.backgroundColor = UIColor.lightGray
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(closeFilterView), for: .touchUpInside)
-        button.layer.borderColor = (UIColor.black).cgColor
-        button.layer.borderWidth = 1
+
         return button
     }()
 
@@ -132,7 +132,7 @@ class FilterViewController: UIViewController, UICollectionViewDelegate, UICollec
             doneButton.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 0),
             doneButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0),
             doneButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0),
-            doneButton.heightAnchor.constraint(equalToConstant: 50)
+            doneButton.heightAnchor.constraint(equalToConstant: 43.5)
             ])
         
         
