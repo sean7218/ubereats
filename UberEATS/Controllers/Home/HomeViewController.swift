@@ -17,6 +17,8 @@ extension HomeViewController: NavAddressDelegate {
 
 class HomeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, FilterViewDelegate {
     
+    
+    let interactor = Interactor()
     var selectedFrame: CGRect?
     var selectedBusiness: Business?
     var navAddressTitle: String = "2590 N Moreland Blvd"
@@ -69,7 +71,6 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
             self.filterViewController.view.frame.origin.y = 0
         }) { (isCompleted: Bool) in
             print("FilterViewShowed Completed")
-
         }
     }
     
@@ -91,30 +92,13 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         print("showLocationView")
         let locationViewController: LocationViewController = LocationViewController()
         locationViewController.delegate = self
-        navigationController?.present(locationViewController, animated: true, completion: { () -> Void in
-            print("Hl")
-        })
+        navigationController?.present(locationViewController, animated: true, completion: nil)
     }
-    
-    @objc func closeLocationView(){
-        
-    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
         setupViews()
-        setupNavigationController()
-    }
-    
-    func setupNavigationController() {
-        self.navigationController?.delegate = self
-        //self.navigationController?.isNavigationBarHidden = false
-    }
-    
-    func setupTabBar(){
-        self.tabBarController?.tabBar.isHidden = false
-        self.extendedLayoutIncludesOpaqueBars = false
     }
     
     func setupCollectionView()
@@ -196,19 +180,21 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailViewController = DetailViewController()
-        print("click the collectionview")
-        
-        let theAttributes: UICollectionViewLayoutAttributes! = collectionView.layoutAttributesForItem(at: indexPath)
-        selectedFrame = collectionView.convert(theAttributes.frame, to: collectionView.superview)
-        navigationController?.pushViewController(detailViewController, animated: true)
-        //navigationController?.present(detailViewController, animated: true, completion: nil)
-
+        detailViewController.transitioningDelegate = self
+        detailViewController.interactor = self.interactor
+        navigationController?.present(detailViewController, animated: true, completion: nil)
     }
 
 }
 
 extension HomeViewController: UINavigationControllerDelegate {
-    
+    /*
+        For making the pushed viewcontroller into a full screen mode, custom animation can be used here
+        most of cases, please present the view controller modally. Animators can be found in the following
+        files:
+            - InfoAnimatedTransition.swift
+            - SZAnimatedTransition.swift
+    */
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         if (toVC.self is DetailViewController) || (fromVC.self is DetailViewController) {
             if (toVC.self is InfoViewController) || (fromVC.self is InfoViewController){
@@ -232,4 +218,19 @@ extension HomeViewController: UINavigationControllerDelegate {
         return nil
     }
     
+}
+
+extension HomeViewController: UIViewControllerTransitioningDelegate {
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        let startFrame = CGRect(x: 0, y: 300, width: view.frame.width, height: view.frame.height)
+        return PresentAnimator(startFrame: startFrame)
+    }
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DismissAnimator()
+    }
+    
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return interactor.hasStarted ? interactor : nil
+    }
 }

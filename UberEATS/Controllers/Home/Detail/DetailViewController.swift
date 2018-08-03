@@ -10,6 +10,8 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
+    var interactor:Interactor? = nil
+    
     var infoViewController: InfoViewController = {
         let vc = InfoViewController()
         return vc
@@ -70,21 +72,18 @@ class DetailViewController: UIViewController {
         return cv
     }()
     
-    @objc func dismissViewController() {
-        self.navigationController?.popViewController(animated: true)
-    }
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        setupGesture()
     }
     
-    func setupNavigationBar() {
-        self.navigationController?.isNavigationBarHidden = false
-    }
-    
-    func setupTabBar() {
-        self.tabBarController?.tabBar.isHidden = false
-        self.extendedLayoutIncludesOpaqueBars = false
+    func setupGesture(){
+        let edgePan = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(handleGesture(_:)))
+        edgePan.edges = .left
+        self.view.addGestureRecognizer(edgePan)
     }
     
     func setupViews(){
@@ -291,4 +290,70 @@ protocol HeaderViewDelegate {
     func updateHeaderViewLabelSize(constant: CGFloat)
 }
 
+extension DetailViewController /* Section deals with dismiss animator */ {
+    
+    @objc func dismissViewController() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func handleGesture(_ sender: UIPanGestureRecognizer) {
+
+        let percentThreshold:CGFloat = 0.3
+        
+        // convert x-position to downward pull progress (percentage)
+        let translation = sender.translation(in: view)
+        let horizontalMovement = translation.x / view.bounds.width
+        let rightMovement = fmaxf(Float(horizontalMovement), 0.0)
+        let rightMovementPercent = fminf(rightMovement, 1.0)
+        let progress = CGFloat(rightMovementPercent)
+        
+        guard let interactor = interactor else { return }
+        
+        switch sender.state {
+        case .began:
+            interactor.hasStarted = true
+            dismiss(animated: true, completion: nil)
+        case .changed:
+            interactor.shouldFinish = progress > percentThreshold
+            interactor.update(progress)
+        case .cancelled:
+            interactor.hasStarted = false
+            interactor.cancel()
+        case .ended:
+            interactor.hasStarted = false
+            interactor.shouldFinish
+                ? interactor.finish()
+                : interactor.cancel()
+        default:
+            break
+        }
+    }
+    
+    func showHelperCircle(){
+        let center = CGPoint(x: 10, y: view.bounds.width * 0.5)
+        let small = CGSize(width: 30, height: 30)
+        let circle = UIView(frame: CGRect(origin: center, size: small))
+        circle.layer.cornerRadius = circle.frame.width/2
+        circle.backgroundColor = UIColor.white
+        circle.layer.shadowOpacity = 0.8
+        circle.layer.shadowOffset = CGSize()
+        view.addSubview(circle)
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0.25,
+            options: [],
+            animations: {
+                circle.frame.origin.x += 200
+                circle.layer.opacity = 0
+        },
+            completion: { _ in
+                circle.removeFromSuperview()
+        }
+        )
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        showHelperCircle()
+    }
+}
 

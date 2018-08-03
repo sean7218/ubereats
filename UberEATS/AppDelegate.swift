@@ -14,7 +14,7 @@ import GooglePlaces
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var window: UIWindow?
+    public var window: UIWindow?
     
     // Please obtain your own google map key
     let GOOGLE_KEY = KEYS.GOOGLE_MAP_KEY
