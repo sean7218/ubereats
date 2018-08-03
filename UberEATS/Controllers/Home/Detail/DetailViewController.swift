@@ -10,6 +10,8 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
+    var interactor:Interactor? = nil
+    
     var infoViewController: InfoViewController = {
         let vc = InfoViewController()
         return vc
@@ -25,6 +27,7 @@ class DetailViewController: UIViewController {
         cv.showsHorizontalScrollIndicator = false
         cv.register(UICollectionViewCell.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "SectionTitleIndexEmptyCell")
         cv.register(SectionTitleIndexCollectionViewCell.self, forCellWithReuseIdentifier: "SectionTitleIndexCell")
+        cv.isHidden = true
         return cv
     }()
     
@@ -70,35 +73,33 @@ class DetailViewController: UIViewController {
         return cv
     }()
     
-    @objc func dismissViewController() {
-        self.navigationController?.popViewController(animated: true)
-    }
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        setupGesture()
+       
     }
     
-    func setupNavigationBar() {
-        self.navigationController?.isNavigationBarHidden = false
-    }
-    
-    func setupTabBar() {
-        self.tabBarController?.tabBar.isHidden = false
-        self.extendedLayoutIncludesOpaqueBars = false
+    func setupGesture(){
+        let edgePan = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(handleGesture(_:)))
+        edgePan.edges = .left
+        self.view.addGestureRecognizer(edgePan)
     }
     
     func setupViews(){
         view.backgroundColor = .white
         view.addSubview(collectionView)
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: -44),
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
             collectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
             collectionView.rightAnchor.constraint(equalTo: view.rightAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
             ])
         self.delegate2 = headerView
         view.addSubview(headerView)
-        yContraint = headerView.centerYAnchor.constraint(equalTo: collectionView.topAnchor, constant: 0)
+        yContraint = headerView.centerYAnchor.constraint(equalTo: collectionView.topAnchor, constant: 298.6)
         lContraint = headerView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 30)
         rContraint = headerView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -30)
         NSLayoutConstraint.activate([
@@ -156,7 +157,7 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollection
             if (indexPath.section == 0) && (indexPath.row == 0) {
                 let infoCell = collectionView.dequeueReusableCell(withReuseIdentifier: "InfoCell", for: indexPath) as! InfoCollectionViewCell
                     infoCell.infoButtonCallback = {() -> () in
-                        self.navigationController?.pushViewController((self.infoViewController), animated: true)
+                        self.present(self.infoViewController, animated: true, completion: nil)
                 }
                 return infoCell
             } else if (indexPath.section == 0) && (indexPath.row == 1) {
@@ -178,7 +179,7 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollection
             return CGSize(width: (length*10), height: 40)
         } else {
             if (indexPath.section == 0) && (indexPath.row < 2) {
-                return indexPath.row == 0 ?  CGSize(width: view.frame.width, height: 100) : CGSize(width: view.frame.width, height: 50)
+                return indexPath.row == 0 ?  CGSize(width: view.frame.width, height: 120) : CGSize(width: view.frame.width, height: 50)
             }
             return CGSize(width: view.frame.width, height: 90)
         }
@@ -200,28 +201,29 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollection
     
     fileprivate func updateHeaderImage(_ scrollView: UIScrollView) {
         let pos = scrollView.contentOffset.y
-        if (pos < -44){
-            delegate?.updateImageHeight(height: (256-pos))
-            delegate?.updateImageTopAnchorConstraint(constant: (pos+44))
+        print(pos)
+        if (pos < 0){
+            delegate?.updateImageHeight(height: (298.6-pos)) /* screenWidth*0.79625 = 298.6 */
+            delegate?.updateImageTopAnchorConstraint(constant: (pos))
         }
     }
     
     fileprivate func updateHeaderView(_ scrollView: UIScrollView){
         let pos = scrollView.contentOffset.y
-        let pec = 1 - (pos+44)/194
-        if pos == -44 {
-            yContraint?.constant = 300
+        let pec = 1 - (pos)/194
+        if pos == 0 {
+            yContraint?.constant = 298.6
         }
-        if (pos > -44) && (pos < 166){
-            yContraint?.constant = 256 - pos
+        if (pos > 0) && (pos < 234){
+            yContraint?.constant = 298.6 - pos
             lContraint?.constant = 30 * pec
             rContraint?.constant = -(30 * pec)
         }
-        if pos < -44 {
-            yContraint?.constant = 256 - pos
+        if pos < 0 {
+            yContraint?.constant = 298.6 - pos
         }
-        if pos > 147 {
-            yContraint?.constant = (130/2 + 44)
+        if pos > 234 {
+            yContraint?.constant = (130/2)
             backButton.setImage(#imageLiteral(resourceName: "back-black").withRenderingMode(.alwaysOriginal), for: .normal)
             sectionTitleIndexCollectionView.isHidden = false
             scrollView.contentInset = UIEdgeInsets(top: 200, left: 0, bottom: 0, right: 0)
@@ -269,7 +271,7 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollection
         if (collectionView == self.sectionTitleIndexCollectionView) {
             return CGSize(width: 0, height: 0)
         } else {
-            return section == 0 ? CGSize(width: view.frame.width, height: 300) : CGSize(width: view.frame.width, height: 50)
+            return section == 0 ? CGSize(width: view.frame.width, height: view.frame.width*0.79625) : CGSize(width: view.frame.width, height: 50)
         }
     }
     
@@ -291,4 +293,70 @@ protocol HeaderViewDelegate {
     func updateHeaderViewLabelSize(constant: CGFloat)
 }
 
+extension DetailViewController /* Section deals with dismiss animator */ {
+    
+    @objc func dismissViewController() {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func handleGesture(_ sender: UIPanGestureRecognizer) {
+
+        let percentThreshold:CGFloat = 0.3
+        
+        // convert x-position to downward pull progress (percentage)
+        let translation = sender.translation(in: view)
+        let horizontalMovement = translation.x / view.bounds.width
+        let rightMovement = fmaxf(Float(horizontalMovement), 0.0)
+        let rightMovementPercent = fminf(rightMovement, 1.0)
+        let progress = CGFloat(rightMovementPercent)
+        
+        guard let interactor = interactor else { return }
+        
+        switch sender.state {
+        case .began:
+            interactor.hasStarted = true
+            dismiss(animated: true, completion: nil)
+        case .changed:
+            interactor.shouldFinish = progress > percentThreshold
+            interactor.update(progress)
+        case .cancelled:
+            interactor.hasStarted = false
+            interactor.cancel()
+        case .ended:
+            interactor.hasStarted = false
+            interactor.shouldFinish
+                ? interactor.finish()
+                : interactor.cancel()
+        default:
+            break
+        }
+    }
+    
+    func showHelperCircle(){
+        let center = CGPoint(x: 10, y: view.bounds.width * 0.5)
+        let small = CGSize(width: 30, height: 30)
+        let circle = UIView(frame: CGRect(origin: center, size: small))
+        circle.layer.cornerRadius = circle.frame.width/2
+        circle.backgroundColor = UIColor.white
+        circle.layer.shadowOpacity = 0.8
+        circle.layer.shadowOffset = CGSize()
+        view.addSubview(circle)
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0.25,
+            options: [],
+            animations: {
+                circle.frame.origin.x += 200
+                circle.layer.opacity = 0
+        },
+            completion: { _ in
+                circle.removeFromSuperview()
+        }
+        )
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        showHelperCircle()
+    }
+}
 

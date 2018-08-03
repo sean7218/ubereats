@@ -50,6 +50,7 @@ class InfoViewController: UIViewController {
         setupMapView()
         setupViews()
         locationManager.startUpdatingLocation()
+        setupGesture()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -57,6 +58,15 @@ class InfoViewController: UIViewController {
     }
     func setupNavigationBar() {
         self.navigationController?.isNavigationBarHidden = false
+    }
+    
+    func setupGesture(){
+        let edgePan = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(handleGesture))
+        edgePan.edges = .left
+        self.view.addGestureRecognizer(edgePan)
+    }
+    @objc func handleGesture(){
+        dismiss(animated: true, completion: nil)
     }
     func setupMapView() {
 

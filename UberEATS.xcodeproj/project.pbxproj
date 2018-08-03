@@ -35,6 +35,11 @@
 		C128394C210FA1E1008545F7 /* manifest.plist in Resources */ = {isa = PBXBuildFile; fileRef = C128394B210FA1E1008545F7 /* manifest.plist */; };
 		C128394E210FBCB7008545F7 /* SlideAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C128394D210FBCB7008545F7 /* SlideAnimator.swift */; };
 		C12839512110FCCA008545F7 /* SZAnimatedTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12839502110FCCA008545F7 /* SZAnimatedTransition.swift */; };
+		C12839532111EE75008545F7 /* SZInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12839522111EE75008545F7 /* SZInteractor.swift */; };
+		C12839B72113D2AE008545F7 /* InfoAnimatedTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12839B62113D2AE008545F7 /* InfoAnimatedTransition.swift */; };
+		C12839B92113FFDE008545F7 /* Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12839B82113FFDE008545F7 /* Interactor.swift */; };
+		C12839BB2114013A008545F7 /* DismissAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12839BA2114013A008545F7 /* DismissAnimator.swift */; };
+		C12839BD21140DF1008545F7 /* PresentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12839BC21140DF1008545F7 /* PresentAnimator.swift */; };
 		C1BB07CC210A06450004EDE0 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BB07CB210A06450004EDE0 /* DetailViewController.swift */; };
 		C1BB07CE210BC5BD0004EDE0 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BB07CD210BC5BD0004EDE0 /* HeaderView.swift */; };
 		C1E82268210CB8770078525C /* DetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E82267210CB8770078525C /* DetailCollectionViewCell.swift */; };
@@ -115,6 +120,11 @@
 		C128394B210FA1E1008545F7 /* manifest.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = manifest.plist; sourceTree = "<group>"; };
 		C128394D210FBCB7008545F7 /* SlideAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideAnimator.swift; sourceTree = "<group>"; };
 		C12839502110FCCA008545F7 /* SZAnimatedTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SZAnimatedTransition.swift; sourceTree = "<group>"; };
+		C12839522111EE75008545F7 /* SZInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SZInteractor.swift; sourceTree = "<group>"; };
+		C12839B62113D2AE008545F7 /* InfoAnimatedTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoAnimatedTransition.swift; sourceTree = "<group>"; };
+		C12839B82113FFDE008545F7 /* Interactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interactor.swift; sourceTree = "<group>"; };
+		C12839BA2114013A008545F7 /* DismissAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissAnimator.swift; sourceTree = "<group>"; };
+		C12839BC21140DF1008545F7 /* PresentAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentAnimator.swift; sourceTree = "<group>"; };
 		C1BB07CB210A06450004EDE0 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		C1BB07CD210BC5BD0004EDE0 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		C1E82267210CB8770078525C /* DetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -339,6 +349,11 @@
 				C1283941210F4DD6008545F7 /* SZButton.swift */,
 				C128394D210FBCB7008545F7 /* SlideAnimator.swift */,
 				C12839502110FCCA008545F7 /* SZAnimatedTransition.swift */,
+				C12839B62113D2AE008545F7 /* InfoAnimatedTransition.swift */,
+				C12839522111EE75008545F7 /* SZInteractor.swift */,
+				C12839B82113FFDE008545F7 /* Interactor.swift */,
+				C12839BA2114013A008545F7 /* DismissAnimator.swift */,
+				C12839BC21140DF1008545F7 /* PresentAnimator.swift */,
 			);
 			path = Design;
 			sourceTree = "<group>";
@@ -580,21 +595,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C12839B72113D2AE008545F7 /* InfoAnimatedTransition.swift in Sources */,
 				C1EBB0D121074BB0007B68B2 /* LocationViewController.swift in Sources */,
 				C1283944210F5544008545F7 /* InfoTableViewCell.swift in Sources */,
 				C1E8226C210CBC0A0078525C /* InfoViewController.swift in Sources */,
 				A757F03C1FCA2E5C00240CC9 /* UserViewController.swift in Sources */,
 				C1E8226A210CB89C0078525C /* DetailHeaderCollectionViewCell.swift in Sources */,
+				C12839B92113FFDE008545F7 /* Interactor.swift in Sources */,
 				A757F05C1FD1141000240CC9 /* FilterViewCell1.swift in Sources */,
 				A757F03A1FCA2E3100240CC9 /* SearchViewController.swift in Sources */,
 				C1E82268210CB8770078525C /* DetailCollectionViewCell.swift in Sources */,
 				C1EBB0E12108CC74007B68B2 /* DataController.swift in Sources */,
 				A757F03E1FCA2ECE00240CC9 /* OrderViewController.swift in Sources */,
 				C1EBB0CF21065C2E007B68B2 /* DietaryCellView.swift in Sources */,
+				C12839BB2114013A008545F7 /* DismissAnimator.swift in Sources */,
 				C1EBB0C921064773007B68B2 /* PriceCellView.swift in Sources */,
 				C1BB07CC210A06450004EDE0 /* DetailViewController.swift in Sources */,
 				C1EBB0D72107ACD1007B68B2 /* WhenCollectionViewCell.swift in Sources */,
 				A757F0361FCA2D8500240CC9 /* TabBarController.swift in Sources */,
+				C12839532111EE75008545F7 /* SZInteractor.swift in Sources */,
 				A757F0501FCCE72600240CC9 /* FilterViewMenu.swift in Sources */,
 				A757F04E1FCA504E00240CC9 /* FilterViewController.swift in Sources */,
 				A757F0541FCCE77400240CC9 /* FilterViewDelegate.swift in Sources */,
@@ -612,6 +631,7 @@
 				C1EBB0D32107AC75007B68B2 /* NewAddressCollectionViewCell.swift in Sources */,
 				C1EBB0C521061DDC007B68B2 /* SortCellView.swift in Sources */,
 				C1EBB0D52107ACAA007B68B2 /* AddressCollectionViewCell.swift in Sources */,
+				C12839BD21140DF1008545F7 /* PresentAnimator.swift in Sources */,
 				A757F0381FCA2DFC00240CC9 /* HomeViewController.swift in Sources */,
 				C1E82270210CDE300078525C /* MenuCollectionViewCell.swift in Sources */,
 				C1BB07CE210BC5BD0004EDE0 /* HeaderView.swift in Sources */,

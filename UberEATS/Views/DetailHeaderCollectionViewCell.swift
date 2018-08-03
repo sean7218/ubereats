@@ -13,7 +13,7 @@ class DetailHeaderCollectionViewCell: UICollectionViewCell, CoverImageDelegate {
     var coverImageHeightConstraint: NSLayoutConstraint?
     var coverImageTopAnchorConstraint: NSLayoutConstraint?
     let coverImageView: UIImageView = {
-        let iv = UIImageView(image: #imageLiteral(resourceName: "tennesse_taco_co") )
+        let iv = UIImageView(image: #imageLiteral(resourceName: "tennesse_taco_co_2") )
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.contentMode = .scaleAspectFill
         return iv
@@ -30,7 +30,7 @@ class DetailHeaderCollectionViewCell: UICollectionViewCell, CoverImageDelegate {
     
     func setupViews(){
         addSubview(coverImageView)
-        coverImageHeightConstraint = coverImageView.heightAnchor.constraint(equalToConstant: 300)
+        coverImageHeightConstraint = coverImageView.heightAnchor.constraint(equalToConstant: frame.width*0.79625)
         coverImageTopAnchorConstraint = coverImageView.topAnchor.constraint(equalTo: topAnchor, constant: 0)
         NSLayoutConstraint.activate([
             coverImageTopAnchorConstraint!,
