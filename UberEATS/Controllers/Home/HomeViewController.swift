@@ -19,7 +19,6 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     
     var selectedFrame: CGRect?
     var selectedBusiness: Business?
-    
     var navAddressTitle: String = "2590 N Moreland Blvd"
     
     lazy var grayBackgroundView: UIView = {
@@ -110,18 +109,27 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     
     func setupNavigationController() {
         self.navigationController?.delegate = self
+        //self.navigationController?.isNavigationBarHidden = false
     }
+    
+    func setupTabBar(){
+        self.tabBarController?.tabBar.isHidden = false
+        self.extendedLayoutIncludesOpaqueBars = false
+    }
+    
     func setupCollectionView()
     {
-        collectionView?.register(HomeViewCell.self, forCellWithReuseIdentifier: "HomeViewCell")
-        collectionView?.register(HorizontalViewCell.self, forCellWithReuseIdentifier: "HoriCell")
-        collectionView?.translatesAutoresizingMaskIntoConstraints = false
-        collectionView?.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 0).isActive = true
-        collectionView?.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor).isActive = true
-        collectionView?.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor).isActive = true
-        collectionView?.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0).isActive = true
-        collectionView?.backgroundColor = UIColor(red: 240/255, green: 237/255, blue: 240/255, alpha: 1)
-        collectionView?.contentInsetAdjustmentBehavior = .never
+        collectionView!.register(HomeViewCell.self, forCellWithReuseIdentifier: "HomeViewCell")
+        collectionView!.register(HorizontalViewCell.self, forCellWithReuseIdentifier: "HoriCell")
+        collectionView!.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            collectionView!.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 0),
+            collectionView!.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor),
+            collectionView!.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor),
+            collectionView!.bottomAnchor.constraint(equalTo: self.view.safeBottomAnchor, constant: 0)
+            ])
+        collectionView!.backgroundColor = UIColor(red: 240/255, green: 237/255, blue: 240/255, alpha: 1)
+        collectionView!.contentInsetAdjustmentBehavior = .never
     }
     
     func setupViews(){
@@ -189,14 +197,11 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let detailViewController = DetailViewController()
         print("click the collectionview")
-        navigationController?.setNavigationBarHidden(true, animated: true)
-        self.extendedLayoutIncludesOpaqueBars = true
-        //tabBarController?.tabBar.isHidden = true
-
         
         let theAttributes: UICollectionViewLayoutAttributes! = collectionView.layoutAttributesForItem(at: indexPath)
         selectedFrame = collectionView.convert(theAttributes.frame, to: collectionView.superview)
         navigationController?.pushViewController(detailViewController, animated: true)
+        //navigationController?.present(detailViewController, animated: true, completion: nil)
 
     }
 
@@ -205,20 +210,26 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
 extension HomeViewController: UINavigationControllerDelegate {
     
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        if (toVC.self is DetailViewController) {
-            guard let frame = self.selectedFrame else { return nil }
-            //guard let business = self.selectedBusiness else { return nil }
-            let businessArtwork: UIImageView = UIImageView(image: #imageLiteral(resourceName: "tennesse_taco_co"))
-            switch operation {
-            case .push:
-                return SZAnimatedTransition(duration: 0.5, isPresenting: true, originFrame: frame, image: businessArtwork.image!)
-            default:
-                // return SZAnimatedTransition(duration: 1, isPresenting: false, originFrame: frame, image: businessArtwork.image!)
-                return nil
+        if (toVC.self is DetailViewController) || (fromVC.self is DetailViewController) {
+            if (toVC.self is InfoViewController) || (fromVC.self is InfoViewController){
+                switch operation {
+                case .push:
+                    return InfoAnimatedTransition(duration: 0.5, isPresenting: true)
+                default:
+                    return InfoAnimatedTransition(duration: 0.5, isPresenting: false)
+                }
+            } else {
+                guard let frame = self.selectedFrame else { return nil }
+                let businessArtwork: UIImageView = UIImageView(image: #imageLiteral(resourceName: "tennesse_taco_co"))
+                switch operation {
+                case .push:
+                    return SZAnimatedTransition(duration: 0.5, isPresenting: true, originFrame: frame, image: businessArtwork.image!)
+                default:
+                    return SZAnimatedTransition(duration: 0.5, isPresenting: false, originFrame: frame, image: businessArtwork.image!)
+                }
             }
         }
         return nil
     }
-    
     
 }

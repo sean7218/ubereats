@@ -44,6 +44,7 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tabBar.isTranslucent = false
+        self.view.backgroundColor = .white
         self.setViewControllers([
             homeNavController,
             searchViewController,
