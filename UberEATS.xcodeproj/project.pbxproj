@@ -35,6 +35,8 @@
 		C128394C210FA1E1008545F7 /* manifest.plist in Resources */ = {isa = PBXBuildFile; fileRef = C128394B210FA1E1008545F7 /* manifest.plist */; };
 		C128394E210FBCB7008545F7 /* SlideAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C128394D210FBCB7008545F7 /* SlideAnimator.swift */; };
 		C12839512110FCCA008545F7 /* SZAnimatedTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12839502110FCCA008545F7 /* SZAnimatedTransition.swift */; };
+		C12839532111EE75008545F7 /* SZInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12839522111EE75008545F7 /* SZInteractor.swift */; };
+		C12839B72113D2AE008545F7 /* InfoAnimatedTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12839B62113D2AE008545F7 /* InfoAnimatedTransition.swift */; };
 		C1BB07CC210A06450004EDE0 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BB07CB210A06450004EDE0 /* DetailViewController.swift */; };
 		C1BB07CE210BC5BD0004EDE0 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BB07CD210BC5BD0004EDE0 /* HeaderView.swift */; };
 		C1E82268210CB8770078525C /* DetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E82267210CB8770078525C /* DetailCollectionViewCell.swift */; };
@@ -115,6 +117,8 @@
 		C128394B210FA1E1008545F7 /* manifest.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = manifest.plist; sourceTree = "<group>"; };
 		C128394D210FBCB7008545F7 /* SlideAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideAnimator.swift; sourceTree = "<group>"; };
 		C12839502110FCCA008545F7 /* SZAnimatedTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SZAnimatedTransition.swift; sourceTree = "<group>"; };
+		C12839522111EE75008545F7 /* SZInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SZInteractor.swift; sourceTree = "<group>"; };
+		C12839B62113D2AE008545F7 /* InfoAnimatedTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoAnimatedTransition.swift; sourceTree = "<group>"; };
 		C1BB07CB210A06450004EDE0 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		C1BB07CD210BC5BD0004EDE0 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		C1E82267210CB8770078525C /* DetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -339,6 +343,8 @@
 				C1283941210F4DD6008545F7 /* SZButton.swift */,
 				C128394D210FBCB7008545F7 /* SlideAnimator.swift */,
 				C12839502110FCCA008545F7 /* SZAnimatedTransition.swift */,
+				C12839522111EE75008545F7 /* SZInteractor.swift */,
+				C12839B62113D2AE008545F7 /* InfoAnimatedTransition.swift */,
 			);
 			path = Design;
 			sourceTree = "<group>";
@@ -580,6 +586,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C12839B72113D2AE008545F7 /* InfoAnimatedTransition.swift in Sources */,
 				C1EBB0D121074BB0007B68B2 /* LocationViewController.swift in Sources */,
 				C1283944210F5544008545F7 /* InfoTableViewCell.swift in Sources */,
 				C1E8226C210CBC0A0078525C /* InfoViewController.swift in Sources */,
@@ -595,6 +602,7 @@
 				C1BB07CC210A06450004EDE0 /* DetailViewController.swift in Sources */,
 				C1EBB0D72107ACD1007B68B2 /* WhenCollectionViewCell.swift in Sources */,
 				A757F0361FCA2D8500240CC9 /* TabBarController.swift in Sources */,
+				C12839532111EE75008545F7 /* SZInteractor.swift in Sources */,
 				A757F0501FCCE72600240CC9 /* FilterViewMenu.swift in Sources */,
 				A757F04E1FCA504E00240CC9 /* FilterViewController.swift in Sources */,
 				A757F0541FCCE77400240CC9 /* FilterViewDelegate.swift in Sources */,
