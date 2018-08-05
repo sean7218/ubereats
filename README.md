@@ -1,5 +1,23 @@
 # UberEATS Reverse Engineering
-This app is meant to be used as demo and show the filter viewcontroller for the restaurants.
+This app is meant to be used as demo and show the various filters for restaurants near you. 
+
+- :bow: any code review or suggestion are appreciated
+- :fire: contribution is definitely welcomed
+- :raised_hands: if you are a UI/UX designer and wants to see certain animation. Please Let me know!
+
+The CI/CD will be implemented on Bitrise and the also the unit testing will be done on the data layer
+
+| Stages                  | Status                          |  Hours |
+| ----------------------- |:-------------------------------:| :-----:|
+| Set User Location       |:ballot_box_with_check:          | 8      |
+| Fetch Restaurants       |                                 |        |
+| Filter Restaurants      | UI done                         |        |
+| Fetch Restaurant Meals  |                                 |        |
+| Show Restaurant Info    | :ballot_box_with_check:         |        |
+| Filter Restaurant Meals | :ballot_box_with_check:         |        |
+| Order Meal              |                                 |        |
+| Order Payment           |                                 |        |
+| Order Tracking          |                                 |        |
 
 ## Google Map Service 
 - The map and the location is using Google Map Service and Google Places. Please obtain your own API token. Creating a file in the same folder where `AppDelegate.swift` with following
@@ -11,7 +29,7 @@ This app is meant to be used as demo and show the filter viewcontroller for the 
  }
  ```
 
-## Server
+## Go Server
 - installing the golang
 ```
 brew install go
