@@ -11,13 +11,19 @@ import UIKit
 class MealItemViewController: UIViewController {
     
     
-
+    var navigationBar: UINavigationBar = {
+        let bar = UINavigationBar()
+        bar.translatesAutoresizingMaskIntoConstraints = false
+        bar.backgroundColor = .lightGray
+        return bar
+    }()
     
     lazy var tableView: UITableView = {
         let tb = UITableView(frame: CGRect.zero)
         tb.translatesAutoresizingMaskIntoConstraints = false
         tb.register(MealItemTableViewCell.self, forCellReuseIdentifier: "MealItemCell")
         tb.register(MealItemTitleCell.self, forCellReuseIdentifier: "MealItemTitleCell")
+        tb.register(MealItemQuantityCell.self, forCellReuseIdentifier: "MealItemQuantityCell")
         tb.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCellEmpty")
         tb.delegate = self
         tb.dataSource = self
@@ -28,14 +34,14 @@ class MealItemViewController: UIViewController {
         let button = UIButton(type: UIButtonType.custom)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(handleDismiss), for: UIControlEvents.touchUpInside)
-        button.setImage(#imageLiteral(resourceName: "button-pressed"), for: UIControlState.normal)
+        button.setImage(#imageLiteral(resourceName: "button-cancel-cross"), for: UIControlState.normal)
         return button
     }()
     
     var shareButton: UIButton = {
         let button = UIButton(type: UIButtonType.custom)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(#imageLiteral(resourceName: "button-pressed"), for: UIControlState.normal)
+        button.setImage(#imageLiteral(resourceName: "button-share32"), for: UIControlState.normal)
         button.addTarget(self, action: #selector(handleShare), for: UIControlEvents.touchUpInside)
         return button
     }()
@@ -50,6 +56,8 @@ class MealItemViewController: UIViewController {
     var addCartButton: UIButton = {
         let button = UIButton(type: UIButtonType.custom)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = UIColor.green
+        button.setTitle("Add to Cart", for: UIControlState.normal)
         return button
     }()
     
@@ -63,31 +71,59 @@ class MealItemViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        setupNavBar()
     }
     
     func setupViews() {
-
+        view.addSubview(addCartButton)
+        NSLayoutConstraint.activate([
+            addCartButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0),
+            addCartButton.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 10),
+            addCartButton.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -10),
+            addCartButton.heightAnchor.constraint(equalToConstant: 40)
+            ])
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0),
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+            tableView.bottomAnchor.constraint(equalTo: addCartButton.topAnchor, constant: 0)
             ])
         view.addSubview(cancelButton)
         NSLayoutConstraint.activate([
-            cancelButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
-            cancelButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10),
+            cancelButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            cancelButton.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 10),
             cancelButton.widthAnchor.constraint(equalToConstant: 50),
             cancelButton.heightAnchor.constraint(equalToConstant: 50)
             ])
         view.addSubview(shareButton)
         NSLayoutConstraint.activate([
-            shareButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 10),
-            shareButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10),
+            shareButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            shareButton.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -10),
             shareButton.widthAnchor.constraint(equalToConstant: 50),
             shareButton.heightAnchor.constraint(equalToConstant: 50)
             ])
+    }
+}
+
+extension MealItemViewController {
+    func setupNavBar(){
+        view.addSubview(navigationBar)
+        NSLayoutConstraint.activate([
+            navigationBar.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            navigationBar.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 0),
+            navigationBar.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: 0),
+            navigationBar.heightAnchor.constraint(equalToConstant: NSLayoutDimension.navBarHeight),
+            ])
+    }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let pos = scrollView.contentOffset.y
+        if (pos > 100) {
+            self.navigationBar.isHidden = false
+        } else {
+            self.navigationBar.isHidden = true
+        }
+        print(pos)
     }
 }
 
@@ -96,7 +132,7 @@ extension MealItemViewController: UITableViewDelegate, UITableViewDataSource {
         return 10
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if (section == 0) {
+        if (section == 0) || (section == 9){
             return 1
         } else {
             return 4
@@ -105,6 +141,9 @@ extension MealItemViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (indexPath.section == 0) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MealItemTitleCell", for: indexPath) as! MealItemTitleCell
+            return cell
+        } else if (indexPath.section == 9) {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "MealItemQuantityCell", for: indexPath) as! MealItemQuantityCell
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MealItemCell", for: indexPath) as! MealItemTableViewCell
@@ -129,7 +168,7 @@ extension MealItemViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if (section == 0) {
+        if (section == 0) || (section == 9){
             return 0
         }
         return 20
@@ -200,7 +239,8 @@ class MealItemTitleCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "The Classic Quesadilla"
         label.textColor = UIColor.black
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.textAlignment = NSTextAlignment.center
         return label
     }()
     
@@ -218,6 +258,7 @@ class MealItemTitleCell: UITableViewCell {
         label.numberOfLines = 4
         label.textColor = UIColor.black
         label.font = UIFont.systemFont(ofSize: 12)
+        label.textAlignment = NSTextAlignment.center
         return label
     }()
     
@@ -241,7 +282,8 @@ class MealItemTitleCell: UITableViewCell {
         addSubview(seperator)
         NSLayoutConstraint.activate([
             seperator.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
-            seperator.widthAnchor.constraint(equalToConstant: 150),
+            seperator.centerXAnchor.constraint(equalTo: centerXAnchor),
+            seperator.widthAnchor.constraint(equalToConstant: 100),
             seperator.heightAnchor.constraint(equalToConstant: 1)
             ])
         addSubview(detailLabel)
@@ -254,6 +296,65 @@ class MealItemTitleCell: UITableViewCell {
     }
 }
 
+class MealItemQuantityCell: UITableViewCell {
+    
+    var increaseButton: UIButton = {
+        let button = UIButton(type: UIButtonType.custom)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(#imageLiteral(resourceName: "button-plus"), for: UIControlState.normal)
+        return button
+    }()
+    
+    var decreaseButton: UIButton = {
+        let button = UIButton(type: UIButtonType.custom)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(#imageLiteral(resourceName: "button-minus"), for: UIControlState.normal)
+        return button
+    }()
+    
+    var quantityLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = NSTextAlignment.center
+        label.text = "1"
+        return label
+    }()
+    
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        setupViews()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setupViews(){
+
+        addSubview(quantityLabel)
+        NSLayoutConstraint.activate([
+            quantityLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0),
+            quantityLabel.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0),
+            quantityLabel.widthAnchor.constraint(equalToConstant: 40),
+            quantityLabel.heightAnchor.constraint(equalToConstant: 40)
+            ])
+        addSubview(increaseButton)
+        NSLayoutConstraint.activate([
+            increaseButton.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0),
+            increaseButton.leftAnchor.constraint(equalTo: quantityLabel.rightAnchor, constant: 0),
+            increaseButton.widthAnchor.constraint(equalToConstant: 40),
+            increaseButton.heightAnchor.constraint(equalToConstant: 40)
+            ])
+        addSubview(decreaseButton)
+        NSLayoutConstraint.activate([
+            decreaseButton.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0),
+            decreaseButton.rightAnchor.constraint(equalTo: quantityLabel.leftAnchor, constant: 0),
+            decreaseButton.widthAnchor.constraint(equalToConstant: 40),
+            decreaseButton.heightAnchor.constraint(equalToConstant: 40)
+            ])
+    }
+}
 
 
 
