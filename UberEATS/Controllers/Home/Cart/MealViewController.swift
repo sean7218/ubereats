@@ -10,16 +10,40 @@ import UIKit
 
 class MealItemViewController: UIViewController {
     
+    var blackBar: Bool = true
     
-    var navigationBar: UINavigationBar = {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if (blackBar) {
+            return .default
+        } else {
+            return .lightContent
+        }
+    }
+    
+    var statusBarView: UIView = {
+        let view = UIView(frame: UIApplication.shared.statusBarFrame)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .white
+        return view
+    }()
+    
+    lazy var navigationBar: UINavigationBar = {
         let bar = UINavigationBar()
         bar.translatesAutoresizingMaskIntoConstraints = false
-        bar.backgroundColor = .lightGray
+        bar.backgroundColor = .white
+        bar.isTranslucent = false
+        let cancelBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "button-cancel-cross").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleDismiss))
+        let shareBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "button-share32").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleShare))
+        let navItem = UINavigationItem()
+        
+        navItem.leftBarButtonItem = cancelBarButtonItem
+        navItem.rightBarButtonItem = shareBarButtonItem
+        bar.items = [navItem]
         return bar
     }()
     
     lazy var tableView: UITableView = {
-        let tb = UITableView(frame: CGRect.zero)
+        let tb = UITableView(frame: CGRect.zero, style: .plain)
         tb.translatesAutoresizingMaskIntoConstraints = false
         tb.register(MealItemTableViewCell.self, forCellReuseIdentifier: "MealItemCell")
         tb.register(MealItemTitleCell.self, forCellReuseIdentifier: "MealItemTitleCell")
@@ -27,6 +51,12 @@ class MealItemViewController: UIViewController {
         tb.register(UITableViewCell.self, forCellReuseIdentifier: "UITableViewCellEmpty")
         tb.delegate = self
         tb.dataSource = self
+        tb.backgroundColor = .white
+        tb.separatorColor = .lightGray
+        tb.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        tb.allowsMultipleSelection = true
+        tb.contentInsetAdjustmentBehavior = .never
+        
         return tb
     }()
     
@@ -35,6 +65,7 @@ class MealItemViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(handleDismiss), for: UIControlEvents.touchUpInside)
         button.setImage(#imageLiteral(resourceName: "button-cancel-cross"), for: UIControlState.normal)
+        button.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         return button
     }()
     
@@ -43,6 +74,9 @@ class MealItemViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(#imageLiteral(resourceName: "button-share32"), for: UIControlState.normal)
         button.addTarget(self, action: #selector(handleShare), for: UIControlEvents.touchUpInside)
+        button.imageView?.contentMode = .scaleAspectFit
+        button.imageView?.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+        button.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         return button
     }()
     
@@ -56,7 +90,7 @@ class MealItemViewController: UIViewController {
     var addCartButton: UIButton = {
         let button = UIButton(type: UIButtonType.custom)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = UIColor.green
+        button.backgroundColor = UIColor(red: 71/255, green: 162/255, blue: 25/255, alpha: 1)
         button.setTitle("Add to Cart", for: UIControlState.normal)
         return button
     }()
@@ -91,39 +125,53 @@ class MealItemViewController: UIViewController {
             ])
         view.addSubview(cancelButton)
         NSLayoutConstraint.activate([
-            cancelButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            cancelButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             cancelButton.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 10),
             cancelButton.widthAnchor.constraint(equalToConstant: 50),
             cancelButton.heightAnchor.constraint(equalToConstant: 50)
             ])
         view.addSubview(shareButton)
         NSLayoutConstraint.activate([
-            shareButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            shareButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             shareButton.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -10),
             shareButton.widthAnchor.constraint(equalToConstant: 50),
             shareButton.heightAnchor.constraint(equalToConstant: 50)
             ])
     }
-}
-
-extension MealItemViewController {
     func setupNavBar(){
         view.addSubview(navigationBar)
         NSLayoutConstraint.activate([
-            navigationBar.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
+            navigationBar.bottomAnchor.constraint(equalTo: view.topAnchor),
             navigationBar.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 0),
             navigationBar.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: 0),
-            navigationBar.heightAnchor.constraint(equalToConstant: NSLayoutDimension.navBarHeight),
             ])
+        view.addSubview(statusBarView)
     }
+    
+}
+
+extension MealItemViewController {
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let pos = scrollView.contentOffset.y
-        if (pos > 100) {
-            self.navigationBar.isHidden = false
-        } else {
-            self.navigationBar.isHidden = true
+        if (pos > 44) {
+            blackBar = true
+            setNeedsStatusBarAppearanceUpdate()
+            UIView.animate(withDuration: 0.5) {
+                self.statusBarView.frame.origin = CGPoint(x: 0, y: 0)
+                self.navigationBar.frame.origin = CGPoint(x: 0, y: UIApplication.shared.statusBarFrame.height)
+            }
         }
-        print(pos)
+        
+        if (pos < 44) {
+            blackBar = false
+            setNeedsStatusBarAppearanceUpdate()
+            UIView.animate(withDuration: 0.4) {
+                self.statusBarView.frame.origin = CGPoint(x: 0, y: -UIApplication.shared.statusBarFrame.height-self.navigationBar.frame.height)
+                self.navigationBar.frame.origin = CGPoint(x: 0, y: -self.navigationBar.frame.height)
+                
+            }
+        }
     }
 }
 
@@ -147,6 +195,11 @@ extension MealItemViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "MealItemCell", for: indexPath) as! MealItemTableViewCell
+            if (indexPath.section == 2) || (indexPath.section == 4) {
+                cell.singleSelectSectinon = true
+            } else {
+                cell.singleSelectSectinon = false
+            }
             return cell
         }
     }
@@ -167,194 +220,55 @@ extension MealItemViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if (section == 0) || (section == 9){
             return 0
         }
         return 20
     }
-    
-}
-
-class MealItemTableViewCell: UITableViewCell {
-    
-    var nameLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Crab Meat"
-        return label
-    }()
-    
-    var priceLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "+1.03"
-        return label
-    }()
-    
-    
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupViews()
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func setupViews(){
-        addSubview(nameLabel)
-        NSLayoutConstraint.activate([
-            nameLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0),
-            nameLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 10),
-            nameLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -80),
-            nameLabel.heightAnchor.constraint(equalToConstant: 50)
-            ])
-        addSubview(priceLabel)
-        NSLayoutConstraint.activate([
-            priceLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0),
-            priceLabel.leftAnchor.constraint(equalTo: nameLabel.rightAnchor, constant: 10),
-            priceLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -10),
-            priceLabel.heightAnchor.constraint(equalToConstant: 50)
-            ])
-    }
-}
-
-class MealItemTableHeaderView: UITableViewHeaderFooterView {
-    override init(reuseIdentifier: String?) {
-        super.init(reuseIdentifier: reuseIdentifier)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
-
-
-class MealItemTitleCell: UITableViewCell {
-    
-    var titleLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "The Classic Quesadilla"
-        label.textColor = UIColor.black
-        label.font = UIFont.boldSystemFont(ofSize: 18)
-        label.textAlignment = NSTextAlignment.center
-        return label
-    }()
-    
-    var seperator: UIView = {
-        let line = UIView()
-        line.translatesAutoresizingMaskIntoConstraints = false
-        line.backgroundColor = UIColor.black
-        return line
-    }()
-    
-    var detailLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "598-848 Cal. Jack cheese and your choice of chicken, steak, pork carnitas, taco beef, fish or farm-fresh veggies, and beans. served with sour cream and salsa. 133 Cal."
-        label.numberOfLines = 4
-        label.textColor = UIColor.black
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.textAlignment = NSTextAlignment.center
-        return label
-    }()
-    
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupViews()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func setupViews(){
-        addSubview(titleLabel)
-        NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            titleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 10),
-            titleLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -10),
-            titleLabel.heightAnchor.constraint(equalToConstant: 100)
-            ])
-        addSubview(seperator)
-        NSLayoutConstraint.activate([
-            seperator.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
-            seperator.centerXAnchor.constraint(equalTo: centerXAnchor),
-            seperator.widthAnchor.constraint(equalToConstant: 100),
-            seperator.heightAnchor.constraint(equalToConstant: 1)
-            ])
-        addSubview(detailLabel)
-        NSLayoutConstraint.activate([
-            detailLabel.topAnchor.constraint(equalTo: seperator.bottomAnchor, constant: 10),
-            detailLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 10),
-            detailLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -10),
-            detailLabel.heightAnchor.constraint(equalToConstant: 100)
-            ])
-    }
-}
-
-class MealItemQuantityCell: UITableViewCell {
-    
-    var increaseButton: UIButton = {
-        let button = UIButton(type: UIButtonType.custom)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(#imageLiteral(resourceName: "button-plus"), for: UIControlState.normal)
-        return button
-    }()
-    
-    var decreaseButton: UIButton = {
-        let button = UIButton(type: UIButtonType.custom)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(#imageLiteral(resourceName: "button-minus"), for: UIControlState.normal)
-        return button
-    }()
-    
-    var quantityLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textAlignment = NSTextAlignment.center
-        label.text = "1"
-        return label
-    }()
-    
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        setupViews()
+        let cell = tableView.cellForRow(at: indexPath) as! MealItemTableViewCell
+        cell.isSelected = true
+        // define sections that are single select
+        let singleSelectSections = [2, 4]
+        if (singleSelectSections.contains(indexPath.section)) {
+            print("selected section: \(indexPath.section) and row: \(indexPath.row)")
+            tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableViewScrollPosition.none)
+            let rows = tableView.numberOfRows(inSection: indexPath.section)
+            for i in 0...rows {
+                if i != indexPath.row {
+                    tableView.deselectRow(at: IndexPath(row: i, section: indexPath.section), animated: false)
+                }
+            }
+        }
+        
+    }
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if (indexPath.section != 0 && indexPath.section != 9) {
+            let cell = tableView.cellForRow(at: indexPath) as! MealItemTableViewCell
+            cell.isSelected = false
+        }
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func setupViews(){
-
-        addSubview(quantityLabel)
-        NSLayoutConstraint.activate([
-            quantityLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0),
-            quantityLabel.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0),
-            quantityLabel.widthAnchor.constraint(equalToConstant: 40),
-            quantityLabel.heightAnchor.constraint(equalToConstant: 40)
-            ])
-        addSubview(increaseButton)
-        NSLayoutConstraint.activate([
-            increaseButton.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0),
-            increaseButton.leftAnchor.constraint(equalTo: quantityLabel.rightAnchor, constant: 0),
-            increaseButton.widthAnchor.constraint(equalToConstant: 40),
-            increaseButton.heightAnchor.constraint(equalToConstant: 40)
-            ])
-        addSubview(decreaseButton)
-        NSLayoutConstraint.activate([
-            decreaseButton.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0),
-            decreaseButton.rightAnchor.constraint(equalTo: quantityLabel.leftAnchor, constant: 0),
-            decreaseButton.widthAnchor.constraint(equalToConstant: 40),
-            decreaseButton.heightAnchor.constraint(equalToConstant: 40)
-            ])
+    func enableSingleSelection(AtSection section: Int) {
+        
     }
 }
+
+
+
+
+
+
+
+
 
 
 

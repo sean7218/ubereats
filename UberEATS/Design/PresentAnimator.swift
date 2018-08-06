@@ -30,16 +30,16 @@ class PresentAnimator : NSObject, UIViewControllerAnimatedTransitioning {
         
         
         // get the cell frame
-        print("itemFrame: \(itemFrame)")
+        //print("itemFrame: \(itemFrame)")
         
         // get the picture
         let imageView = item.imageView
         let imageViewFrame = imageView.frame
-        print("imageViewFrame: \(imageViewFrame)")
+        //print("imageViewFrame: \(imageViewFrame)")
         
         // modify the frame
         let imageViewFrameConverted = item.convert(imageViewFrame, to: UIApplication.shared.keyWindow!)
-        print("imageViewFrameConverted: \(imageViewFrameConverted)")
+        //print("imageViewFrameConverted: \(imageViewFrameConverted)")
         
         // get the headerView
         let headerView = HeaderView(frame: CGRect(x: 15, y: 200, width: 345, height: 120))
@@ -50,13 +50,13 @@ class PresentAnimator : NSObject, UIViewControllerAnimatedTransitioning {
         // get the test image
         let testImageView = UIImageView(image: #imageLiteral(resourceName: "tennesse_taco_co_2"))
         testImageView.contentMode = .scaleAspectFill
-        print("original Image Size: \(testImageView.frame)")
+        //print("original Image Size: \(testImageView.frame)")
         testImageView.frame = imageViewFrameConverted
         let heightAspect = itemFrame.width * 0.79625
         // add the subviews
         UIApplication.shared.keyWindow!.addSubview(testImageView)
         UIApplication.shared.keyWindow!.addSubview(headerView)
-        print("windowFram: \(UIApplication.shared.keyWindow!.frame) ")
+        //print("windowFram: \(UIApplication.shared.keyWindow!.frame) ")
         
         // configure the toView
         toVC.view.alpha = 0
