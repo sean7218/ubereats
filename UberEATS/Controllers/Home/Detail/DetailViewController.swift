@@ -280,6 +280,9 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout, UICollection
             let row = indexPath.row
             let indx = IndexPath(item: 0, section: row+1)
             self.collectionView.selectItem(at: indx, animated: true, scrollPosition: UICollectionViewScrollPosition.top)
+        } else {
+            let mealItemViewController = MealItemViewController()
+            present(mealItemViewController, animated: true, completion: nil)
         }
     }
 }
