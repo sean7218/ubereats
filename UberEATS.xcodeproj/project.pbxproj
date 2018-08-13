@@ -46,6 +46,8 @@
 		C12839C92118BCBA008545F7 /* MealItemQuantityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12839C82118BCBA008545F7 /* MealItemQuantityCell.swift */; };
 		C12839CB2118BCE3008545F7 /* MealItemTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12839CA2118BCE3008545F7 /* MealItemTableHeaderView.swift */; };
 		C12839CD2118BD0C008545F7 /* MealItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12839CC2118BD0C008545F7 /* MealItemTableViewCell.swift */; };
+		C186A3E32122019F000628C9 /* UIImageView+load.swift in Sources */ = {isa = PBXBuildFile; fileRef = C186A3E22122019F000628C9 /* UIImageView+load.swift */; };
+		C186A3E5212201E5000628C9 /* UIView+anchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C186A3E4212201E5000628C9 /* UIView+anchor.swift */; };
 		C1BB07CC210A06450004EDE0 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BB07CB210A06450004EDE0 /* DetailViewController.swift */; };
 		C1BB07CE210BC5BD0004EDE0 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BB07CD210BC5BD0004EDE0 /* HeaderView.swift */; };
 		C1E82268210CB8770078525C /* DetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E82267210CB8770078525C /* DetailCollectionViewCell.swift */; };
@@ -137,6 +139,8 @@
 		C12839C82118BCBA008545F7 /* MealItemQuantityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealItemQuantityCell.swift; sourceTree = "<group>"; };
 		C12839CA2118BCE3008545F7 /* MealItemTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealItemTableHeaderView.swift; sourceTree = "<group>"; };
 		C12839CC2118BD0C008545F7 /* MealItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealItemTableViewCell.swift; sourceTree = "<group>"; };
+		C186A3E22122019F000628C9 /* UIImageView+load.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+load.swift"; sourceTree = "<group>"; };
+		C186A3E4212201E5000628C9 /* UIView+anchor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+anchor.swift"; sourceTree = "<group>"; };
 		C1BB07CB210A06450004EDE0 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		C1BB07CD210BC5BD0004EDE0 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		C1E82267210CB8770078525C /* DetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -225,6 +229,7 @@
 		A757F0021FCA2CD000240CC9 /* UberEATS */ = {
 			isa = PBXGroup;
 			children = (
+				C186A3E12122017F000628C9 /* Utils */,
 				C1283940210F4DBA008545F7 /* Design */,
 				C128393F210EC63C008545F7 /* Models */,
 				C128393E210EC392008545F7 /* Views */,
@@ -382,6 +387,15 @@
 				C12839CA2118BCE3008545F7 /* MealItemTableHeaderView.swift */,
 			);
 			path = Cart;
+			sourceTree = "<group>";
+		};
+		C186A3E12122017F000628C9 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				C186A3E22122019F000628C9 /* UIImageView+load.swift */,
+				C186A3E4212201E5000628C9 /* UIView+anchor.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		C1BB07CA210A06310004EDE0 /* Detail */ = {
@@ -626,6 +640,7 @@
 				C1283944210F5544008545F7 /* InfoTableViewCell.swift in Sources */,
 				C1E8226C210CBC0A0078525C /* InfoViewController.swift in Sources */,
 				A757F03C1FCA2E5C00240CC9 /* UserViewController.swift in Sources */,
+				C186A3E32122019F000628C9 /* UIImageView+load.swift in Sources */,
 				C1E8226A210CB89C0078525C /* DetailHeaderCollectionViewCell.swift in Sources */,
 				C12839B92113FFDE008545F7 /* Interactor.swift in Sources */,
 				C12839CD2118BD0C008545F7 /* MealItemTableViewCell.swift in Sources */,
@@ -659,6 +674,7 @@
 				C1283942210F4DD7008545F7 /* SZButton.swift in Sources */,
 				C12839512110FCCA008545F7 /* SZAnimatedTransition.swift in Sources */,
 				A757F0041FCA2CD000240CC9 /* AppDelegate.swift in Sources */,
+				C186A3E5212201E5000628C9 /* UIView+anchor.swift in Sources */,
 				C1EBB0D32107AC75007B68B2 /* NewAddressCollectionViewCell.swift in Sources */,
 				C1EBB0C521061DDC007B68B2 /* SortCellView.swift in Sources */,
 				C1EBB0D52107ACAA007B68B2 /* AddressCollectionViewCell.swift in Sources */,

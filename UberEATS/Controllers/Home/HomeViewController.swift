@@ -17,6 +17,12 @@ extension HomeViewController: NavAddressDelegate {
 
 class HomeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, FilterViewDelegate {
     
+    var bizs: [Business] = [
+        Business(name: "Geraci's Restaurant", cuisine: "Italian", price: "$", rating: 4.4, reviewCount: 177, distance: 120, imageUrl: "https://s3-media4.fl.yelpcdn.com/bphoto/BEcSW0nbdaXsIQ7W_EeNRg/o.jpg"),
+        Business(name: "Noce Gourmet Pizzeria", cuisine: "American", price: "$$", rating: 4.5, reviewCount: 841, distance: 200, imageUrl: "https://s3-media4.fl.yelpcdn.com/bphoto/C5ntZD748vFoBqZDc-Ej1g/o.jpg"),
+        Business(name: "Vincenza's Pizza & Pasta", cuisine: "American", price: "$$$", rating: 4.6, reviewCount: 78, distance: 400, imageUrl: "https://s3-media3.fl.yelpcdn.com/bphoto/DUYkUpxZtajsRqche7f7KA/o.jpg"),
+    ]
+    
     var item: HomeViewCell!
     var itemFrame: CGRect!
     
@@ -143,7 +149,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         if section == 0 {
             return 1
         } else {
-            return 3
+            return bizs.count
         }
     }
     
@@ -153,7 +159,8 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HoriCell", for: indexPath)
             return cell
         } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeViewCell", for: indexPath)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeViewCell", for: indexPath) as! HomeViewCell
+            cell.biz = bizs[indexPath.row]
             return cell
         }
 

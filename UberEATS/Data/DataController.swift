@@ -53,7 +53,7 @@ class DataController {
             if (T.self == Business.self) {
                 let name = jsonObj["name"].string
                 let location = jsonObj["localtion"]["address1"].string
-                let biz = Business(name: name ?? "no name", location: location ?? "no location")
+                let biz = Business(name: name ?? "N", cuisine: location ?? "N", price: "$", rating: 1.2, reviewCount: 1, distance: 1, imageUrl: "F")
                 return biz as? T
             } else {
                 print("the type is incorrect")

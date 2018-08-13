@@ -8,7 +8,18 @@
 
 import UIKit
 
+
 class HomeViewCell: UICollectionViewCell {
+    
+    var biz: Business = Business(name: "N", cuisine: "N", price: "N", rating: 0, reviewCount: 0, distance: 0, imageUrl: "N") {
+        didSet {
+            let url: URL = URL(string: biz.imageUrl)!
+            imageView.load(url: url)
+            nameLabel.text = biz.name
+            cuisineLabel.text = "\(biz.cuisine) - \(biz.price)"
+            ratingLabel.text = "\(biz.rating) (\(biz.reviewCount))"
+        }
+    }
     
     var imageView: UIImageView = {
         let iv = UIImageView(image: #imageLiteral(resourceName: "tennesse_taco_co"))
