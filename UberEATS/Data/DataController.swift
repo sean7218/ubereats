@@ -61,4 +61,17 @@ class DataController {
         }
         return nil
     }
+    
+    func yelpBiz(key: String, lat: Float, long: Float) {
+        let bear = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTM0MTgyNTIyLCJleHAiOjE1MzQyNjg5MjJ9.hmcotzUYvsdj52WKbGbCjvgctIIfPLaHZR94oe2acDk"
+        let headers: HTTPHeaders = ["x-access-token": bear]
+        let params: Parameters = ["key": key, "lat": lat, "long": long]
+        Alamofire.request("https://api.zxsean.com/yelp", method: .get, parameters: params, encoding: URLEncoding.default, headers: headers).responseJSON { response in
+            if let json = response.result.value {
+                print(json)
+            } else {
+                print("No json from the yelp endpoint")
+            }
+        }
+    }
 }

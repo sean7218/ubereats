@@ -13,7 +13,6 @@ class HomeViewCell: UICollectionViewCell {
     var imageView: UIImageView = {
         let iv = UIImageView(image: #imageLiteral(resourceName: "tennesse_taco_co"))
         iv.translatesAutoresizingMaskIntoConstraints = false
-        
         iv.backgroundColor = .yellow
         return iv
     }()
