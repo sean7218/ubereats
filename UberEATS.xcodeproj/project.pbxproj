@@ -42,6 +42,10 @@
 		C12839C121150D41008545F7 /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12839C021150D41008545F7 /* CartViewController.swift */; };
 		C12839C321150EDE008545F7 /* MealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12839C221150EDE008545F7 /* MealViewController.swift */; };
 		C12839C52117EB06008545F7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C12839C42117EB06008545F7 /* Assets.xcassets */; };
+		C12839C72118BC93008545F7 /* MealItemTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12839C62118BC93008545F7 /* MealItemTitleCell.swift */; };
+		C12839C92118BCBA008545F7 /* MealItemQuantityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12839C82118BCBA008545F7 /* MealItemQuantityCell.swift */; };
+		C12839CB2118BCE3008545F7 /* MealItemTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12839CA2118BCE3008545F7 /* MealItemTableHeaderView.swift */; };
+		C12839CD2118BD0C008545F7 /* MealItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12839CC2118BD0C008545F7 /* MealItemTableViewCell.swift */; };
 		C1BB07CC210A06450004EDE0 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BB07CB210A06450004EDE0 /* DetailViewController.swift */; };
 		C1BB07CE210BC5BD0004EDE0 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BB07CD210BC5BD0004EDE0 /* HeaderView.swift */; };
 		C1E82268210CB8770078525C /* DetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E82267210CB8770078525C /* DetailCollectionViewCell.swift */; };
@@ -129,6 +133,10 @@
 		C12839C021150D41008545F7 /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
 		C12839C221150EDE008545F7 /* MealViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealViewController.swift; sourceTree = "<group>"; };
 		C12839C42117EB06008545F7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C12839C62118BC93008545F7 /* MealItemTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealItemTitleCell.swift; sourceTree = "<group>"; };
+		C12839C82118BCBA008545F7 /* MealItemQuantityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealItemQuantityCell.swift; sourceTree = "<group>"; };
+		C12839CA2118BCE3008545F7 /* MealItemTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealItemTableHeaderView.swift; sourceTree = "<group>"; };
+		C12839CC2118BD0C008545F7 /* MealItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealItemTableViewCell.swift; sourceTree = "<group>"; };
 		C1BB07CB210A06450004EDE0 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		C1BB07CD210BC5BD0004EDE0 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		C1E82267210CB8770078525C /* DetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -368,6 +376,10 @@
 			children = (
 				C12839C021150D41008545F7 /* CartViewController.swift */,
 				C12839C221150EDE008545F7 /* MealViewController.swift */,
+				C12839CC2118BD0C008545F7 /* MealItemTableViewCell.swift */,
+				C12839C62118BC93008545F7 /* MealItemTitleCell.swift */,
+				C12839C82118BCBA008545F7 /* MealItemQuantityCell.swift */,
+				C12839CA2118BCE3008545F7 /* MealItemTableHeaderView.swift */,
 			);
 			path = Cart;
 			sourceTree = "<group>";
@@ -616,6 +628,7 @@
 				A757F03C1FCA2E5C00240CC9 /* UserViewController.swift in Sources */,
 				C1E8226A210CB89C0078525C /* DetailHeaderCollectionViewCell.swift in Sources */,
 				C12839B92113FFDE008545F7 /* Interactor.swift in Sources */,
+				C12839CD2118BD0C008545F7 /* MealItemTableViewCell.swift in Sources */,
 				A757F05C1FD1141000240CC9 /* FilterViewCell1.swift in Sources */,
 				A757F03A1FCA2E3100240CC9 /* SearchViewController.swift in Sources */,
 				C12839C321150EDE008545F7 /* MealViewController.swift in Sources */,
@@ -634,11 +647,13 @@
 				A757F04E1FCA504E00240CC9 /* FilterViewController.swift in Sources */,
 				A757F0541FCCE77400240CC9 /* FilterViewDelegate.swift in Sources */,
 				C1E82276210D3CF30078525C /* SectionTitleIndexView.swift in Sources */,
+				C12839CB2118BCE3008545F7 /* MealItemTableHeaderView.swift in Sources */,
 				C1EBB0DD2108BF65007B68B2 /* NavAddressDelegate.swift in Sources */,
 				C1EBB0E32108CEBF007B68B2 /* config.swift in Sources */,
 				C1283946210F5B5A008545F7 /* InfoTableViewHeader.swift in Sources */,
 				C1E8226E210CBE1B0078525C /* InfoCollectionViewCell.swift in Sources */,
 				A757F0461FCA318300240CC9 /* HomeViewCell.swift in Sources */,
+				C12839C92118BCBA008545F7 /* MealItemQuantityCell.swift in Sources */,
 				A757F04A1FCA346C00240CC9 /* HorizontalViewCell.swift in Sources */,
 				C1EBB0CD21065B93007B68B2 /* FilterViewCell3.swift in Sources */,
 				C1283942210F4DD7008545F7 /* SZButton.swift in Sources */,
@@ -653,6 +668,7 @@
 				C1BB07CE210BC5BD0004EDE0 /* HeaderView.swift in Sources */,
 				C1E82272210D05270078525C /* Meal.swift in Sources */,
 				C1E82274210D33300078525C /* SectionHeaderView.swift in Sources */,
+				C12839C72118BC93008545F7 /* MealItemTitleCell.swift in Sources */,
 				C1EBB0E62108D5C9007B68B2 /* Business.swift in Sources */,
 				C1EBB0CB21065947007B68B2 /* FilterViewCell2.swift in Sources */,
 				C127D3AC210D577F00DBC43C /* SectionTitleIndexController.swift in Sources */,
