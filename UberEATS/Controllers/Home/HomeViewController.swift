@@ -8,20 +8,9 @@
 
 import UIKit
 
-extension HomeViewController: NavAddressDelegate {
-    func setAddress(address: String) {
-        navAddressTitle = address
-        setupViews()
-    }
-}
-
 class HomeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, FilterViewDelegate {
-    
-    var bizs: [Business] = [
-        Business(name: "Geraci's Restaurant", cuisine: "Italian", price: "$", rating: 4.4, reviewCount: 177, distance: 120, imageUrl: "https://s3-media4.fl.yelpcdn.com/bphoto/BEcSW0nbdaXsIQ7W_EeNRg/o.jpg"),
-        Business(name: "Noce Gourmet Pizzeria", cuisine: "American", price: "$$", rating: 4.5, reviewCount: 841, distance: 200, imageUrl: "https://s3-media4.fl.yelpcdn.com/bphoto/C5ntZD748vFoBqZDc-Ej1g/o.jpg"),
-        Business(name: "Vincenza's Pizza & Pasta", cuisine: "American", price: "$$$", rating: 4.6, reviewCount: 78, distance: 400, imageUrl: "https://s3-media3.fl.yelpcdn.com/bphoto/DUYkUpxZtajsRqche7f7KA/o.jpg"),
-    ]
+
+    lazy var bizs: [Business] = []
     
     var item: HomeViewCell!
     var itemFrame: CGRect!
@@ -105,6 +94,12 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        APIClient.getBusinesses(completion: { (result) in
+            self.bizs = APIClient.parseBusinesses(result: result)
+            self.collectionView?.reloadData()
+        })
+        
         setupCollectionView()
         setupViews()
     }
@@ -246,5 +241,12 @@ extension HomeViewController: UIViewControllerTransitioningDelegate {
     
     func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         return interactor.hasStarted ? interactor : nil
+    }
+}
+
+extension HomeViewController: NavAddressDelegate {
+    func setAddress(address: String) {
+        navAddressTitle = address
+        setupViews()
     }
 }

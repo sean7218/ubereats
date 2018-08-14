@@ -53,7 +53,7 @@ class DataController {
             if (T.self == Business.self) {
                 let name = jsonObj["name"].string
                 let location = jsonObj["localtion"]["address1"].string
-                let biz = Business(name: name ?? "N", cuisine: location ?? "N", price: "$", rating: 1.2, reviewCount: 1, distance: 1, imageUrl: "F")
+                let biz = Business(name: "name", price: "$", rating: 1.2, review_count: 4, url: "urlface")
                 return biz as? T
             } else {
                 print("the type is incorrect")
@@ -63,7 +63,7 @@ class DataController {
     }
     
     func yelpBiz(key: String, lat: Float, long: Float) {
-        let bear = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTM0MTgyNTIyLCJleHAiOjE1MzQyNjg5MjJ9.hmcotzUYvsdj52WKbGbCjvgctIIfPLaHZR94oe2acDk"
+        let bear = K.bear.key
         let headers: HTTPHeaders = ["x-access-token": bear]
         let params: Parameters = ["key": key, "lat": lat, "long": long]
         Alamofire.request("https://api.zxsean.com/yelp", method: .get, parameters: params, encoding: URLEncoding.default, headers: headers).responseJSON { response in
