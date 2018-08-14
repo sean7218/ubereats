@@ -8,13 +8,10 @@
 
 import Foundation
 
-class Business {
-    
-    var name: String
-    var location: String
-    
-    init(name: String, location: String) {
-        self.name = name
-        self.location = location
-    }
+struct Business: Codable {
+    var name: String?
+    var price: String?
+    var rating: Double?
+    var review_count: Int?
+    var url: String?
 }

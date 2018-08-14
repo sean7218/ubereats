@@ -8,14 +8,9 @@
 
 import UIKit
 
-extension HomeViewController: NavAddressDelegate {
-    func setAddress(address: String) {
-        navAddressTitle = address
-        setupViews()
-    }
-}
-
 class HomeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, FilterViewDelegate {
+
+    lazy var bizs: [Business] = []
     
     var item: HomeViewCell!
     var itemFrame: CGRect!
@@ -99,6 +94,12 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        APIClient.getBusinesses(completion: { (result) in
+            self.bizs = APIClient.parseBusinesses(result: result)
+            self.collectionView?.reloadData()
+        })
+        
         setupCollectionView()
         setupViews()
     }
@@ -143,7 +144,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         if section == 0 {
             return 1
         } else {
-            return 3
+            return bizs.count
         }
     }
     
@@ -153,7 +154,8 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HoriCell", for: indexPath)
             return cell
         } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeViewCell", for: indexPath)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeViewCell", for: indexPath) as! HomeViewCell
+            cell.biz = bizs[indexPath.row]
             return cell
         }
 
@@ -239,5 +241,12 @@ extension HomeViewController: UIViewControllerTransitioningDelegate {
     
     func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         return interactor.hasStarted ? interactor : nil
+    }
+}
+
+extension HomeViewController: NavAddressDelegate {
+    func setAddress(address: String) {
+        navAddressTitle = address
+        setupViews()
     }
 }

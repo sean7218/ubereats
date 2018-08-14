@@ -27,13 +27,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        // initialize data layer
-        let b: Business? = DataController.sharedInstance.getEntity(entityName: "bizDetail", objectType: Business.self)
-        print(b ?? "No Business Object")
         
         // Add Google Maps
         GMSServices.provideAPIKey(GOOGLE_KEY)
         GMSPlacesClient.provideAPIKey(GOOGLE_KEY)
+        
         
         // Override point for customization after application launch.
         window = UIWindow()

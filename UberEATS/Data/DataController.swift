@@ -15,7 +15,7 @@ class DataController {
     static let sharedInstance = DataController()
     
     init() {
-        //
+        // TODO: Setup Keys
     }
     
     func getLocalJSON(fileName: String) -> JSON? {
@@ -48,17 +48,16 @@ class DataController {
         }
     }
     
-    func getEntity<T>(entityName: String, objectType: AnyObject.Type) -> T? {
-        if let jsonObj = getLocalJSON(fileName: entityName) {
-            if (T.self == Business.self) {
-                let name = jsonObj["name"].string
-                let location = jsonObj["localtion"]["address1"].string
-                let biz = Business(name: name ?? "no name", location: location ?? "no location")
-                return biz as? T
+    func yelpBiz(key: String, lat: Float, long: Float) {
+        let bear = K.bear.key
+        let headers: HTTPHeaders = ["x-access-token": bear]
+        let params: Parameters = ["key": key, "lat": lat, "long": long]
+        Alamofire.request("https://api.zxsean.com/yelp", method: .get, parameters: params, encoding: URLEncoding.default, headers: headers).responseJSON { response in
+            if let json = response.result.value {
+                print(json)
             } else {
-                print("the type is incorrect")
+                print("No json from the yelp endpoint")
             }
         }
-        return nil
     }
 }

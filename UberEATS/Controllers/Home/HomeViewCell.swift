@@ -8,12 +8,23 @@
 
 import UIKit
 
+
 class HomeViewCell: UICollectionViewCell {
+    
+    var biz: Business = Business() {
+        didSet {
+            let url: URL = URL(string: biz.url!)!
+            imageView.load(url: url)
+            nameLabel.text = biz.name
+            cuisineLabel.text = "Italian - \(biz.price ?? "_")"
+            ratingLabel.text = "\(biz.rating ?? 0) (\(biz.review_count ?? 0))"
+        }
+    }
     
     var imageView: UIImageView = {
         let iv = UIImageView(image: #imageLiteral(resourceName: "tennesse_taco_co"))
+        iv.contentMode = .redraw
         iv.translatesAutoresizingMaskIntoConstraints = false
-        
         iv.backgroundColor = .yellow
         return iv
     }()
