@@ -15,7 +15,7 @@ class DataController {
     static let sharedInstance = DataController()
     
     init() {
-        //
+        // TODO: Setup Keys
     }
     
     func getLocalJSON(fileName: String) -> JSON? {
@@ -46,20 +46,6 @@ class DataController {
                 print("NO JSON FROM NETOWKR....")
             }
         }
-    }
-    
-    func getEntity<T>(entityName: String, objectType: AnyObject.Type) -> T? {
-        if let jsonObj = getLocalJSON(fileName: entityName) {
-            if (T.self == Business.self) {
-                let name = jsonObj["name"].string
-                let location = jsonObj["localtion"]["address1"].string
-                let biz = Business(name: "name", price: "$", rating: 1.2, review_count: 4, url: "urlface")
-                return biz as? T
-            } else {
-                print("the type is incorrect")
-            }
-        }
-        return nil
     }
     
     func yelpBiz(key: String, lat: Float, long: Float) {

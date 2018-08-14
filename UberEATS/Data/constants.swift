@@ -11,7 +11,7 @@ import Foundation
 
 struct K {
     struct bear {
-        static let key =  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiaWF0IjoxNTM0MjYwNTE4LCJleHAiOjE1MzQzNDY5MTh9.RbDmu9PzNPD_P0nmR1Gc0Qgl8tlYbulqTdljvvg4VN4"
+        static let key =  ProcessInfo.processInfo.environment["ACCESS_BEAR_KEY"]
     }
     
     struct ProductionServer {

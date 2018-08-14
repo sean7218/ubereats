@@ -18,7 +18,6 @@ class APIClient {
         })
     }
     
-
     static func getBusinesses(completion:@escaping (Result<Any>)->Void) {
         performRequest(route: APIRouter.business, completion: completion)
     }
