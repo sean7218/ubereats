@@ -13,16 +13,13 @@ import Foundation
 class APIClient {
     @discardableResult
     private static func performRequest(route:APIRouter, completion:@escaping (Result<Any>)->Void) -> DataRequest {
-        print(2)
         return Alamofire.request(route).responseJSON(completionHandler: { (response: DataResponse<Any>) in
-            print(3)
             completion(response.result)
         })
     }
     
 
     static func getBusinesses(completion:@escaping (Result<Any>)->Void) {
-        print(1)
         performRequest(route: APIRouter.business, completion: completion)
     }
     
