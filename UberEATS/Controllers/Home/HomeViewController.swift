@@ -52,14 +52,13 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     
     @objc func showFilterView() {
         self.view.addSubview(self.grayBackgroundView)
-
+        let grayBackgroundViewTopAnchor = self.grayBackgroundView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: -self.view.frame.height)
         NSLayoutConstraint.activate([
-            self.grayBackgroundView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            grayBackgroundViewTopAnchor,
             self.grayBackgroundView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
             self.grayBackgroundView.widthAnchor.constraint(equalToConstant: self.view.frame.width),
             self.grayBackgroundView.heightAnchor.constraint(equalToConstant: self.view.frame.height)
             ])
-        
         self.view.addSubview(filterViewController.view)
         self.addChildViewController(filterViewController)
         filterViewController.didMove(toParentViewController: self)
@@ -67,7 +66,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         UIView.animate(withDuration: 0.5, delay: 0, options: UIViewAnimationOptions.curveEaseInOut, animations: {
             self.filterViewController.view.frame.origin.y = 0
         }) { (isCompleted: Bool) in
-            // Todo:
+            grayBackgroundViewTopAnchor.constant = 0
         }
     }
     
