@@ -18,8 +18,8 @@ class APIClient {
         })
     }
     
-    static func getBusinesses(completion:@escaping (Result<Any>)->Void) {
-        performRequest(route: APIRouter.business, completion: completion)
+    static func getBusinesses(withTerm term: String, lat: Double, long: Double , completion:@escaping (Result<Any>)->Void) {
+        performRequest(route: APIRouter.business(term: term, lat: lat, long: long), completion: completion)
     }
     
     static func parseBusinesses(result: Result<Any>) -> [Business] {

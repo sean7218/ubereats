@@ -1,25 +1,18 @@
 //
-//  HomeCollectionViewCell.swift
+//  HorizontalViewCellCell.swift
 //  UberEATS
 //
-//  Created by Sean Zhang on 11/25/17.
-//  Copyright © 2017 Sean Zhang. All rights reserved.
+//  Created by Sean Zhang on 8/14/18.
+//  Copyright © 2018 Sean Zhang. All rights reserved.
 //
 
 import UIKit
 
 
-class HomeViewCell: UICollectionViewCell {
+class HorizontalViewCellCell: UICollectionViewCell {
     
     var biz: Business = Business() {
         didSet {
-//            guard let url: URL = URL(string: biz.url ?? "http://s3-media3.fl.yelpcdn.com/bphoto/--8oiPVp0AsjoWHqaY1rDQ/o.jpg") else {
-//                return
-//            }
-//            imageView.load(url: url)
-//            nameLabel.text = biz.name
-//            cuisineLabel.text = "Italian - \(biz.price ?? "")"
-//            ratingLabel.text = "\(biz.rating ?? 0) (\(biz.review_count ?? 0))"
         }
     }
     
@@ -94,44 +87,45 @@ class HomeViewCell: UICollectionViewCell {
         addSubview(imageView)
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            imageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 15),
-            imageView.rightAnchor.constraint(equalTo: rightAnchor, constant: -15),
+            imageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 8),
+            imageView.rightAnchor.constraint(equalTo: rightAnchor, constant: -8),
             imageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -100)
             ])
         addSubview(nameLabel)
         NSLayoutConstraint.activate([
             nameLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 15),
-            nameLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 15),
+            nameLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 8),
             nameLabel.widthAnchor.constraint(equalToConstant: (cellWidth*0.66)),
             nameLabel.heightAnchor.constraint(equalToConstant: 15)
             ])
         addSubview(cuisineLabel)
         NSLayoutConstraint.activate([
             cuisineLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5),
-            cuisineLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 15),
+            cuisineLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 8),
             cuisineLabel.widthAnchor.constraint(equalToConstant: cellWidth*0.66),
             cuisineLabel.heightAnchor.constraint(equalToConstant: 15)
             ])
         addSubview(ratingLabel)
         NSLayoutConstraint.activate([
             ratingLabel.topAnchor.constraint(equalTo: cuisineLabel.bottomAnchor, constant: 5),
-            ratingLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 15),
+            ratingLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 8),
             ratingLabel.widthAnchor.constraint(equalToConstant: 150),
             ratingLabel.heightAnchor.constraint(equalToConstant: 15)
             ])
         addSubview(timeLabel)
         NSLayoutConstraint.activate([
             timeLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 15),
-            timeLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -15),
+            timeLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -8),
             timeLabel.widthAnchor.constraint(equalToConstant: cellWidth*0.31),
             timeLabel.heightAnchor.constraint(equalToConstant: 15)
             ])
         addSubview(feeLabel)
         NSLayoutConstraint.activate([
             feeLabel.topAnchor.constraint(equalTo: timeLabel.bottomAnchor, constant: 5),
-            feeLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -15),
+            feeLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -8),
             feeLabel.widthAnchor.constraint(equalToConstant: cellWidth*0.31),
             feeLabel.heightAnchor.constraint(equalToConstant: 15)
             ])
     }
 }
+
