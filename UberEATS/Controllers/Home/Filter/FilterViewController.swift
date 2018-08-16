@@ -8,8 +8,9 @@
 
 import UIKit
 
-class FilterViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource ,UICollectionViewDelegateFlowLayout {
+class FilterViewController: UIViewController {
     
+
     lazy var cancelButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -72,6 +73,12 @@ class FilterViewController: UIViewController, UICollectionViewDelegate, UICollec
     }
     
     override func viewDidLoad() {
+        
+        setupCollectionView()
+        setupViews()
+    }
+
+    fileprivate func setupCollectionView() {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.backgroundColor = .white
@@ -81,14 +88,12 @@ class FilterViewController: UIViewController, UICollectionViewDelegate, UICollec
         collectionView.register(FilterViewCell2.self, forCellWithReuseIdentifier: "Price")
         collectionView.register(FilterViewCell3.self, forCellWithReuseIdentifier: "Dietary")
         filterViewMenu.delegate = self
-        setupViews()
+        collectionView.allowsSelection = false
     }
-
     
-    fileprivate func setupViews(){
+    fileprivate func setupViews() {
         view.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 353)
         view.backgroundColor = .white
-
 
         view.addSubview(cancelButton)
         NSLayoutConstraint.activate([
@@ -111,7 +116,6 @@ class FilterViewController: UIViewController, UICollectionViewDelegate, UICollec
             filterViewMenu.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -20),
             filterViewMenu.heightAnchor.constraint(equalToConstant: 50)
             ])
-        
         view.addSubview(menuSlider)
         menuSlideAnchor = menuSlider.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0)
         NSLayoutConstraint.activate([
@@ -134,16 +138,16 @@ class FilterViewController: UIViewController, UICollectionViewDelegate, UICollec
             doneButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0),
             doneButton.heightAnchor.constraint(equalToConstant: 43.5)
             ])
-        
-        
     }
-    
+}
+
+extension FilterViewController: UICollectionViewDelegate, UICollectionViewDataSource ,UICollectionViewDelegateFlowLayout {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return 3
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -151,9 +155,10 @@ class FilterViewController: UIViewController, UICollectionViewDelegate, UICollec
         let cell1 = collectionView.dequeueReusableCell(withReuseIdentifier: "Sort", for: indexPath) as! FilterViewCell1
         let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "Price", for: indexPath) as! FilterViewCell2
         let cell3 = collectionView.dequeueReusableCell(withReuseIdentifier: "Dietary", for: indexPath) as! FilterViewCell3
-        if indexPath.row == 0 {
+        if indexPath.section == 0 {
+            cell1.delegate = self
             return cell1
-        } else if indexPath.row == 1 {
+        } else if indexPath.section == 1 {
             return cell2
         } else {
             return cell3
@@ -173,21 +178,29 @@ class FilterViewController: UIViewController, UICollectionViewDelegate, UICollec
         let itemAtIndex = Int(x/(view.frame.width))
         filterViewMenu.collectionView.selectItem(at: IndexPath.init(item: itemAtIndex, section: 0), animated: true, scrollPosition: UICollectionViewScrollPosition.centeredHorizontally)
     }
-
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let x = scrollView.contentOffset.x
         menuSlideAnchor?.constant = x/3
     }
     
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        // print("begin dragging")
-        // collectionView.reloadData()
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("Section Selected: \(indexPath.section)")
+        print("Row Selected: \(indexPath.row)")
     }
 }
 
 extension FilterViewController: FilterViewMenuDelegate {
     func selectTheMenu(index: Int) {
-        self.collectionView.selectItem(at: IndexPath(item: index, section: 0), animated: true, scrollPosition: UICollectionViewScrollPosition.centeredHorizontally)
+        self.collectionView.selectItem(at: IndexPath(item: 0, section: index), animated: true, scrollPosition: UICollectionViewScrollPosition.centeredHorizontally)
+    }
+}
+
+extension FilterViewController: FilterSelectDelegate {
+    func selected(section: Int, row: Int) {
+        print("fitlerView now has the number")
+        print(section)
+        print(row)
     }
 }
 

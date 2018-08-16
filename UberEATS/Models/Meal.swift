@@ -41,6 +41,7 @@ struct Meal {
         return filteredMeals
     }
     static func loadDemoMeals() -> [Meal] {
+        
         // Recommended
         let m1 = Meal(name: "Gus's Favorite Taco",
                       description: "Fired chicken, bacon, Cheddar cheese, pico de gallo, and chipotle ranch.",
@@ -62,6 +63,7 @@ struct Meal {
                       description: "Choice of Chicken, Pork or Beef with rice, beans, Cheddar cheese, guacamole, and pico de gallo",
                       type: "Recommended",
                       price: 12.15)
+//        return [m1, m2, m3, m4, m5]
         // Beef Tacos
         let m6 = Meal(name: "Old No 7 Taco",
                       description: "Seared steak, jalapenos, onions, tomatoes, cilantro, queso blanco, and chipotle ranch",

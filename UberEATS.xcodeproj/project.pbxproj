@@ -54,6 +54,8 @@
 		C186A3ED21220F9C000628C9 /* constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C186A3EC21220F9C000628C9 /* constants.swift */; };
 		C1BB07CC210A06450004EDE0 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BB07CB210A06450004EDE0 /* DetailViewController.swift */; };
 		C1BB07CE210BC5BD0004EDE0 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BB07CD210BC5BD0004EDE0 /* HeaderView.swift */; };
+		C1DF4B5F2123BA9D00CAC0C1 /* HorizontalViewCellCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DF4B5E2123BA9D00CAC0C1 /* HorizontalViewCellCell.swift */; };
+		C1DF4B612124591700CAC0C1 /* UICollectionViewFlowLayout+snap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DF4B602124591700CAC0C1 /* UICollectionViewFlowLayout+snap.swift */; };
 		C1E82268210CB8770078525C /* DetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E82267210CB8770078525C /* DetailCollectionViewCell.swift */; };
 		C1E8226A210CB89C0078525C /* DetailHeaderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E82269210CB89C0078525C /* DetailHeaderCollectionViewCell.swift */; };
 		C1E8226C210CBC0A0078525C /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E8226B210CBC0A0078525C /* InfoViewController.swift */; };
@@ -62,11 +64,8 @@
 		C1E82272210D05270078525C /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E82271210D05270078525C /* Meal.swift */; };
 		C1E82274210D33300078525C /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E82273210D33300078525C /* SectionHeaderView.swift */; };
 		C1E82276210D3CF30078525C /* SectionTitleIndexView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1E82275210D3CF30078525C /* SectionTitleIndexView.swift */; };
-		C1EBB0C521061DDC007B68B2 /* SortCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EBB0C421061DDC007B68B2 /* SortCellView.swift */; };
-		C1EBB0C921064773007B68B2 /* PriceCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EBB0C821064773007B68B2 /* PriceCellView.swift */; };
 		C1EBB0CB21065947007B68B2 /* FilterViewCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EBB0CA21065947007B68B2 /* FilterViewCell2.swift */; };
 		C1EBB0CD21065B93007B68B2 /* FilterViewCell3.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EBB0CC21065B93007B68B2 /* FilterViewCell3.swift */; };
-		C1EBB0CF21065C2E007B68B2 /* DietaryCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EBB0CE21065C2E007B68B2 /* DietaryCellView.swift */; };
 		C1EBB0D121074BB0007B68B2 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EBB0D021074BB0007B68B2 /* LocationViewController.swift */; };
 		C1EBB0D32107AC75007B68B2 /* NewAddressCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EBB0D22107AC75007B68B2 /* NewAddressCollectionViewCell.swift */; };
 		C1EBB0D52107ACAA007B68B2 /* AddressCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EBB0D42107ACAA007B68B2 /* AddressCollectionViewCell.swift */; };
@@ -151,6 +150,8 @@
 		C186A3EC21220F9C000628C9 /* constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = constants.swift; sourceTree = "<group>"; };
 		C1BB07CB210A06450004EDE0 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		C1BB07CD210BC5BD0004EDE0 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		C1DF4B5E2123BA9D00CAC0C1 /* HorizontalViewCellCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalViewCellCell.swift; sourceTree = "<group>"; };
+		C1DF4B602124591700CAC0C1 /* UICollectionViewFlowLayout+snap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewFlowLayout+snap.swift"; sourceTree = "<group>"; };
 		C1E82267210CB8770078525C /* DetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		C1E82269210CB89C0078525C /* DetailHeaderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHeaderCollectionViewCell.swift; sourceTree = "<group>"; };
 		C1E8226B210CBC0A0078525C /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
@@ -159,11 +160,8 @@
 		C1E82271210D05270078525C /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
 		C1E82273210D33300078525C /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		C1E82275210D3CF30078525C /* SectionTitleIndexView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTitleIndexView.swift; sourceTree = "<group>"; };
-		C1EBB0C421061DDC007B68B2 /* SortCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortCellView.swift; sourceTree = "<group>"; };
-		C1EBB0C821064773007B68B2 /* PriceCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceCellView.swift; sourceTree = "<group>"; };
 		C1EBB0CA21065947007B68B2 /* FilterViewCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewCell2.swift; sourceTree = "<group>"; };
 		C1EBB0CC21065B93007B68B2 /* FilterViewCell3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewCell3.swift; sourceTree = "<group>"; };
-		C1EBB0CE21065C2E007B68B2 /* DietaryCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DietaryCellView.swift; sourceTree = "<group>"; };
 		C1EBB0D021074BB0007B68B2 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationViewController.swift; path = UberEATS/Controllers/Home/Location/LocationViewController.swift; sourceTree = SOURCE_ROOT; };
 		C1EBB0D22107AC75007B68B2 /* NewAddressCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewAddressCollectionViewCell.swift; path = UberEATS/Views/NewAddressCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
 		C1EBB0D42107ACAA007B68B2 /* AddressCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddressCollectionViewCell.swift; path = UberEATS/Views/AddressCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
@@ -294,6 +292,7 @@
 				A757F0371FCA2DFC00240CC9 /* HomeViewController.swift */,
 				A757F0451FCA318300240CC9 /* HomeViewCell.swift */,
 				A757F0491FCA346C00240CC9 /* HorizontalViewCell.swift */,
+				C1DF4B5E2123BA9D00CAC0C1 /* HorizontalViewCellCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -332,9 +331,6 @@
 				A757F05B1FD1141000240CC9 /* FilterViewCell1.swift */,
 				C1EBB0CA21065947007B68B2 /* FilterViewCell2.swift */,
 				C1EBB0CC21065B93007B68B2 /* FilterViewCell3.swift */,
-				C1EBB0C421061DDC007B68B2 /* SortCellView.swift */,
-				C1EBB0C821064773007B68B2 /* PriceCellView.swift */,
-				C1EBB0CE21065C2E007B68B2 /* DietaryCellView.swift */,
 			);
 			path = Filter;
 			sourceTree = "<group>";
@@ -403,6 +399,7 @@
 			children = (
 				C186A3E22122019F000628C9 /* UIImageView+load.swift */,
 				C186A3E4212201E5000628C9 /* UIView+anchor.swift */,
+				C1DF4B602124591700CAC0C1 /* UICollectionViewFlowLayout+snap.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -663,10 +660,8 @@
 				C1E82268210CB8770078525C /* DetailCollectionViewCell.swift in Sources */,
 				C1EBB0E12108CC74007B68B2 /* DataController.swift in Sources */,
 				A757F03E1FCA2ECE00240CC9 /* OrderViewController.swift in Sources */,
-				C1EBB0CF21065C2E007B68B2 /* DietaryCellView.swift in Sources */,
 				C12839C121150D41008545F7 /* CartViewController.swift in Sources */,
 				C12839BB2114013A008545F7 /* DismissAnimator.swift in Sources */,
-				C1EBB0C921064773007B68B2 /* PriceCellView.swift in Sources */,
 				C1BB07CC210A06450004EDE0 /* DetailViewController.swift in Sources */,
 				C1EBB0D72107ACD1007B68B2 /* WhenCollectionViewCell.swift in Sources */,
 				A757F0361FCA2D8500240CC9 /* TabBarController.swift in Sources */,
@@ -690,7 +685,6 @@
 				A757F0041FCA2CD000240CC9 /* AppDelegate.swift in Sources */,
 				C186A3E5212201E5000628C9 /* UIView+anchor.swift in Sources */,
 				C1EBB0D32107AC75007B68B2 /* NewAddressCollectionViewCell.swift in Sources */,
-				C1EBB0C521061DDC007B68B2 /* SortCellView.swift in Sources */,
 				C1EBB0D52107ACAA007B68B2 /* AddressCollectionViewCell.swift in Sources */,
 				C186A3ED21220F9C000628C9 /* constants.swift in Sources */,
 				C12839BD21140DF1008545F7 /* PresentAnimator.swift in Sources */,
@@ -702,6 +696,8 @@
 				C1E82274210D33300078525C /* SectionHeaderView.swift in Sources */,
 				C12839C72118BC93008545F7 /* MealItemTitleCell.swift in Sources */,
 				C1EBB0E62108D5C9007B68B2 /* Business.swift in Sources */,
+				C1DF4B5F2123BA9D00CAC0C1 /* HorizontalViewCellCell.swift in Sources */,
+				C1DF4B612124591700CAC0C1 /* UICollectionViewFlowLayout+snap.swift in Sources */,
 				C1EBB0CB21065947007B68B2 /* FilterViewCell2.swift in Sources */,
 				C127D3AC210D577F00DBC43C /* SectionTitleIndexController.swift in Sources */,
 				C128394A210F6045008545F7 /* InfoTableView.swift in Sources */,

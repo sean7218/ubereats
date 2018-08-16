@@ -52,14 +52,14 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     
     @objc func showFilterView() {
         self.view.addSubview(self.grayBackgroundView)
-
+        let grayBackgroundViewTopAnchor = self.grayBackgroundView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: -self.view.frame.height)
         NSLayoutConstraint.activate([
-            self.grayBackgroundView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            grayBackgroundViewTopAnchor,
             self.grayBackgroundView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
             self.grayBackgroundView.widthAnchor.constraint(equalToConstant: self.view.frame.width),
             self.grayBackgroundView.heightAnchor.constraint(equalToConstant: self.view.frame.height)
             ])
-        
+
         self.view.addSubview(filterViewController.view)
         self.addChildViewController(filterViewController)
         filterViewController.didMove(toParentViewController: self)
@@ -67,7 +67,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         UIView.animate(withDuration: 0.5, delay: 0, options: UIViewAnimationOptions.curveEaseInOut, animations: {
             self.filterViewController.view.frame.origin.y = 0
         }) { (isCompleted: Bool) in
-            print("FilterViewShowed Completed")
+            grayBackgroundViewTopAnchor.constant = 0
         }
     }
     
@@ -79,7 +79,6 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
             self.grayBackgroundView.removeFromSuperview()
         }) { (isCompleted: Bool) in
             if (isCompleted) {
-                
                 self.filterViewController.view.removeFromSuperview()
             }
         }
@@ -94,29 +93,34 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        APIClient.getBusinesses(completion: { (result) in
-            self.bizs = APIClient.parseBusinesses(result: result)
-            self.collectionView?.reloadData()
-        })
+
+//        DataController.sharedInstance.yelpBusinesses(term: "pizza", lat: 41.48446, long: -81.590579) { (result) in
+//            self.bizs = APIClient.parseBusinesses(result: result)
+//            self.collectionView?.reloadData()
+//        }
         
         setupCollectionView()
+        setupNavigationBar()
         setupViews()
     }
     
     func setupCollectionView()
     {
+        collectionView!.register(HorizontalViewCell.self, forCellWithReuseIdentifier: "HorizontalViewCell")
         collectionView!.register(HomeViewCell.self, forCellWithReuseIdentifier: "HomeViewCell")
-        collectionView!.register(HorizontalViewCell.self, forCellWithReuseIdentifier: "HoriCell")
+        collectionView!.backgroundColor = UIColor(red: 240/255, green: 237/255, blue: 240/255, alpha: 1)
         collectionView!.translatesAutoresizingMaskIntoConstraints = false
+        collectionView!.contentInsetAdjustmentBehavior = .never
         NSLayoutConstraint.activate([
-            collectionView!.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 0),
+            collectionView!.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0),
             collectionView!.leftAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leftAnchor),
             collectionView!.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor),
-            collectionView!.bottomAnchor.constraint(equalTo: self.view.safeBottomAnchor, constant: 0)
+            collectionView!.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
             ])
-        collectionView!.backgroundColor = UIColor(red: 240/255, green: 237/255, blue: 240/255, alpha: 1)
-        collectionView!.contentInsetAdjustmentBehavior = .never
+    }
+    
+    func setupNavigationBar() {
+        
     }
     
     func setupViews(){
@@ -144,18 +148,18 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         if section == 0 {
             return 1
         } else {
-            return bizs.count
+            return 4
         }
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if (indexPath.section == 0) {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HoriCell", for: indexPath)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HorizontalViewCell", for: indexPath)
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeViewCell", for: indexPath) as! HomeViewCell
-            cell.biz = bizs[indexPath.row]
+            //cell.biz = bizs[indexPath.row]
             return cell
         }
 
@@ -180,7 +184,6 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width, height: 300)
     }
-
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         

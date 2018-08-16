@@ -10,7 +10,7 @@ import Alamofire
 
 enum APIRouter: URLRequestConvertible {
     
-    case business
+    case business(term: String, lat: Double, long: Double)
     case login(email:String, password:String)
     
     // MARK: - HTTPMethod
@@ -38,18 +38,11 @@ enum APIRouter: URLRequestConvertible {
         switch self {
         case .login(let email, let password):
             return [K.APIParameterKey.email: email, K.APIParameterKey.password: password]
-        case .business:
-            return ["key": "pizza", "lat": 41.488055, "long": -81.589517]
-        }
-    }
-    
-    // MARK: - Headers
-    private var headers: HTTPHeaders? {
-        switch self {
-        case .login(email: _, password: _):
-            return nil
-        case .business:
-            return ["x-access-token": K.bear.key]
+        case .business(let term, let lat, let long):
+            print(term)
+            print(lat)
+            print(long)
+            return ["term": term, "lat": lat, "long": long]
         }
     }
     
@@ -65,7 +58,7 @@ enum APIRouter: URLRequestConvertible {
         // Common Headers
         urlRequest.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.acceptType.rawValue)
         urlRequest.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
-        urlRequest.setValue(K.bear.key, forHTTPHeaderField: "x-access-token")
+        urlRequest.setValue(KEYS.ACCESS_BEAR_KEY, forHTTPHeaderField: "x-access-token")
         
         // Parameters
         if let parameters = parameters {
