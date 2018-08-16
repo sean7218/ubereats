@@ -10,5 +10,7 @@
 
 protocol FilterViewMenuDelegate {
     func selectTheMenu(index: Int)
+    func handleButtonAnimation()
+    func handleButtonAnimationBack()
 }
 

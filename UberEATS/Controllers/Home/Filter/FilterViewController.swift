@@ -40,6 +40,7 @@ class FilterViewController: UIViewController {
         let width = self.view.frame.width/3
         return width
     }()
+    
     let menuSlider: UIView = {
         let view = UIView()
         view.backgroundColor = .lightGray

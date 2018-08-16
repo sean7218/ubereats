@@ -81,6 +81,11 @@ class FilterViewMenu: UIView, UICollectionViewDelegate, UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         delegate?.selectTheMenu(index: indexPath.row)
+        if (indexPath.row == 0) || (indexPath.row == 2){
+            delegate?.handleButtonAnimationBack()
+        } else {
+            delegate?.handleButtonAnimation()
+        }
     }
     
     lazy var collectionView: UICollectionView = {
