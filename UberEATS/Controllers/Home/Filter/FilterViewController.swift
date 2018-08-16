@@ -10,7 +10,9 @@ import UIKit
 
 class FilterViewController: UIViewController {
     
-
+    var doneButtonTopAnchor: NSLayoutConstraint?
+    var delegate: FilterViewDelegate?
+    
     lazy var cancelButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -24,7 +26,6 @@ class FilterViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("RESET", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
-        
         return button
     }()
     
@@ -58,22 +59,20 @@ class FilterViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("DONE", for: .normal)
         button.tintColor = UIColor.black
-        button.backgroundColor = UIColor.lightGray
+        button.backgroundColor = UIColor.white
+        button.layer.borderWidth = 0.8
+        button.layer.borderColor = UIColor(red: 127/255, green: 127/255, blue: 127/255, alpha: 0.6).cgColor
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(closeFilterView), for: .touchUpInside)
-
         return button
     }()
 
-    var delegate: FilterViewDelegate?
-    
     @objc func closeFilterView(){
         delegate?.closeFilterView()
     }
     
     override func viewDidLoad() {
-        
         setupCollectionView()
         setupViews()
     }
@@ -93,7 +92,8 @@ class FilterViewController: UIViewController {
     
     fileprivate func setupViews() {
         view.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 353)
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(white: 1, alpha: 1)
+        // view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(closeFilterView)))
 
         view.addSubview(cancelButton)
         NSLayoutConstraint.activate([
@@ -132,8 +132,10 @@ class FilterViewController: UIViewController {
             collectionView.heightAnchor.constraint(equalToConstant: 200)
             ])
         view.addSubview(doneButton)
+        doneButtonTopAnchor = doneButton.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 0)
+        doneButtonTopAnchor?.constant = -30
         NSLayoutConstraint.activate([
-            doneButton.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 0),
+            doneButtonTopAnchor!,
             doneButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 0),
             doneButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0),
             doneButton.heightAnchor.constraint(equalToConstant: 43.5)
@@ -183,7 +185,37 @@ extension FilterViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let x = scrollView.contentOffset.x
         menuSlideAnchor?.constant = x/3
     }
+    @objc func handleButtonAnimation() {
+        print("handleButtonAnimation")
+        UIView.animate(withDuration: 0.2, animations: {
+            self.doneButtonTopAnchor?.constant = 0
+            self.view.layoutIfNeeded()
+        }) { (finished) in
+            //
+        }
+    }
     
+    func handleButtonAnimationBack() {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.doneButtonTopAnchor?.constant = -30
+            self.view.layoutIfNeeded()
+        }) { (finished) in
+            //
+        }
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if scrollView == self.collectionView {
+            let pos = scrollView.contentOffset.x
+            let width = self.collectionView.frame.width
+            print("did end dragging：\(pos) and width: \(width)")
+            if (pos >= width) && (pos < width*2){
+                self.handleButtonAnimation()
+            } else {
+                self.handleButtonAnimationBack()
+            }
+        }
+    }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("Section Selected: \(indexPath.section)")
         print("Row Selected: \(indexPath.row)")
@@ -192,12 +224,14 @@ extension FilterViewController: UICollectionViewDelegate, UICollectionViewDataSo
 
 extension FilterViewController: FilterViewMenuDelegate {
     func selectTheMenu(index: Int) {
-        self.collectionView.selectItem(at: IndexPath(item: 0, section: index), animated: true, scrollPosition: UICollectionViewScrollPosition.centeredHorizontally)
+        let pos = UICollectionViewScrollPosition.centeredHorizontally
+        self.collectionView.scrollToItem(at: IndexPath(item: 0, section: index), at: pos, animated: true)
     }
 }
 
 extension FilterViewController: FilterSelectDelegate {
     func selected(section: Int, row: Int) {
+        // Todo: get the selected cell to the FilterViewController and pass it back to the homeViewController
         print("fitlerView now has the number")
         print(section)
         print(row)

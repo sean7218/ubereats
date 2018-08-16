@@ -12,18 +12,19 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
 
     lazy var bizs: [Business] = []
     
+    
+    
     var item: HomeViewCell!
     var itemFrame: CGRect!
-    
     let interactor = Interactor()
     var selectedFrame: CGRect?
     var selectedBusiness: Business?
     var navAddressTitle: String = "2590 N Moreland Blvd"
     
     lazy var grayBackgroundView: UIView = {
-        let view = UIView()
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(white: 1, alpha: 0.7)
+        view.backgroundColor = UIColor(red: 127/255, green: 127/255, blue: 127/255, alpha: 0.75)
         view.isUserInteractionEnabled = true
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(closeFilterView)))
         return view
@@ -46,41 +47,24 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     
     lazy var filterViewController: FilterViewController = {
         let vc = FilterViewController()
-        vc.delegate = self
+        vc.transitioningDelegate = self
         return vc
     }()
     
     @objc func showFilterView() {
-        self.view.addSubview(self.grayBackgroundView)
-        let grayBackgroundViewTopAnchor = self.grayBackgroundView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: -self.view.frame.height)
-        NSLayoutConstraint.activate([
-            grayBackgroundViewTopAnchor,
-            self.grayBackgroundView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
-            self.grayBackgroundView.widthAnchor.constraint(equalToConstant: self.view.frame.width),
-            self.grayBackgroundView.heightAnchor.constraint(equalToConstant: self.view.frame.height)
-            ])
 
-        self.view.addSubview(filterViewController.view)
-        self.addChildViewController(filterViewController)
-        filterViewController.didMove(toParentViewController: self)
-        self.filterViewController.view.frame.origin.y = -400
-        UIView.animate(withDuration: 0.5, delay: 0, options: UIViewAnimationOptions.curveEaseInOut, animations: {
-            self.filterViewController.view.frame.origin.y = 0
-        }) { (isCompleted: Bool) in
-            grayBackgroundViewTopAnchor.constant = 0
+        filterViewController.modalPresentationStyle = .overCurrentContext
+        filterViewController.delegate = self
+        present(filterViewController, animated: true) {
+            self.view.addSubview(self.grayBackgroundView)
+            
         }
     }
     
-    
     @objc func closeFilterView() {
-        print("closing filterview")
-        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: UIViewAnimationOptions.curveLinear, animations: {
-            self.filterViewController.view.frame.origin.y = -500
+        print("closeFilterView")
+        self.filterViewController.dismiss(animated: true) {
             self.grayBackgroundView.removeFromSuperview()
-        }) { (isCompleted: Bool) in
-            if (isCompleted) {
-                self.filterViewController.view.removeFromSuperview()
-            }
         }
     }
     
@@ -235,10 +219,15 @@ extension HomeViewController: UINavigationControllerDelegate {
 extension HomeViewController: UIViewControllerTransitioningDelegate {
     
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        
+        if (presented == self.filterViewController) {
+            return PresentAnimator2()
+        }
         return PresentAnimator(item: item, itemFrame: itemFrame)
     }
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        if (dismissed == self.filterViewController) {
+            return DismissAnimator2()
+        }
         return DismissAnimator()
     }
     
