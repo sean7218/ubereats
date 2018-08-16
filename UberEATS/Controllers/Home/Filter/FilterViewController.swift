@@ -186,22 +186,18 @@ extension FilterViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let x = scrollView.contentOffset.x
         menuSlideAnchor?.constant = x/3
     }
-    @objc func handleButtonAnimation() {
-        print("handleButtonAnimation")
-        UIView.animate(withDuration: 0.2, animations: {
+    
+    func handleButtonAnimation() {
+        UIView.animate(withDuration: 0.2) {
             self.doneButtonTopAnchor?.constant = 0
             self.view.layoutIfNeeded()
-        }) { (finished) in
-            //
         }
     }
     
     func handleButtonAnimationBack() {
-        UIView.animate(withDuration: 0.2, animations: {
+        UIView.animate(withDuration: 0.2) {
             self.doneButtonTopAnchor?.constant = -30
             self.view.layoutIfNeeded()
-        }) { (finished) in
-            //
         }
     }
     
@@ -217,10 +213,6 @@ extension FilterViewController: UICollectionViewDelegate, UICollectionViewDataSo
             }
         }
     }
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Section Selected: \(indexPath.section)")
-        print("Row Selected: \(indexPath.row)")
-    }
 }
 
 extension FilterViewController: FilterViewMenuDelegate {
@@ -233,9 +225,6 @@ extension FilterViewController: FilterViewMenuDelegate {
 extension FilterViewController: FilterSelectDelegate {
     func selected(section: Int, row: Int) {
         // Todo: get the selected cell to the FilterViewController and pass it back to the homeViewController
-        print("fitlerView now has the number")
-        print(section)
-        print(row)
     }
 }
 

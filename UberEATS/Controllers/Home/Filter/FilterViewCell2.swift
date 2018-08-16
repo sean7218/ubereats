@@ -8,86 +8,6 @@
 
 import UIKit
 
-// Credit to Peter Kreinz for this one (see link in tutorial)
-extension UIImage {
-    func alpha(_ value:CGFloat)->UIImage?
-    {
-        UIGraphicsBeginImageContextWithOptions(size, false, scale)
-        draw(at: CGPoint.zero, blendMode: .normal, alpha: value)
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return newImage
-    }
-}
-
-class DollarButton: UIButton {
-    
-    //    let button = UIButton(type: .custom)
-    //    button.translatesAutoresizingMaskIntoConstraints = false
-    //    button.setImage(#imageLiteral(resourceName: "button-filter").withRenderingMode(.alwaysTemplate), for: .normal)
-    //    button.backgroundColor = UIColor(red: 240/255, green: 237/255, blue: 240/255, alpha: 1)
-    //    button.imageView?.contentMode = .scaleAspectFit
-    //    button.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5)
-    //    button.tintColor = .black
-    //    button.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-    //    button.clipsToBounds = true
-    //    button.layer.cornerRadius = button.layer.frame.height/2
-    //    button.addTarget(self, action: #selector(showFilterView), for: .touchUpInside)
-    
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configure()
-    }
-    convenience init(frame: CGRect, image: UIImage) {
-        self.init(frame: frame)
-        self.setImage(image, for: UIControlState.normal)
-        let imageHighlight = image.alpha(0.3)?.withRenderingMode(.alwaysTemplate)
-        self.setImage(imageHighlight, for: UIControlState.highlighted)
-        configure()
-    }
-    
-    convenience init(frame: CGRect, title: String) {
-        self.init(frame: frame)
-        self.setTitle(title, for: UIControlState.normal)
-        
-
-        configure()
-    }
-    
-    func configure() {
-        self.imageView?.contentMode = .scaleAspectFit
-        self.contentHorizontalAlignment = .center
-        self.contentVerticalAlignment = .center
-        self.layer.borderColor = UIColor.black.cgColor
-        self.layer.borderWidth = 1
-        self.clipsToBounds = true
-        self.layer.cornerRadius = self.layer.frame.height/2
-        self.setTitleColor(UIColor.black, for: UIControlState.normal)
-    }
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    // Configure button when bounds change since image inset has dependency on bounds
-    override public var bounds: CGRect{
-        didSet{
-            configure()
-        }
-    }
-    override var isSelected: Bool {
-        didSet {
-            print("isSelected: \(isSelected)")
-            if (isSelected) {
-                self.backgroundColor = .black
-                self.setTitleColor(UIColor.white, for: UIControlState.selected)
-            } else {
-                self.backgroundColor = .white
-                self.setTitleColor(UIColor.black, for: UIControlState.normal)
-            }
-        }
-    }
-}
 class FilterViewCell2: UICollectionViewCell {
     
     var priceRangeLabel: UILabel = {
@@ -100,7 +20,6 @@ class FilterViewCell2: UICollectionViewCell {
     
     @objc func touchedDollar(_ sender:UIButton){
         sender.isSelected = (sender.isSelected == true) ? false : true
-        print("DollorButton Pressed")
     }
     lazy var priceRangeView: UIStackView = {
         let button1 = DollarButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50), title: "$")
