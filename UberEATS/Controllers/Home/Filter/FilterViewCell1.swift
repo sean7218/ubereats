@@ -12,7 +12,6 @@ class FilterViewCell1: UICollectionViewCell {
     
     let sortOptions: [String] = ["Recommended", "Most popular", "Rating", "Delivery time"];
     let sortImages:[String] = ["filter_recommended", "filter_popular", "filter_rating", "filter_delivery"];
-    
     var delegate: FilterSelectDelegate?
     
     lazy var tableView: UITableView = {
@@ -51,24 +50,28 @@ class FilterViewCell1: UICollectionViewCell {
 }
 
 extension FilterViewCell1: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FilterTableCell", for: indexPath) as! FilterTableCell
         cell.tl.text = sortOptions[indexPath.row]
         cell.iv.image = UIImage(imageLiteralResourceName: sortImages[indexPath.row])
         return cell
     }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
     }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 40
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegate?.selected(section: 0, row: indexPath.row)
-        print("FilterViewCell1 selected: \(indexPath.row)")
     }
 }
 

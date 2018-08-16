@@ -72,7 +72,6 @@ class PresentAnimator : NSObject, UIViewControllerAnimatedTransitioning {
                 testImageView.frame = CGRect(x: 0, y: 0, width: self.itemFrame.width+1, height: heightAspect)
                 headerView.frame = CGRect(x: 30, y: 233.6, width: 315, height: 130)
                 fromVC.view.alpha = 1
-//                toVC.view.alpha = 1
                 whiteBackground.alpha = 1
             },
             completion: { _ in

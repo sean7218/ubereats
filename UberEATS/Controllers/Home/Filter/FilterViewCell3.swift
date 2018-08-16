@@ -50,6 +50,7 @@ class FilterViewCell3: UICollectionViewCell {
 }
 
 extension FilterViewCell3: UITableViewDelegate, UITableViewDataSource {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -57,12 +58,14 @@ extension FilterViewCell3: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FilterTableCell", for: indexPath) as! FilterTableCell
         cell.tl.text = dietOptions[indexPath.row]
         cell.iv.image = UIImage(imageLiteralResourceName: dietImages[indexPath.row])
         return cell
     }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 40
     }
