@@ -8,91 +8,22 @@
 
 import UIKit
 
-class FilterViewCell1: UICollectionViewCell, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+class FilterViewCell1: UICollectionViewCell {
     
-    lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        let cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        cv.allowsMultipleSelection = true
-        cv.translatesAutoresizingMaskIntoConstraints = false
-        cv.dataSource = self
-        cv.delegate = self
-        cv.register(SortCell.self, forCellWithReuseIdentifier: "SortCell")
-        return cv
-    }()
-
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupViews()
-    }
+    let sortOptions: [String] = ["Recommended", "Most popular", "Rating", "Delivery time"];
+    let sortImages:[String] = ["filter_recommended", "filter_popular", "filter_rating", "filter_delivery"];
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    fileprivate func setupViews(){
-        addSubview(collectionView)
-        NSLayoutConstraint.activate([
-            collectionView.leftAnchor.constraint(equalTo: leftAnchor, constant: 0),
-            collectionView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            collectionView.widthAnchor.constraint(equalToConstant: frame.width),
-            collectionView.heightAnchor.constraint(equalToConstant: frame.height)
-        ])
-    }
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let sortCell = collectionView.dequeueReusableCell(withReuseIdentifier: "SortCell", for: indexPath) as! SortCell
-        return sortCell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 5
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: frame.width, height: frame.height)
-    }
-}
-
-class SortCell: UICollectionViewCell,  UITableViewDelegate,  UITableViewDataSource {
+    var delegate: FilterSelectDelegate?
     
     lazy var tableView: UITableView = {
-       let tableView = UITableView(frame: CGRect.zero)
+       let tableView = UITableView(frame: .zero)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
     
-    let sortOptions: [String] = ["Recommended", "Most popular", "Rating"];
-    let sortImages:[String] = ["rec.png", "pop.png", "rate.png"];
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SortCellViewCell", for: indexPath) as! SortCellViewCell
-        cell.nameLabel.text = sortOptions[indexPath.row];
-        cell.sortImageView.image = UIImage(named: sortImages[indexPath.row])
-        return cell
-    }
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        tableView.register(SortCellViewCell.self, forCellReuseIdentifier: "SortCellViewCell")
-        tableView.isScrollEnabled = false
-        tableView.separatorStyle = UITableViewCellSeparatorStyle.none
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.rowHeight = 150 / 3
-        tableView.allowsMultipleSelection = false
+        setupTableView()
         setupViews()
     }
     
@@ -100,13 +31,90 @@ class SortCell: UICollectionViewCell,  UITableViewDelegate,  UITableViewDataSour
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupViews(){
+    fileprivate func setupTableView(){
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(FilterTableCell.self, forCellReuseIdentifier: "FilterTableCell")
+        tableView.separatorColor = UIColor.white
+        tableView.isScrollEnabled = false
+    }
+    
+    fileprivate func setupViews(){
         addSubview(tableView)
         NSLayoutConstraint.activate([
-            tableView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0),
-            tableView.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0),
-            tableView.widthAnchor.constraint(equalTo: widthAnchor),
-            tableView.heightAnchor.constraint(equalTo: heightAnchor)
+            tableView.topAnchor.constraint(equalTo: topAnchor),
+            tableView.leftAnchor.constraint(equalTo: leftAnchor, constant: 0),
+            tableView.rightAnchor.constraint(equalTo: rightAnchor),
+            tableView.heightAnchor.constraint(equalToConstant: frame.height)
+        ])
+    }
+}
+
+extension FilterViewCell1: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FilterTableCell", for: indexPath) as! FilterTableCell
+        cell.tl.text = sortOptions[indexPath.row]
+        cell.iv.image = UIImage(imageLiteralResourceName: sortImages[indexPath.row])
+        return cell
+    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 4
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 40
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.selected(section: 0, row: indexPath.row)
+        print("FilterViewCell1 selected: \(indexPath.row)")
+    }
+}
+
+protocol FilterSelectDelegate {
+    func selected(section: Int, row: Int) -> Void
+}
+
+class FilterTableCell: UITableViewCell {
+    
+    var iv: UIImageView = {
+        let iv = UIImageView()
+        iv.contentMode = .scaleAspectFit
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        return iv
+    }()
+    
+    var tl: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupView()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setupView() {
+        addSubview(iv)
+        NSLayoutConstraint.activate([
+            iv.centerYAnchor.constraint(equalTo: centerYAnchor),
+            iv.leftAnchor.constraint(equalTo: leftAnchor, constant: 10),
+            iv.widthAnchor.constraint(equalToConstant: 24),
+            iv.heightAnchor.constraint(equalToConstant: 24)
+            ])
+        addSubview(tl)
+        NSLayoutConstraint.activate([
+            tl.centerYAnchor.constraint(equalTo: centerYAnchor),
+            tl.leftAnchor.constraint(equalTo: iv.rightAnchor, constant: 10),
+            tl.rightAnchor.constraint(equalTo: rightAnchor, constant: -10),
+            tl.heightAnchor.constraint(equalToConstant: 24)
             ])
     }
 }

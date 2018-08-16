@@ -59,6 +59,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
             self.grayBackgroundView.widthAnchor.constraint(equalToConstant: self.view.frame.width),
             self.grayBackgroundView.heightAnchor.constraint(equalToConstant: self.view.frame.height)
             ])
+
         self.view.addSubview(filterViewController.view)
         self.addChildViewController(filterViewController)
         filterViewController.didMove(toParentViewController: self)

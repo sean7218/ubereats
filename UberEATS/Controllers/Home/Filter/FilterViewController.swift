@@ -10,6 +10,7 @@ import UIKit
 
 class FilterViewController: UIViewController {
     
+
     lazy var cancelButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -72,6 +73,7 @@ class FilterViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        
         setupCollectionView()
         setupViews()
     }
@@ -86,6 +88,7 @@ class FilterViewController: UIViewController {
         collectionView.register(FilterViewCell2.self, forCellWithReuseIdentifier: "Price")
         collectionView.register(FilterViewCell3.self, forCellWithReuseIdentifier: "Dietary")
         filterViewMenu.delegate = self
+        collectionView.allowsSelection = false
     }
     
     fileprivate func setupViews() {
@@ -153,6 +156,7 @@ extension FilterViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "Price", for: indexPath) as! FilterViewCell2
         let cell3 = collectionView.dequeueReusableCell(withReuseIdentifier: "Dietary", for: indexPath) as! FilterViewCell3
         if indexPath.section == 0 {
+            cell1.delegate = self
             return cell1
         } else if indexPath.section == 1 {
             return cell2
@@ -189,6 +193,14 @@ extension FilterViewController: UICollectionViewDelegate, UICollectionViewDataSo
 extension FilterViewController: FilterViewMenuDelegate {
     func selectTheMenu(index: Int) {
         self.collectionView.selectItem(at: IndexPath(item: 0, section: index), animated: true, scrollPosition: UICollectionViewScrollPosition.centeredHorizontally)
+    }
+}
+
+extension FilterViewController: FilterSelectDelegate {
+    func selected(section: Int, row: Int) {
+        print("fitlerView now has the number")
+        print(section)
+        print(row)
     }
 }
 

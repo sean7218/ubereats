@@ -8,86 +8,62 @@
 
 import UIKit
 
-class FilterViewCell3: UICollectionViewCell, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+class FilterViewCell3: UICollectionViewCell {
     
-    lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        let cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        cv.allowsMultipleSelection = false
-        cv.translatesAutoresizingMaskIntoConstraints = false
-        cv.dataSource = self
-        cv.delegate = self
-        cv.register(DietaryCell.self, forCellWithReuseIdentifier: "DietaryCell")
-        return cv
+    let dietOptions: [String] = ["Vegetarian", "Vegan", "Gluten-free", "Halal"];
+    let dietImages:[String] = ["filter_vegetarian", "filter_vegan", "filter_glutenfree", "filter_hala"];
+    
+    let tableView: UITableView = {
+        let table = UITableView(frame: .zero)
+        table.translatesAutoresizingMaskIntoConstraints = false
+        table.isScrollEnabled = false
+        let imgview = UIImageView()
+        return table
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setupTableView()
         setupViews()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setupTableView() {
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.register(FilterTableCell.self, forCellReuseIdentifier: "FilterTableCell")
+        self.tableView.separatorColor = .white
     }
     
     fileprivate func setupViews(){
-        addSubview(collectionView)
+        addSubview(tableView)
         NSLayoutConstraint.activate([
-            collectionView.leftAnchor.constraint(equalTo: leftAnchor, constant: 0),
-            collectionView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            collectionView.widthAnchor.constraint(equalToConstant: frame.width),
-            collectionView.heightAnchor.constraint(equalToConstant: frame.height)
+            tableView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
+            tableView.leftAnchor.constraint(equalTo: leftAnchor, constant: 0),
+            tableView.rightAnchor.constraint(equalTo: rightAnchor, constant: 0),
+            tableView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0)
             ])
-    }
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let dietaryCell = collectionView.dequeueReusableCell(withReuseIdentifier: "DietaryCell", for: indexPath) as! DietaryCell
-        return dietaryCell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 5
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        return CGSize(width: frame.width, height: frame.height)
     }
 }
 
-class DietaryCell: UICollectionViewCell {
-    
-    let dietaryCellView: DietaryCellView = {
-        let view = DietaryCellView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupViews()
+extension FilterViewCell3: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 4
     }
-    
-    func setupViews(){
-        addSubview(dietaryCellView)
-        NSLayoutConstraint.activate([
-            dietaryCellView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0),
-            dietaryCellView.centerXAnchor.constraint(equalTo: centerXAnchor, constant: 0),
-            dietaryCellView.widthAnchor.constraint(equalTo: widthAnchor),
-            dietaryCellView.heightAnchor.constraint(equalTo: heightAnchor)
-            ])
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FilterTableCell", for: indexPath) as! FilterTableCell
+        cell.tl.text = dietOptions[indexPath.row]
+        cell.iv.image = UIImage(imageLiteralResourceName: dietImages[indexPath.row])
+        return cell
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 40
     }
 }
