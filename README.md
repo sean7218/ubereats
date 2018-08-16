@@ -54,7 +54,7 @@ curl -X GET http://localhost:8000/people
 ```
 
 # Home Page
-![show](https://s3.us-east-2.amazonaws.com/stacker-s3-img/iPhone-X_MockUp.gif)
+![show](https://github.com/sean7218/ubereats/blob/master/UberEATS/Design/iPhone-X_MockUp.gif)
 
 # Detail View
 ![detail-viewgif](https://user-images.githubusercontent.com/18454151/43378304-059d4f7e-9394-11e8-85b8-7aefb9896e65.gif)
