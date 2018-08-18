@@ -50,5 +50,11 @@ class TabBarController: UITabBarController {
             searchViewController,
             orderViewController,
             userViewController], animated: true)
+        testCoreData()
+    }
+    
+    func testCoreData(){
+        //DataController.sharedInstance.mockData()
+        DataController.sharedInstance.fetchDate()
     }
 }

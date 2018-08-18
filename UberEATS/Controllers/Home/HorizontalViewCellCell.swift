@@ -10,12 +10,7 @@ import UIKit
 
 
 class HorizontalViewCellCell: UICollectionViewCell {
-    
-    var biz: Business = Business() {
-        didSet {
-        }
-    }
-    
+       
     var imageView: UIImageView = {
         let iv = UIImageView(image: #imageLiteral(resourceName: "tennesse_taco_co"))
         iv.contentMode = .redraw

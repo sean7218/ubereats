@@ -10,7 +10,7 @@ import UIKit
 
 class HomeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, FilterViewDelegate {
 
-    lazy var bizs: [Business] = []
+    lazy var bizs: [Biz] = []
     
     
     
@@ -18,7 +18,6 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     var itemFrame: CGRect!
     let interactor = Interactor()
     var selectedFrame: CGRect?
-    var selectedBusiness: Business?
     var navAddressTitle: String = "2590 N Moreland Blvd"
     
     lazy var grayBackgroundView: UIView = {
