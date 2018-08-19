@@ -11,9 +11,6 @@ import UIKit
 class HomeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, FilterViewDelegate {
 
     lazy var bizs: [Biz] = []
-    
-    
-    
     var item: HomeViewCell!
     var itemFrame: CGRect!
     let interactor = Interactor()
@@ -76,12 +73,6 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        DataController.sharedInstance.yelpBusinesses(term: "pizza", lat: 41.48446, long: -81.590579) { (result) in
-//            self.bizs = APIClient.parseBusinesses(result: result)
-//            self.collectionView?.reloadData()
-//        }
-        
         setupCollectionView()
         setupNavigationBar()
         setupViews()

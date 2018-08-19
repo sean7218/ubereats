@@ -15,8 +15,7 @@ import CoreData
 class DataController: NSObject {
     
     static let sharedInstance = DataController()
-    
-    var fetchResultController: NSFetchedResultsController<Business>!
+
     var managedObjectContext: NSManagedObjectContext
     
     override init() {
@@ -34,7 +33,7 @@ class DataController: NSObject {
         
         let urls = FileManager.default.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask)
         let folderURL = urls[urls.endIndex - 1]
-        let storeURL = folderURL.appendingPathComponent("dataModel.sqlite")
+        let storeURL = folderURL.appendingPathComponent("business.sqlite")
         
         do {
             try psc.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: storeURL, options: nil)
@@ -42,47 +41,30 @@ class DataController: NSObject {
             print(error.localizedDescription)
             fatalError("Error while loading the persistant store with sqlite")
         }
-        
-    }
-    
-    func createFetchedResultsController(){
-        let fetchRequest: NSFetchRequest = NSFetchRequest<Business>(entityName: "Business")
-        let sortDescriptor: NSSortDescriptor = NSSortDescriptor(key: "name", ascending: true)
-        fetchRequest.sortDescriptors = [sortDescriptor]
-        fetchResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: DataController.sharedInstance.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
-        fetchResultController.delegate = self
-        do {
-            try fetchResultController.performFetch()
-        } catch let error as NSError{
-            print("Fetching Error: \(error.localizedDescription)")
-        }
-        
+
     }
     
     func mockData(){
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        let managedContext =  appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "Business", in: managedContext)!
-        let business = NSManagedObject(entity: entity, insertInto: managedContext)
+        let entity = NSEntityDescription.entity(forEntityName: "Business", in: managedObjectContext)!
+        let business = NSManagedObject(entity: entity, insertInto: managedObjectContext)
         business.setValue("On the Rise", forKey: "name")
         business.setValue("https://github.com/sean7218/ubereats", forKey: "url")
         business.setValue(1.3, forKey: "rating")
         business.setValue(200, forKey: "review_count")
         business.setValue("$$$$", forKey: "price")
-        
         do {
-            try managedContext.save()
+            try managedObjectContext.save()
             
         } catch let err as NSError {
             print(err.description)
         }
-        
     }
     
     func preloadData() {
-        
+        APIClient.sharedInstance.yelpBusinesses(term: "pizza", lat: 41.48446, long:  -81.590579) { (result) in
+            let busineses = APIClient.parseBusinesses(result: result)
+            print(busineses)
+        }
     }
     
     func deleteData() {
@@ -90,24 +72,18 @@ class DataController: NSObject {
     }
     
     func fetchDate() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        let managedContext =  appDelegate.persistentContainer.viewContext
-        
         let fetchRequest =  NSFetchRequest<NSManagedObject>(entityName: "Business")
 
         do {
-            let businesses =  try managedContext.fetch(fetchRequest)
+            let businesses =  try managedObjectContext.fetch(fetchRequest)
             print(businesses)
+            for item in businesses {
+                let biz = item as! Business
+                print(biz.name ?? "N/A")
+            }
+            
         } catch let err as NSError {
             print(err.description)
         }
     }
-}
-
-extension DataController: NSFetchedResultsControllerDelegate {
-
-    
-    
 }

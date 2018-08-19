@@ -54,7 +54,6 @@ class TabBarController: UITabBarController {
     }
     
     func testCoreData(){
-        //DataController.sharedInstance.mockData()
-        DataController.sharedInstance.fetchDate()
+
     }
 }

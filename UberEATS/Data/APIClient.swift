@@ -75,7 +75,8 @@ class APIClient {
         let params: Parameters = ["term": term, "lat": lat, "long": long]
         Alamofire.request("https://api.zxsean.com/yelp", method: .get, parameters: params, encoding: URLEncoding.default, headers: headers).responseJSON { response in
             if let _ = response.result.value {
-                print("yelpBusiness Called")
+                print("yelpBusiness Called with status code: ")
+                print(response.response?.statusCode ?? 0)
                 completion(response.result)
             } else {
                 print("No json from the yelp endpoint")

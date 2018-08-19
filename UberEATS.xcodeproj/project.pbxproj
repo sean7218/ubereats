@@ -53,6 +53,7 @@
 		C186A3ED21220F9C000628C9 /* constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C186A3EC21220F9C000628C9 /* constants.swift */; };
 		C1BB07CC210A06450004EDE0 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BB07CB210A06450004EDE0 /* DetailViewController.swift */; };
 		C1BB07CE210BC5BD0004EDE0 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BB07CD210BC5BD0004EDE0 /* HeaderView.swift */; };
+		C1DC8D1D21291DF80080ACAF /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DC8D1C21291DF80080ACAF /* OnboardingViewController.swift */; };
 		C1DF4B5F2123BA9D00CAC0C1 /* HorizontalViewCellCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DF4B5E2123BA9D00CAC0C1 /* HorizontalViewCellCell.swift */; };
 		C1DF4B612124591700CAC0C1 /* UICollectionViewFlowLayout+snap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DF4B602124591700CAC0C1 /* UICollectionViewFlowLayout+snap.swift */; };
 		C1DF4B6321250C1800CAC0C1 /* PresentAnimator2.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DF4B6221250C1800CAC0C1 /* PresentAnimator2.swift */; };
@@ -152,6 +153,7 @@
 		C186A3EC21220F9C000628C9 /* constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = constants.swift; sourceTree = "<group>"; };
 		C1BB07CB210A06450004EDE0 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		C1BB07CD210BC5BD0004EDE0 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		C1DC8D1C21291DF80080ACAF /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		C1DF4B5E2123BA9D00CAC0C1 /* HorizontalViewCellCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalViewCellCell.swift; sourceTree = "<group>"; };
 		C1DF4B602124591700CAC0C1 /* UICollectionViewFlowLayout+snap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewFlowLayout+snap.swift"; sourceTree = "<group>"; };
 		C1DF4B6221250C1800CAC0C1 /* PresentAnimator2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentAnimator2.swift; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 		A757F0341FCA2D7000240CC9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C1DC8D1B21291DAC0080ACAF /* onboarding */,
 				A757F03F1FCA310800240CC9 /* Home */,
 				A757F0421FCA311900240CC9 /* User */,
 				A757F0411FCA311300240CC9 /* Search */,
@@ -421,6 +424,14 @@
 				C1E8226B210CBC0A0078525C /* InfoViewController.swift */,
 			);
 			path = Detail;
+			sourceTree = "<group>";
+		};
+		C1DC8D1B21291DAC0080ACAF /* onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				C1DC8D1C21291DF80080ACAF /* OnboardingViewController.swift */,
+			);
+			path = onboarding;
 			sourceTree = "<group>";
 		};
 		C1EBB0DE2108CBEA007B68B2 /* Location */ = {
@@ -705,6 +716,7 @@
 				C1E82272210D05270078525C /* Meal.swift in Sources */,
 				C1E82274210D33300078525C /* SectionHeaderView.swift in Sources */,
 				C1DF4B692125DE6000CAC0C1 /* FilterDollarButton.swift in Sources */,
+				C1DC8D1D21291DF80080ACAF /* OnboardingViewController.swift in Sources */,
 				C12839C72118BC93008545F7 /* MealItemTitleCell.swift in Sources */,
 				C1EBB0E62108D5C9007B68B2 /* Business.swift in Sources */,
 				C1DF4B5F2123BA9D00CAC0C1 /* HorizontalViewCellCell.swift in Sources */,
