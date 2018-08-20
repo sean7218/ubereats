@@ -20,9 +20,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Please obtain your own google map key
     let GOOGLE_KEY = KEYS.GOOGLE_MAP_KEY
 
+    
     lazy var tabBarController: TabBarController = {
         let tabBarController = TabBarController()
         return tabBarController
+    }()
+    
+    lazy var onboardingController: OnboardingViewController = {
+        let onboard = OnboardingViewController()
+        return onboard
     }()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -35,14 +41,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         window?.makeKeyAndVisible()
         window?.rootViewController = tabBarController
-        let userDefault = UserDefaults.standard
-        let isSignedin = userDefault.bool(forKey: "isSignedin")
-        if (!isSignedin) {
-            let onboardingViewController = OnboardingViewController()
-            window?.rootViewController = onboardingViewController
-        } else {
-            
-        }
         
         return true
     }
@@ -72,6 +70,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-
 }
-

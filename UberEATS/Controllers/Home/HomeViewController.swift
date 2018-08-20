@@ -17,6 +17,12 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     var selectedFrame: CGRect?
     var navAddressTitle: String = "2590 N Moreland Blvd"
     
+    lazy var onbardingViewController: OnboardingViewController = {
+        let vc = OnboardingViewController()
+        vc.delegate = self
+        return vc
+    }()
+    
     lazy var grayBackgroundView: UIView = {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -74,8 +80,8 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
-        setupNavigationBar()
         setupViews()
+        checkUserAuth()
     }
     
     func setupCollectionView()
@@ -91,10 +97,6 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
             collectionView!.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor),
             collectionView!.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
             ])
-    }
-    
-    func setupNavigationBar() {
-        
     }
     
     func setupViews(){
@@ -231,4 +233,20 @@ extension HomeViewController: NavAddressDelegate {
         navAddressTitle = address
         setupViews()
     }
+}
+
+extension HomeViewController: OnboardingDelegate {
+
+    func checkUserAuth(){
+        let userDefault = UserDefaults.standard
+        let isSignedin = userDefault.bool(forKey: "isSignedin")
+        if (!isSignedin) {
+            print("user isn't signed in yet")
+            present(onbardingViewController, animated: true, completion: nil)
+        } else {
+            print("user has signed in already")
+            onbardingViewController.dismiss(animated: true, completion: nil)
+        }
+    }
+    
 }
