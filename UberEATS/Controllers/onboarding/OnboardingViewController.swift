@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 class OnboardingViewController: UIViewController {
     
@@ -24,7 +25,7 @@ class OnboardingViewController: UIViewController {
         textField.layer.borderColor = UIColor.black.cgColor
         textField.layer.borderWidth = 1
         textField.layer.cornerRadius = 25
-
+        textField.autocapitalizationType = .none
         return textField
     }()
     
@@ -40,6 +41,7 @@ class OnboardingViewController: UIViewController {
         textField.layer.borderWidth = 1
         textField.layer.cornerRadius = 25
         textField.layer.masksToBounds = true
+        textField.autocapitalizationType = .none
         return textField
     }()
     
@@ -99,18 +101,16 @@ class OnboardingViewController: UIViewController {
         let url = try! "https://api.zxsean.com/user/login".asURL()
         let params: Parameters = ["email": email, "password": password]
         Alamofire.request(url, method: .post, parameters: params, encoding: URLEncoding.default, headers: nil).responseJSON { (response) in
-            let results = response.result.value
-            print(results)
-        }
-        print(email)
-        if (email == "sean@gmail.com") {
-            print("email is correct")
-            userDefault.set(true, forKey: "isSignedin")
-            delegate?.checkUserAuth()
-        } else {
-            print("incorrect email")
-            userDefault.set(false, forKey: "isSignedin")
-            //delegate?.checkUserAuth()
+            let results = response.value
+            let json = JSON(results ?? "{ \"auth\": false }")
+            let auth = json["auth"].bool ?? false
+            print(auth)
+            if (auth) {
+                userDefault.set(true, forKey: "isSignedin")
+                self.delegate?.checkUserAuth()
+            } else {
+                userDefault.set(false, forKey: "isSignedin")
+            }
         }
     }
 }
