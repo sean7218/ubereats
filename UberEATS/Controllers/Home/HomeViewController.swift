@@ -10,16 +10,18 @@ import UIKit
 
 class HomeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, FilterViewDelegate {
 
-    lazy var bizs: [Business] = []
-    
-    
-    
+    lazy var bizs: [Biz] = []
     var item: HomeViewCell!
     var itemFrame: CGRect!
     let interactor = Interactor()
     var selectedFrame: CGRect?
-    var selectedBusiness: Business?
     var navAddressTitle: String = "2590 N Moreland Blvd"
+    
+    lazy var onbardingViewController: OnboardingViewController = {
+        let vc = OnboardingViewController()
+        vc.delegate = self
+        return vc
+    }()
     
     lazy var grayBackgroundView: UIView = {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height))
@@ -77,15 +79,9 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        DataController.sharedInstance.yelpBusinesses(term: "pizza", lat: 41.48446, long: -81.590579) { (result) in
-//            self.bizs = APIClient.parseBusinesses(result: result)
-//            self.collectionView?.reloadData()
-//        }
-        
         setupCollectionView()
-        setupNavigationBar()
         setupViews()
+        checkUserAuth()
     }
     
     func setupCollectionView()
@@ -101,10 +97,6 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
             collectionView!.rightAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.rightAnchor),
             collectionView!.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
             ])
-    }
-    
-    func setupNavigationBar() {
-        
     }
     
     func setupViews(){
@@ -241,4 +233,20 @@ extension HomeViewController: NavAddressDelegate {
         navAddressTitle = address
         setupViews()
     }
+}
+
+extension HomeViewController: OnboardingDelegate {
+
+    func checkUserAuth(){
+        let userDefault = UserDefaults.standard
+        let isSignedin = userDefault.bool(forKey: "isSignedin")
+        if (!isSignedin) {
+            print("user isn't signed in yet")
+            present(onbardingViewController, animated: true, completion: nil)
+        } else {
+            print("user has signed in already")
+            onbardingViewController.dismiss(animated: true, completion: nil)
+        }
+    }
+    
 }

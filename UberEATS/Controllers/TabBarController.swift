@@ -35,9 +35,15 @@ class TabBarController: UITabBarController {
         return vc
     }()
     
-    let userViewController: UserViewController = {
+    lazy var userViewController: UserViewController = {
         let vc = UserViewController()
+        vc.delegate = self.homeViewController
         vc.tabBarItem = UITabBarItem(title: nil, image: #imageLiteral(resourceName: "icons8-user-50"), selectedImage: #imageLiteral(resourceName: "icons8-user-filled-50"))
+        return vc
+    }()
+    
+    let onboardViewController: OnboardingViewController = {
+        let vc = OnboardingViewController()
         return vc
     }()
     
@@ -52,3 +58,4 @@ class TabBarController: UITabBarController {
             userViewController], animated: true)
     }
 }
+

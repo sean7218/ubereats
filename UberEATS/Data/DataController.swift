@@ -9,56 +9,81 @@
 import Foundation
 import SwiftyJSON
 import Alamofire
+import CoreData
 
-class DataController {
+
+class DataController: NSObject {
     
     static let sharedInstance = DataController()
+
+    var managedObjectContext: NSManagedObjectContext
     
-    init() {
-        // TODO: Setup Keys
-    }
-    
-    func getLocalJSON(fileName: String) -> JSON? {
-        if let path = Bundle.main.path(forResource: fileName, ofType: "json") {
-            do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path))
-                let jsonObj = try JSON(data: data)
-                let bizName = jsonObj["name"].string
-                let bizLocation = jsonObj["location"]["address1"].string
-                print("get the data success: \(String(describing: bizName)) @ \(String(describing: bizLocation))")
-                return jsonObj
-            } catch let error {
-                print("error occur when getting the data")
-                print(error.localizedDescription)
-            }
-        } else {
-            print("invalid filename/path")
+    override init() {
+
+        guard let modelURL = Bundle.main.url(forResource: "UberEATS", withExtension: "momd") else {
+            fatalError("Error Loading model from bundle")
         }
-        return nil
+        guard let mom = NSManagedObjectModel(contentsOf: modelURL) else {
+            fatalError("Error creating model from given url")
+        }
+        
+        let psc = NSPersistentStoreCoordinator(managedObjectModel: mom)
+        managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+        managedObjectContext.persistentStoreCoordinator = psc
+        
+        let urls = FileManager.default.urls(for: FileManager.SearchPathDirectory.documentDirectory, in: FileManager.SearchPathDomainMask.userDomainMask)
+        let folderURL = urls[urls.endIndex - 1]
+        let storeURL = folderURL.appendingPathComponent("business.sqlite")
+        
+        do {
+            try psc.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: storeURL, options: nil)
+        } catch let error as NSError {
+            print(error.localizedDescription)
+            fatalError("Error while loading the persistant store with sqlite")
+        }
+
     }
     
-    func getNetworkJSON(url: String) {
-        Alamofire.request(url).responseJSON { response in
-            // (DataResponse<Any>) -> Void
-            if let json =  response.result.value {
-                print("JSON FROM NETWORK: \(json)")
-            } else {
-                print("NO JSON FROM NETOWKR....")
-            }
+    func mockData(){
+        let entity = NSEntityDescription.entity(forEntityName: "Business", in: managedObjectContext)!
+        let business = NSManagedObject(entity: entity, insertInto: managedObjectContext)
+        business.setValue("On the Rise", forKey: "name")
+        business.setValue("https://github.com/sean7218/ubereats", forKey: "url")
+        business.setValue(1.3, forKey: "rating")
+        business.setValue(200, forKey: "review_count")
+        business.setValue("$$$$", forKey: "price")
+        do {
+            try managedObjectContext.save()
+            
+        } catch let err as NSError {
+            print(err.description)
         }
     }
     
-    func yelpBusinesses(term: String, lat: Float, long: Float, completion: @escaping (Result<Any>) -> Void) {
-        let bear = KEYS.ACCESS_BEAR_KEY
-        let headers: HTTPHeaders = ["x-access-token": bear]
-        let params: Parameters = ["term": term, "lat": lat, "long": long]
-        Alamofire.request("https://api.zxsean.com/yelp", method: .get, parameters: params, encoding: URLEncoding.default, headers: headers).responseJSON { response in
-            if let _ = response.result.value {
-                print("yelpBusiness Called")
-                completion(response.result)
-            } else {
-                print("No json from the yelp endpoint")
+    func preloadData() {
+        APIClient.sharedInstance.yelpBusinesses(term: "pizza", lat: 41.48446, long:  -81.590579) { (result) in
+            let busineses = APIClient.parseBusinesses(result: result)
+            print(busineses)
+        }
+    }
+    
+    func deleteData() {
+        
+    }
+    
+    func fetchDate() {
+        let fetchRequest =  NSFetchRequest<NSManagedObject>(entityName: "Business")
+
+        do {
+            let businesses =  try managedObjectContext.fetch(fetchRequest)
+            print(businesses)
+            for item in businesses {
+                let biz = item as! Business
+                print(biz.name ?? "N/A")
             }
+            
+        } catch let err as NSError {
+            print(err.description)
         }
     }
 }

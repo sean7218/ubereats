@@ -11,7 +11,7 @@ import UIKit
 
 class HomeViewCell: UICollectionViewCell {
     
-    var biz: Business = Business() {
+    var biz: Biz = Biz() {
         didSet {
 //            guard let url: URL = URL(string: biz.url ?? "http://s3-media3.fl.yelpcdn.com/bphoto/--8oiPVp0AsjoWHqaY1rDQ/o.jpg") else {
 //                return
