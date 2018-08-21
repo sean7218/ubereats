@@ -11,14 +11,27 @@ import SDWebImage
 
 class HomeViewCell: UICollectionViewCell {
     
+    var imageManager: SDWebImageManager = {
+        let manager = SDWebImageManager.shared()
+        return manager
+    }()
+    
     var biz: Biz = Biz() {
         didSet {
             let defaultUrl = "http://s3-media3.fl.yelpcdn.com/bphoto/--8oiPVp0AsjoWHqaY1rDQ/o.jpg"
             guard let url: URL = URL(string: biz.url ?? defaultUrl) else {
                 return
             }
-            
-            imageView.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "tennesse_taco_co_2"), options: SDWebImageOptions.cacheMemoryOnly, completed: nil)
+            imageManager.loadImage(with: url, options: SDWebImageOptions.cacheMemoryOnly, progress: nil) {
+                (img, data, error, cacheType, isFinished, url) in
+                let width: CGFloat = self.frame.width - 30 // based on the imageView autolayout size
+                let height: CGFloat = self.frame.height - 110
+                let size: CGSize = CGSize(width: width, height: height)
+                UIGraphicsBeginImageContext(size)
+                img?.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
+                self.imageView.image = UIGraphicsGetImageFromCurrentImageContext()
+                UIGraphicsEndImageContext()
+            }
             nameLabel.text = biz.name
             cuisineLabel.text = "Italian - \(biz.price ?? "")"
             ratingLabel.text = "\(biz.rating ?? 0) (\(biz.review_count ?? 0))"
@@ -27,7 +40,7 @@ class HomeViewCell: UICollectionViewCell {
     
     var imageView: UIImageView = {
         let iv = UIImageView(image: #imageLiteral(resourceName: "tennesse_taco_co"))
-        iv.contentMode = .redraw
+        iv.contentMode = .scaleAspectFill
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.backgroundColor = .yellow
         return iv
