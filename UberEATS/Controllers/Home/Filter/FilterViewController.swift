@@ -71,6 +71,7 @@ class FilterViewController: UIViewController {
 
     @objc func closeFilterView(){
         delegate?.closeFilterView()
+        delegate?.setFilterOptions(opts: ["price"])
     }
     
     override func viewDidLoad() {
