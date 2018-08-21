@@ -10,22 +10,27 @@ import Alamofire
 import SwiftyJSON
 import Foundation
 
-class APIClient {
+class APIClient: NSObject {
     
-    static let sharedInstance = APIClient()
+    var apiKey: String
+    
+    init(_ apiKey: String) {
+        self.apiKey = apiKey
+        super.init()
+    }
     
     @discardableResult
-    private static func performRequest(route:APIRouter, completion:@escaping (Result<Any>)->Void) -> DataRequest {
+    private func performRequest(route:APIRouter, completion:@escaping (Result<Any>)->Void) -> DataRequest {
         return Alamofire.request(route).responseJSON(completionHandler: { (response: DataResponse<Any>) in
             completion(response.result)
         })
     }
     
-    static func getBusinesses(withTerm term: String, lat: Double, long: Double , completion:@escaping (Result<Any>)->Void) {
+    func getBusinesses(withTerm term: String, lat: Double, long: Double , completion:@escaping (Result<Any>)->Void) {
         performRequest(route: APIRouter.business(term: term, lat: lat, long: long), completion: completion)
     }
     
-    static func parseBusinesses(result: Result<Any>) -> [Biz] {
+    func parseBusinesses(result: Result<Any>) -> [Biz] {
         var bizs: [Biz] = []
         let value = result.value
         let json = JSON(value ?? "[]")
@@ -70,7 +75,7 @@ class APIClient {
     }
     
     func yelpBusinesses(term: String, lat: Float, long: Float, completion: @escaping (Result<Any>) -> Void) {
-        let bear = KEYS.ACCESS_BEAR_KEY
+        let bear = self.apiKey
         let headers: HTTPHeaders = ["x-access-token": bear]
         let params: Parameters = ["term": term, "lat": lat, "long": long]
         Alamofire.request("https://api.zxsean.com/yelp", method: .get, parameters: params, encoding: URLEncoding.default, headers: headers).responseJSON { response in

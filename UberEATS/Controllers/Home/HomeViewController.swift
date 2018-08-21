@@ -82,6 +82,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         setupCollectionView()
         setupViews()
         checkUserAuth()
+        setupAPIClient()
     }
     
     func setupCollectionView()
@@ -116,6 +117,17 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
                             width: 30, height: 30)
     }
     
+    func setupAPIClient() {
+        let userDefaults = UserDefaults.standard
+        let apiKey = userDefaults.object(forKey: "bearToken") as! String
+        let apiClient = APIClient(apiKey)
+        apiClient.yelpBusinesses(term: "pizza", lat: 38.906377, long: -77.034788) { (results) in
+            let businesses = apiClient.parseBusinesses(result: results)
+            self.bizs = businesses
+            self.collectionView?.reloadData()
+        }
+    }
+    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 2
     }
@@ -124,7 +136,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         if section == 0 {
             return 1
         } else {
-            return 4
+            return bizs.count
         }
     }
     
@@ -135,7 +147,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeViewCell", for: indexPath) as! HomeViewCell
-            //cell.biz = bizs[indexPath.row]
+            cell.biz = bizs[indexPath.row]
             return cell
         }
 
@@ -209,7 +221,6 @@ extension HomeViewController: UINavigationControllerDelegate {
 }
 
 extension HomeViewController: UIViewControllerTransitioningDelegate {
-    
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         if (presented == self.filterViewController) {
             return PresentAnimator2()
@@ -236,7 +247,6 @@ extension HomeViewController: NavAddressDelegate {
 }
 
 extension HomeViewController: OnboardingDelegate {
-
     func checkUserAuth(){
         let userDefault = UserDefaults.standard
         let isSignedin = userDefault.bool(forKey: "isSignedin")
@@ -248,5 +258,4 @@ extension HomeViewController: OnboardingDelegate {
             onbardingViewController.dismiss(animated: true, completion: nil)
         }
     }
-    
 }

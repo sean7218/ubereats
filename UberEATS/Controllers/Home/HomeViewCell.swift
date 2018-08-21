@@ -7,19 +7,21 @@
 //
 
 import UIKit
-
+import SDWebImage
 
 class HomeViewCell: UICollectionViewCell {
     
     var biz: Biz = Biz() {
         didSet {
-//            guard let url: URL = URL(string: biz.url ?? "http://s3-media3.fl.yelpcdn.com/bphoto/--8oiPVp0AsjoWHqaY1rDQ/o.jpg") else {
-//                return
-//            }
-//            imageView.load(url: url)
-//            nameLabel.text = biz.name
-//            cuisineLabel.text = "Italian - \(biz.price ?? "")"
-//            ratingLabel.text = "\(biz.rating ?? 0) (\(biz.review_count ?? 0))"
+            let defaultUrl = "http://s3-media3.fl.yelpcdn.com/bphoto/--8oiPVp0AsjoWHqaY1rDQ/o.jpg"
+            guard let url: URL = URL(string: biz.url ?? defaultUrl) else {
+                return
+            }
+            
+            imageView.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "tennesse_taco_co_2"), options: SDWebImageOptions.cacheMemoryOnly, completed: nil)
+            nameLabel.text = biz.name
+            cuisineLabel.text = "Italian - \(biz.price ?? "")"
+            ratingLabel.text = "\(biz.rating ?? 0) (\(biz.review_count ?? 0))"
         }
     }
     
