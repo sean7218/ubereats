@@ -67,10 +67,6 @@ class DataController: NSObject {
         }
     }
     
-    func deleteData() {
-        
-    }
-    
     func fetchDate() {
         let fetchRequest =  NSFetchRequest<NSManagedObject>(entityName: "Business")
 
@@ -81,7 +77,6 @@ class DataController: NSObject {
                 let biz = item as! Business
                 print(biz.name ?? "N/A")
             }
-            
         } catch let err as NSError {
             print(err.description)
         }
