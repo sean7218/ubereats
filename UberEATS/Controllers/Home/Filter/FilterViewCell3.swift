@@ -10,6 +10,8 @@ import UIKit
 
 class FilterViewCell3: UICollectionViewCell {
     
+    var delegate: FilterSelectDelegate?
+    
     let dietOptions: [String] = ["Vegetarian", "Vegan", "Gluten-free", "Halal"];
     let dietImages:[String] = ["filter_vegetarian", "filter_vegan", "filter_glutenfree", "filter_hala"];
     
@@ -68,5 +70,9 @@ extension FilterViewCell3: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 40
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.selected(section: 2, row: indexPath.row)
     }
 }

@@ -12,5 +12,5 @@
  */
 protocol FilterViewDelegate {
     func closeFilterView()
-    func setFilterOptions(opts: [String])
+    func setFilterOptions(opts: [String], enable: Bool)
 }

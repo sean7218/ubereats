@@ -10,6 +10,9 @@ import UIKit
 
 class FilterViewController: UIViewController {
     
+    var filterOptions: [String] = []
+    var filterEnabled: Bool = false
+    
     var doneButtonTopAnchor: NSLayoutConstraint?
     var delegate: FilterViewDelegate?
     
@@ -71,7 +74,7 @@ class FilterViewController: UIViewController {
 
     @objc func closeFilterView(){
         delegate?.closeFilterView()
-        delegate?.setFilterOptions(opts: ["price"])
+        delegate?.setFilterOptions(opts: ["price"], enable: true)
     }
     
     override func viewDidLoad() {
@@ -163,8 +166,10 @@ extension FilterViewController: UICollectionViewDelegate, UICollectionViewDataSo
             cell1.delegate = self
             return cell1
         } else if indexPath.section == 1 {
+            cell2.delegate = self
             return cell2
         } else {
+            cell3.delegate = self
             return cell3
         }
     }
@@ -226,6 +231,22 @@ extension FilterViewController: FilterViewMenuDelegate {
 extension FilterViewController: FilterSelectDelegate {
     func selected(section: Int, row: Int) {
         // Todo: get the selected cell to the FilterViewController and pass it back to the homeViewController
+        switch (section, row) {
+        case (0, 0):
+            filterOptions.append("recommended")
+            break
+        case (0, 1):
+            filterOptions.append("popular")
+            break
+        case (0, 2):
+            filterOptions.append("rating")
+            break
+        case (0, 3):
+            filterOptions.append("delivery")
+            break
+        default:
+            print("none")
+        }
     }
 }
 

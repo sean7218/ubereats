@@ -80,12 +80,12 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         navigationController?.present(locationViewController, animated: true, completion: nil)
     }
     
-    func setFilterOptions(opts: [String]) {
+    func setFilterOptions(opts: [String], enable: Bool) {
         filteredBizs = bizs.filter({ (biz) -> Bool in
             return ( biz.review_count! > 500 )
         })
         print(filteredBizs)
-        isFiltered = true
+        isFiltered = enable
         collectionView?.reloadData()
     }
 
