@@ -60,9 +60,9 @@ class DataController: NSObject {
         }
     }
     
-    func preloadData() {
-        APIClient.sharedInstance.yelpBusinesses(term: "pizza", lat: 41.48446, long:  -81.590579) { (result) in
-            let busineses = APIClient.parseBusinesses(result: result)
+    func preloadData(apiClient: APIClient) {
+        apiClient.yelpBusinesses(term: "pizza", lat: 41.48446, long:  -81.590579) { (result) in
+            let busineses = apiClient.parseBusinesses(result: result)
             print(busineses)
         }
     }

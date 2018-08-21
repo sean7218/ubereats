@@ -104,9 +104,14 @@ class OnboardingViewController: UIViewController {
             let results = response.value
             let json = JSON(results ?? "{ \"auth\": false }")
             let auth = json["auth"].bool ?? false
+            let token = json["token"].string ?? "no_access_token"
+            print(results)
+            print(json)
             print(auth)
+            
             if (auth) {
                 userDefault.set(true, forKey: "isSignedin")
+                userDefault.set(token, forKey: "bearToken")
                 self.delegate?.checkUserAuth()
             } else {
                 userDefault.set(false, forKey: "isSignedin")
