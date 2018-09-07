@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Crashlytics
 
 class HomeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, FilterViewDelegate {
 
@@ -128,6 +129,15 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
             }
         }
     }
+    
+    func logUser() {
+        // TODO: Use the current user's information
+        // You can call any combination of these three methods
+        Crashlytics.sharedInstance().setUserEmail("sezhang@aarp.org")
+        Crashlytics.sharedInstance().setUserIdentifier("12345")
+        Crashlytics.sharedInstance().setUserName("Test User")
+    }
+
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 2
