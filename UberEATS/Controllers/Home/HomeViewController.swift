@@ -84,6 +84,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         setupViews()
         checkUserAuth()
         setupAPIClient()
+        logUser()
     }
     
     func setupCollectionView()
