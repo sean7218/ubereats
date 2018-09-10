@@ -19,6 +19,13 @@ The CI/CD will be implemented on Bitrise and the also the unit testing will be d
 | Order Payment           |                                 |        |
 | Order Tracking          |                                 |        |
 
+## Login
+```
+email: sean@gmail.com
+password: abcPassword
+
+```
+
 ## Google Map Service 
 - You will not be able to make any network calls without the `config.swift` file because it contains all the access keys. Please DM [@sean7218](https://twitter/sean7218) if you want to play with the location service and backend Yelp API
 - The map and the location is using Google Map Service and Google Places. Please obtain your own API token. Creating a file in the same folder where `AppDelegate.swift` with following
