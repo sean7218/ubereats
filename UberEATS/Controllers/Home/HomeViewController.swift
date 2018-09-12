@@ -123,6 +123,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         let userDefaults = UserDefaults.standard
         if let apiKey = userDefaults.object(forKey: "bearToken") as? String {
             let apiClient = APIClient(apiKey)
+            apiClient.refreshBearToken()
             apiClient.yelpBusinesses(term: "pizza", lat: 38.906377, long: -77.034788) { (results) in
                 if results.error == nil {
                     let businesses = apiClient.parseBusinesses(result: results)
