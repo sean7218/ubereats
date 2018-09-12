@@ -38,8 +38,14 @@ class APIClient: NSObject {
             let jsonString = obj.rawString(.utf8, options: .prettyPrinted)
             let jsonData = jsonString?.data(using: .utf8)
             let decoder = JSONDecoder()
-            let business = try! decoder.decode(Biz.self, from: jsonData!)
-            bizs.append(business)
+            do {
+                if let _jsonData = jsonData {
+                    let business = try decoder.decode(Biz.self, from: _jsonData)
+                    bizs.append(business)
+                }
+            } catch {
+                print("err")
+            }
         }
         return bizs
     }
