@@ -63,6 +63,24 @@ class OnboardingViewController: UIViewController {
         return button
     }()
     
+    var generateCredentialButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Generate Credential", for: UIControlState.normal)
+        button.setBackgroundImage(#imageLiteral(resourceName: "button_background"), for: UIControlState.normal)
+        button.setBackgroundImage(#imageLiteral(resourceName: "button_background_white"), for: UIControlState.highlighted)
+        button.setTitleColor(UIColor.black, for: UIControlState.normal)
+        button.setTitleColor(UIColor.blue, for: UIControlState.highlighted)
+        button.backgroundColor = .white
+        button.layer.borderColor = UIColor.black.cgColor
+        button.layer.borderWidth = 0.5
+        button.layer.cornerRadius = 25
+        button.layer.masksToBounds = true
+        button.addTarget(self, action: #selector(generateCredential), for: UIControlEvents.touchUpInside)
+        
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -91,6 +109,13 @@ class OnboardingViewController: UIViewController {
             loginButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -50),
             loginButton.heightAnchor.constraint(equalToConstant: 50)
             ])
+        view.addSubview(generateCredentialButton)
+        NSLayoutConstraint.activate([
+            generateCredentialButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 10),
+            generateCredentialButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 50),
+            generateCredentialButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -50),
+            generateCredentialButton.heightAnchor.constraint(equalToConstant: 50)
+            ])
     }
     
     @objc func login() {
@@ -117,5 +142,10 @@ class OnboardingViewController: UIViewController {
                 userDefault.set(false, forKey: "isSignedin")
             }
         }
+    }
+    
+    @objc func generateCredential(){
+        self.emailTextField.text = "sean@gmail.com"
+        self.passwordTextField.text = "abcPassword"
     }
 }

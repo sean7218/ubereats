@@ -480,6 +480,7 @@
 				A757EFFE1FCA2CD000240CC9 /* Resources */,
 				8877C18015F715A7D82B5B8F /* [CP] Copy Pods Resources */,
 				C3723EAE140C2AFE359D328B /* [CP] Embed Pods Frameworks */,
+				EE9D161F2142F73C009FE637 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -661,6 +662,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UberEATS/Pods-UberEATS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		EE9D161F2142F73C009FE637 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" beff3cae62910c9f00a3433d1b2dd3967aee038b d607c9c3b57643b434533f196e51f9736ab3b39c5f7a227702de1eba8ff4ab97";
 		};
 /* End PBXShellScriptBuildPhase section */
 
