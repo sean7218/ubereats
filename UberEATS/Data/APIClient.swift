@@ -38,8 +38,14 @@ class APIClient: NSObject {
             let jsonString = obj.rawString(.utf8, options: .prettyPrinted)
             let jsonData = jsonString?.data(using: .utf8)
             let decoder = JSONDecoder()
-            let business = try! decoder.decode(Biz.self, from: jsonData!)
-            bizs.append(business)
+            do {
+                if let _jsonData = jsonData {
+                    let business = try decoder.decode(Biz.self, from: _jsonData)
+                    bizs.append(business)
+                }
+            } catch {
+                print("err")
+            }
         }
         return bizs
     }
@@ -85,6 +91,24 @@ class APIClient: NSObject {
                 completion(response.result)
             } else {
                 print("No json from the yelp endpoint")
+            }
+        }
+    }
+    
+    func refreshBearToken() {
+        let url = try! "https://api.zxsean.com/user/login".asURL()
+        let params: Parameters = ["email": "sean@gmail.com", "password": "abcPassword"]
+        let userDefault = UserDefaults.standard
+        Alamofire.request(url, method: .post, parameters: params, encoding: URLEncoding.default, headers: nil).responseJSON { (response) in
+            let results = response.value
+            let json = JSON(results ?? "{ \"auth\": false }")
+            let auth = json["auth"].bool ?? false
+            let token = json["token"].string ?? "no_access_token"
+            if (auth) {
+                userDefault.set(true, forKey: "isSignedin")
+                userDefault.set(token, forKey: "bearToken")
+            } else {
+                userDefault.set(false, forKey: "isSignedin")
             }
         }
     }

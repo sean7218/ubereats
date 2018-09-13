@@ -10,6 +10,8 @@ import UIKit
 import CoreData
 import GoogleMaps
 import GooglePlaces
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -36,6 +38,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         window?.rootViewController = tabBarController
         
+        // Crashlystics
+        Fabric.with([Crashlytics.self])
         return true
     }
 

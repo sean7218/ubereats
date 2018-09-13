@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Crashlytics
 
 class HomeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, FilterViewDelegate {
 
@@ -95,6 +96,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         setupViews()
         checkUserAuth()
         setupAPIClient()
+        logUser()
     }
     
     func setupCollectionView()
@@ -131,14 +133,29 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     
     func setupAPIClient() {
         let userDefaults = UserDefaults.standard
-        let apiKey = userDefaults.object(forKey: "bearToken") as! String
-        let apiClient = APIClient(apiKey)
-        apiClient.yelpBusinesses(term: "pizza", lat: 38.906377, long: -77.034788) { (results) in
-            let businesses = apiClient.parseBusinesses(result: results)
-            self.bizs = businesses
-            self.collectionView?.reloadData()
+        if let apiKey = userDefaults.object(forKey: "bearToken") as? String {
+            let apiClient = APIClient(apiKey)
+            apiClient.refreshBearToken()
+            apiClient.yelpBusinesses(term: "pizza", lat: 38.906377, long: -77.034788) { (results) in
+                if results.error == nil {
+                    let businesses = apiClient.parseBusinesses(result: results)
+                    self.bizs = businesses
+                    self.collectionView?.reloadData()
+                } else {
+                    print(results.error?.localizedDescription as Any)
+                }
+            }
         }
     }
+    
+    func logUser() {
+        // TODO: Use the current user's information
+        // You can call any combination of these three methods
+        Crashlytics.sharedInstance().setUserEmail("sezhang@aarp.org")
+        Crashlytics.sharedInstance().setUserIdentifier("12345")
+        Crashlytics.sharedInstance().setUserName("Test User")
+    }
+
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 2

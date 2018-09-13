@@ -77,10 +77,10 @@
 		C1EBB0D72107ACD1007B68B2 /* WhenCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EBB0D62107ACD1007B68B2 /* WhenCollectionViewCell.swift */; };
 		C1EBB0DD2108BF65007B68B2 /* NavAddressDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EBB0DC2108BF65007B68B2 /* NavAddressDelegate.swift */; };
 		C1EBB0E12108CC74007B68B2 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EBB0E02108CC74007B68B2 /* DataController.swift */; };
-		C1EBB0E32108CEBF007B68B2 /* config.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EBB0E22108CEBF007B68B2 /* config.swift */; };
 		C1EBB0E62108D5C9007B68B2 /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1EBB0E52108D5C9007B68B2 /* Business.swift */; };
 		C1EBB0E82108D679007B68B2 /* biz.json in Resources */ = {isa = PBXBuildFile; fileRef = C1EBB0E72108D679007B68B2 /* biz.json */; };
 		C1EBB0EA2108D6D2007B68B2 /* bizDetail.json in Resources */ = {isa = PBXBuildFile; fileRef = C1EBB0E92108D6D2007B68B2 /* bizDetail.json */; };
+		EE32A0092142D41F0003D3F5 /* config.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE32A0082142D41F0003D3F5 /* config.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -178,10 +178,10 @@
 		C1EBB0D62107ACD1007B68B2 /* WhenCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WhenCollectionViewCell.swift; path = UberEATS/Views/WhenCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
 		C1EBB0DC2108BF65007B68B2 /* NavAddressDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavAddressDelegate.swift; sourceTree = "<group>"; };
 		C1EBB0E02108CC74007B68B2 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
-		C1EBB0E22108CEBF007B68B2 /* config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = config.swift; sourceTree = "<group>"; };
 		C1EBB0E52108D5C9007B68B2 /* Business.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Business.swift; sourceTree = "<group>"; };
 		C1EBB0E72108D679007B68B2 /* biz.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = biz.json; sourceTree = "<group>"; };
 		C1EBB0E92108D6D2007B68B2 /* bizDetail.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = bizDetail.json; sourceTree = "<group>"; };
+		EE32A0082142D41F0003D3F5 /* config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = config.swift; sourceTree = "<group>"; };
 		F5B6DFD2CF6C55F62DCB40CF /* Pods-UberEATS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UberEATS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UberEATS/Pods-UberEATS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -252,7 +252,7 @@
 				A757F0341FCA2D7000240CC9 /* Controllers */,
 				C1EBB0DF2108CC5C007B68B2 /* Data */,
 				A757F0031FCA2CD000240CC9 /* AppDelegate.swift */,
-				C1EBB0E22108CEBF007B68B2 /* config.swift */,
+				EE32A0082142D41F0003D3F5 /* config.swift */,
 				C12839C42117EB06008545F7 /* Assets.xcassets */,
 				A757F00F1FCA2CD000240CC9 /* LaunchScreen.storyboard */,
 				A757F0121FCA2CD000240CC9 /* Info.plist */,
@@ -480,6 +480,7 @@
 				A757EFFE1FCA2CD000240CC9 /* Resources */,
 				8877C18015F715A7D82B5B8F /* [CP] Copy Pods Resources */,
 				C3723EAE140C2AFE359D328B /* [CP] Embed Pods Frameworks */,
+				EE9D161F2142F73C009FE637 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -662,6 +663,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UberEATS/Pods-UberEATS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		EE9D161F2142F73C009FE637 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" beff3cae62910c9f00a3433d1b2dd3967aee038b d607c9c3b57643b434533f196e51f9736ab3b39c5f7a227702de1eba8ff4ab97";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -672,6 +686,7 @@
 				C12839B72113D2AE008545F7 /* InfoAnimatedTransition.swift in Sources */,
 				C186A3E921220D23000628C9 /* APIRouter.swift in Sources */,
 				C1EBB0D121074BB0007B68B2 /* LocationViewController.swift in Sources */,
+				EE32A0092142D41F0003D3F5 /* config.swift in Sources */,
 				C1283944210F5544008545F7 /* InfoTableViewCell.swift in Sources */,
 				C1E8226C210CBC0A0078525C /* InfoViewController.swift in Sources */,
 				A757F03C1FCA2E5C00240CC9 /* UserViewController.swift in Sources */,
@@ -698,7 +713,6 @@
 				C1E82276210D3CF30078525C /* SectionTitleIndexView.swift in Sources */,
 				C12839CB2118BCE3008545F7 /* MealItemTableHeaderView.swift in Sources */,
 				C1EBB0DD2108BF65007B68B2 /* NavAddressDelegate.swift in Sources */,
-				C1EBB0E32108CEBF007B68B2 /* config.swift in Sources */,
 				C1283946210F5B5A008545F7 /* InfoTableViewHeader.swift in Sources */,
 				C1E8226E210CBE1B0078525C /* InfoCollectionViewCell.swift in Sources */,
 				A757F0461FCA318300240CC9 /* HomeViewCell.swift in Sources */,
