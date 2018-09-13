@@ -18,6 +18,13 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     var selectedFrame: CGRect?
     var navAddressTitle: String = "2590 N Moreland Blvd"
     
+    lazy var refreshControl: UIRefreshControl = {
+        let rc = UIRefreshControl()
+        rc.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        return rc
+    }()
+    
+
     lazy var onbardingViewController: OnboardingViewController = {
         let vc = OnboardingViewController()
         vc.delegate = self
@@ -78,6 +85,26 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         navigationController?.present(locationViewController, animated: true, completion: nil)
     }
 
+    @objc func handleRefresh() {
+        print("handleRefresh")
+        let userDefaults = UserDefaults.standard
+        if let apiKey = userDefaults.object(forKey: "bearToken") as? String {
+            let apiClient = APIClient(apiKey)
+            apiClient.refreshBearToken()
+            apiClient.yelpBusinesses(term: "coffee", lat: 38.906377, long: -77.034788) { (results) in
+                if results.error == nil {
+                    let businesses = apiClient.parseBusinesses(result: results)
+                    self.bizs = businesses
+                    self.collectionView?.reloadData()
+                } else {
+                    print(results.error?.localizedDescription as Any)
+                }
+                self.refreshControl.endRefreshing()
+            }
+        }
+
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
@@ -89,6 +116,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
     
     func setupCollectionView()
     {
+        collectionView?.addSubview(refreshControl)
         collectionView!.register(HorizontalViewCell.self, forCellWithReuseIdentifier: "HorizontalViewCell")
         collectionView!.register(HomeViewCell.self, forCellWithReuseIdentifier: "HomeViewCell")
         collectionView!.backgroundColor = UIColor(red: 240/255, green: 237/255, blue: 240/255, alpha: 1)
