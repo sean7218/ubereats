@@ -23,7 +23,6 @@ The CI/CD will be implemented on Bitrise and the also the unit testing will be d
 ```
 email: sean@gmail.com
 password: abcPassword
-
 ```
 
 ## Google Map Service 
@@ -39,25 +38,11 @@ password: abcPassword
  }
  ```
 
-## Go Server
-- installing the golang
-```
-brew install go
-```
+## Pod
 
-- install packages
+Pods are not pushed to this remote so you have to run the following before running the app
 ```
-go get -u github.com/gorilla/mux
-```
-- start the server
-```
-cd Server
-go build
-./Server
-```
-- test the endpoint
-```
-curl -X GET http://localhost:8000/people
+pod install
 ```
 
 # Home Page
