@@ -12,6 +12,9 @@ import Crashlytics
 class HomeViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, FilterViewDelegate {
 
     lazy var bizs: [Biz] = []
+    lazy var filteredBizs: [Biz] = []
+    lazy var isFiltered: Bool = false
+    
     var item: HomeViewCell!
     var itemFrame: CGRect!
     let interactor = Interactor()
@@ -76,6 +79,15 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         let locationViewController: LocationViewController = LocationViewController()
         locationViewController.delegate = self
         navigationController?.present(locationViewController, animated: true, completion: nil)
+    }
+    
+    func setFilterOptions(opts: [String], enable: Bool) {
+        filteredBizs = bizs.filter({ (biz) -> Bool in
+            return ( biz.review_count! > 500 )
+        })
+        print(filteredBizs)
+        isFiltered = enable
+        collectionView?.reloadData()
     }
 
     override func viewDidLoad() {
@@ -153,7 +165,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
         if section == 0 {
             return 1
         } else {
-            return bizs.count
+            return isFiltered ? filteredBizs.count : bizs.count
         }
     }
     
@@ -164,7 +176,7 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeViewCell", for: indexPath) as! HomeViewCell
-            cell.biz = bizs[indexPath.row]
+            cell.biz = isFiltered ? filteredBizs[indexPath.row] : bizs[indexPath.row]
             return cell
         }
 
@@ -276,3 +288,4 @@ extension HomeViewController: OnboardingDelegate {
         }
     }
 }
+

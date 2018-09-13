@@ -10,6 +10,8 @@ import UIKit
 
 class FilterViewCell2: UICollectionViewCell {
     
+    var delegate: FilterSelectDelegate?
+    
     var priceRangeLabel: UILabel = {
         let label = UILabel(frame: CGRect.zero)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -20,7 +22,9 @@ class FilterViewCell2: UICollectionViewCell {
     
     @objc func touchedDollar(_ sender:UIButton){
         sender.isSelected = (sender.isSelected == true) ? false : true
+        delegate?.selected(section: 1, row: 0)
     }
+    
     lazy var priceRangeView: UIStackView = {
         let button1 = DollarButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50), title: "$")
         let button2 = DollarButton(frame: CGRect(x: 0, y: 0, width: 50, height: 50), title: "$$")

@@ -283,7 +283,7 @@
 		A757F0341FCA2D7000240CC9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C1DC8D1B21291DAC0080ACAF /* onboarding */,
+				C1DC8D1B21291DAC0080ACAF /* Onboarding */,
 				A757F03F1FCA310800240CC9 /* Home */,
 				A757F0421FCA311900240CC9 /* User */,
 				A757F0411FCA311300240CC9 /* Search */,
@@ -428,13 +428,13 @@
 			path = Detail;
 			sourceTree = "<group>";
 		};
-		C1DC8D1B21291DAC0080ACAF /* onboarding */ = {
+		C1DC8D1B21291DAC0080ACAF /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
 				C1DC8D1C21291DF80080ACAF /* OnboardingViewController.swift */,
 				C13B5C23212AFDA300E9C7D1 /* OnboardingDelegate.swift */,
 			);
-			path = onboarding;
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		C1EBB0DE2108CBEA007B68B2 /* Location */ = {
