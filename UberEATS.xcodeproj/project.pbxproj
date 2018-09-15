@@ -53,6 +53,7 @@
 		C186A3EB21220D48000628C9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C186A3EA21220D48000628C9 /* User.swift */; };
 		C186A3ED21220F9C000628C9 /* constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C186A3EC21220F9C000628C9 /* constants.swift */; };
 		C19B1429214A178B00B2DAE6 /* SearchCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19B1428214A178B00B2DAE6 /* SearchCategoryCell.swift */; };
+		C19B142B214C885100B2DAE6 /* SearchViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19B142A214C885100B2DAE6 /* SearchViewFlowLayout.swift */; };
 		C1BB07CC210A06450004EDE0 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BB07CB210A06450004EDE0 /* DetailViewController.swift */; };
 		C1BB07CE210BC5BD0004EDE0 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BB07CD210BC5BD0004EDE0 /* HeaderView.swift */; };
 		C1DC8D1D21291DF80080ACAF /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DC8D1C21291DF80080ACAF /* OnboardingViewController.swift */; };
@@ -155,6 +156,7 @@
 		C186A3EA21220D48000628C9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C186A3EC21220F9C000628C9 /* constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = constants.swift; sourceTree = "<group>"; };
 		C19B1428214A178B00B2DAE6 /* SearchCategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCategoryCell.swift; sourceTree = "<group>"; };
+		C19B142A214C885100B2DAE6 /* SearchViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewFlowLayout.swift; sourceTree = "<group>"; };
 		C1BB07CB210A06450004EDE0 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		C1BB07CD210BC5BD0004EDE0 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		C1DC8D1C21291DF80080ACAF /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 			children = (
 				A757F0391FCA2E3100240CC9 /* SearchViewController.swift */,
 				C19B1428214A178B00B2DAE6 /* SearchCategoryCell.swift */,
+				C19B142A214C885100B2DAE6 /* SearchViewFlowLayout.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -750,6 +753,7 @@
 				C1283948210F5FED008545F7 /* InfoMapView.swift in Sources */,
 				A757F00C1FCA2CD000240CC9 /* UberEATS.xcdatamodeld in Sources */,
 				C1DF4B6321250C1800CAC0C1 /* PresentAnimator2.swift in Sources */,
+				C19B142B214C885100B2DAE6 /* SearchViewFlowLayout.swift in Sources */,
 				C128394E210FBCB7008545F7 /* SlideAnimator.swift in Sources */,
 				A757F0521FCCE74500240CC9 /* FilterViewMenuDelegate.swift in Sources */,
 				C13B5C24212AFDA300E9C7D1 /* OnboardingDelegate.swift in Sources */,

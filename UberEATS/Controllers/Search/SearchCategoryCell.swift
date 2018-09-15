@@ -35,13 +35,13 @@ class SearchCategoryCell: UICollectionViewCell {
     }
     
     fileprivate func setupViews() {
-        addSubview(backgroundImageView)
-        NSLayoutConstraint.activate([
-            backgroundImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0),
-            backgroundImageView.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 0),
-            backgroundImageView.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: 0),
-            backgroundImageView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 0)
-            ])
+//        addSubview(backgroundImageView)
+//        NSLayoutConstraint.activate([
+//            backgroundImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0),
+//            backgroundImageView.leftAnchor.constraint(equalTo: safeAreaLayoutGuide.leftAnchor, constant: 0),
+//            backgroundImageView.rightAnchor.constraint(equalTo: safeAreaLayoutGuide.rightAnchor, constant: 0),
+//            backgroundImageView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 0)
+//            ])
         addSubview(categoryLabel)
         NSLayoutConstraint.activate([
             categoryLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0),
