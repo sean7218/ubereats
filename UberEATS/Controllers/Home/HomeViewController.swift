@@ -117,13 +117,25 @@ class HomeViewController: UICollectionViewController, UICollectionViewDelegateFl
 
     }
     
+    func generateMockData() {
+        var b = Biz()
+        b.name = "On the Rise"
+        b.price = "$$"
+        b.url = ""
+        b.review_count = 10
+        bizs.append(b)
+        bizs.append(b)
+        bizs.append(b)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
         setupViews()
-        checkUserAuth()
+        // checkUserAuth()
         setupAPIClient()
         logUser()
+        generateMockData()
     }
     
     func setupCollectionView()
